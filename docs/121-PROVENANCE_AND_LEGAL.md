@@ -145,4 +145,9 @@ Any dispute arising from the use of this repository shall be governed by the **l
 
 ---
 
+[ Previous: 112. Presentation Notebook](112-PRESENTATION_NOTEBOOK.md) | [ Home](../README.md) | [ Next: 131. Internal Developer Platform](131-INTERNAL_DEVELOPER_PLATFORM.md)
+
+---
+
 *Technical Documentation: Code Provenance, References and Legal Disclaimer | Vision 2026 Architectural Guide*
+
