@@ -383,9 +383,9 @@ graph TD
     end
     subgraph Engine ["Stage 2: The Logic Engine (locals.tf)"]
         direction TB
-        B_A["<b>Branch Awareness</b><br/>If Branch != main then prefix = 'd'"]
+        B_A["<b>Branch Awareness</b><br/>If Branch != main<br/>then prefix = 'd'"]
         I_G["<b>Instance Generator</b><br/>{prefix}-{region}-{env}"]
-        TAG["<b>Global Tagging</b><br/>Product, Dept, Team, CostCenter"]
+        TAG["<b>Global Tagging</b><br/>Product, Dept,<br/>Team, CostCenter"]
     end
     subgraph Output ["Stage 3: Composite Modules"]
         direction TB
