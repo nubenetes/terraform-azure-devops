@@ -324,46 +324,29 @@ The same solution should be implemented in all our apps. Choose:
 
 ### Diagram 1 App-Core Login Workflow
 
-```ascii
-┌──────────────────────┐  ┌────────────────┐   ┌────────────────────┐  ┌─────────────────────┐   ┌──────────────────────┐  ┌──────────────────────┐
-│                      │  │    Microsoft   │   │                    │  │                     │   │                      │  │                      │
-│ App-Core FrontEnd SPA │  │    identity    │   │ App-Core Backend API│  │  Integration-Service Cloud API  │   │  Azure Key Vault API │  │  Azure Storage API   │
-│    (Application)     │  │    platform    │   │     (Web API A)    │  │  (Web API B m-tier) │   │     (Web API B)      │  │     (Web API B)      │
-└──────────┬───────────┘  └────────┬───────┘   └──────────┬─────────┘  └──────────┬──────────┘   └───────────┬──────────┘  └──────────┬───────────┘
-           │                       │                      │                       │                          │                        │
-           │1──────────────────────┼─────────────────────►│                       │                          │                        │
-           │ User is authenticated.│                      │                       │                          │                        │
-           │ Application sends     │◄────────────────────2│                       │                          │                        │
-           │ access token A to     │ Request access token │                       │                          │                        │
-           │ Web API A             │ for Web API B,       │                       │                          │                        │
-           │                       │ providing token A,   │                       │                          │                        │
-           │                       │ client ID and secret │                       │                          │                        │
-           │                       │                      │  Call Web API B with  │                          │                        │
-           │                       │3────────────────────►│  access token B in    │                          │                        │
-           │                       │ Return access token B│  authorization header │                          │                        │
-           │                       │                      │4─────────────────────►│                          │                        │
-           │                       │                      │                       │4────────────────────────►│                        │
-           │                       │                      │                       │                          │                        │
-           │                       │                      │                       │◄────────────────────────5│                        │
-           │                       │                      │                       │                          │                        │
-           │                       │                      │◄─────────────────────5│                          │                        │
-           │                       │                      │   Return data from    │                          │                        │
-           │                       │                      │   secured resource    │                          │                        │
-           │                       │                      │                       │                          │                        │
-           │                       │                      │                       │                          │                        │
-           │                       │                      │4──────────────────────┼─────────────────────────►│                        │
-           │                       │                      │                       │                          │                        │
-           │                       │                      │◄──────────────────────┼─────────────────────────5│                        │
-           │                       │                      │                       │                          │                        │
-           │                       │                      │4──────────────────────┼──────────────────────────┼───────────────────────►│
-           │                       │                      │                       │                          │                        │
-           │                       │                      │◄──────────────────────┼──────────────────────────┼───────────────────────5│
-           │                       │                      │                       │                          │                        │
-           │                       │                      │                       │                          │                        │
-           │                       │                      │                       │                          │                        │
+```mermaid
+sequenceDiagram
+    autonumber
+    participant SPA as App-Core FrontEnd SPA (Application)
+    participant AAD as Microsoft Identity Platform
+    participant API_A as App-Core Backend API (Web API A)
+    participant API_B_M as Integration-Service Cloud API (Web API B m-tier)
+    participant KV as Azure Key Vault API (Web API B)
+    participant Storage as Azure Storage API (Web API B)
+    SPA->>API_A: User is authenticated. Application sends access token A to Web API A
+    API_A->>AAD: Request access token for Web API B, providing token A, client ID and secret
+    AAD-->>API_A: Return access token B
+    API_A->>API_B_M: Call Web API B with access token B in authorization header
+    API_B_M->>KV: Call Azure Key Vault API
+    KV-->>API_B_M: Return data from secured resource
+    API_B_M-->>API_A: Return data from secured resource
+    API_A->>KV: Call Azure Key Vault API
+    KV-->>API_A: Return data from secured resource
+    API_A->>Storage: Call Azure Storage API
+    Storage-->>API_A: Return data from secured resource
 ```
 
-Tip: ascii diagram drawn wih [asciiflow.com](https://asciiflow.com/)
+Tip: Sequence diagram rendered with Mermaid.
 
 The scenario is the following one:
 
@@ -404,51 +387,25 @@ The scenario is the following one:
 - App-Core FrontEnd SPA sanitizes [Core-Data](https://en.wikipedia.org/wiki/Core-Data) metadata ([ref1](https://www.Core-Datalibrary.com/Core-Data/Core-Data-tags/),[ref2](https://Storage-Nodebootcamp.com/what-is-a-Core-Data-tag/)) before [Core-Data assets 🌟](https://enterprise.atlassian.net/wiki/spaces/DEV/pages/00000000) are uploaded to Integration-Service cloud.
 - Check [terraform-manifests/template-appcore-front-angular-settings.json](terraform-manifests/template-appcore-front-angular-settings.json)
 
-```ascii
-┌──────────────────────┐  ┌────────────────┐   ┌────────────────────┐  ┌─────────────────────┐   ┌──────────────────────┐  ┌──────────────────────┐
-│                      │  │    Microsoft   │   │                    │  │                     │   │                      │  │                      │
-│ App-Core FrontEnd SPA │  │    identity    │   │ App-Core Backend API│  │  Integration-Service Cloud API  │   │  Azure Key Vault API │  │  Azure Storage API   │
-│    (Application)     │  │    platform    │   │     (Web API A)    │  │  (Web API B m-tier) │   │     (Web API B)      │  │     (Web API B)      │
-└──────────┬───────────┘  └────────┬───────┘   └──────────┬─────────┘  └──────────┬──────────┘   └───────────┬──────────┘  └──────────┬───────────┘
-           │                       │                      │                       │                          │                        │
-           │                       │                      │                       │                          │                        │
-           │                       │                      │                       │                          │                        │
-           ├───────────────────────┼──────────────────────┼──────────────────────►│                          │                        │
-           │ User is authenticated.│                      │                       │                          │                        │
-           │ Application sends     │◄─────────────────────┼─────────────────────2 │                          │                        │
-           │ access token B m-tier │                      │ Request access token  │                          │                        │
-           │ to Web API B m-tier   │                      │ for Web API B,        │                          │                        │
-           │                       │                      │ providing token       │                          │                        │
-           │                       │                      │ B m-tier,             │                          │                        │
-           │                       │                      │ client ID and secret  │                          │                        │
-           │                       │                      │                       │                          │                        │
-           │                       │3 ────────────────────┼─────────────────────► │                          │                        │
-           │                       │                      │ Return access token B │                          │                        │
-           │                       │                      │                       │  Call Web API B with     │                        │
-           │                       │                      │                       │  access token B in       │                        │
-           │                       │                      │                       │  authorization header    │                        │
-           │                       │                      │                       │4────────────────────────►│                        │
-           │                       │                      │                       │                          │                        │
-           │                       │                      │                       │◄────────────────────────5│                        │
-           │                       │                      │                       │   Return data from       │                        │
-           │                       │                      │                       │   secured resource       │                        │
-           │                       │                      │                       │                          │                        │
-           │                       │                      │                       │4─────────────────────────┼───────────────────────►│
-           │                       │                      │                       │                          │                        │
-           │                       │                      │                       │                          │                        │
-           │                       │                      │                       │◄─────────────────────────┼────────────────────── 5│
-           │                       │                      │                       │                          │                        │
-           │                       │                      │                       │                          │                        │
-           │                       │                      │                       │                          │                        │
-           │                       │                      │                       │                          │                        │
-           │                       │                      │                       │                          │                        │
-           │                       │                      │                       │                          │                        │
-           │                       │                      │                       │                          │                        │
-           │                       │                      │                       │                          │                        │
-           │                       │                      │                       │                          │                        │
+```mermaid
+sequenceDiagram
+    autonumber
+    participant SPA as App-Core FrontEnd SPA (Application)
+    participant AAD as Microsoft Identity Platform
+    participant API_A as App-Core Backend API (Web API A)
+    participant API_B_M as Integration-Service Cloud API (Web API B m-tier)
+    participant KV as Azure Key Vault API (Web API B)
+    participant Storage as Azure Storage API (Web API B)
+    SPA->>API_B_M: User is authenticated. Application sends access token B m-tier to Web API B m-tier
+    API_B_M->>AAD: Request access token for Web API B, providing token B m-tier, client ID and secret
+    AAD-->>API_B_M: Return access token B
+    API_B_M->>KV: Call Web API B with access token B in authorization header
+    KV-->>API_B_M: Return data from secured resource
+    API_B_M->>Storage: Call Web API B with access token B in authorization header
+    Storage-->>API_B_M: Return data from secured resource
 ```
 
-Tip: ascii diagram drawn wih [asciiflow.com](https://asciiflow.com/)
+Tip: Sequence diagram rendered with Mermaid.
 
 ### App-Analysis Viewer authentication with OAuth permissions
 
