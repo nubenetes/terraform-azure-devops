@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-06-07
+
+### Added
+- **Configuration**: Added thoroughly anonymized `.tfvars` files for environment parity across all modules (AKS, Day2-ops, App-Core, App-Catalog, Shared-Infra).
+- **Identity Governance**: Implemented role-based anonymous user identities (`admin.user`, `dev.user`) to preserve original permission structures.
+
+### Changed
+- **Terminology Harmonization**: Standardized and harmonized internal product names and module identifiers across all manifests and documentation to align with current architectural standards.
+- **Registry Standards**: Updated container registry names to the unified `enterpriseappcr` standard.
+
+## [1.0.1] - 2026-06-03
+
+### Added
+- **Documentation**: Uploaded missing architectural and rollback process flow images for App-Users and Shared-Infra modules.
+
 ## [1.0.0] - 2026-05-24
 
 ### Added

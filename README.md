@@ -151,6 +151,7 @@ These videos provide a comprehensive audio-visual walkthrough of the entire proj
 | **131** | Foundations and Strategy | Platform | [Internal Developer Platform](./docs/131-INTERNAL_DEVELOPER_PLATFORM.md) | Platform Engineering strategy and IDP for elevating Developer Experience. |
 | **211** | IaC Engineering and Patterns | Terraform Architecture | [Module Design Patterns](./docs/211-TERRAFORM_MODULE_DESIGN_PATTERNS.md) | Deep-dive into module philosophy: Composite vs. Atomic patterns. |
 | **212** | IaC Engineering and Patterns | Terraform Architecture | [Variable Architecture](./docs/212-TERRAFORM_VARIABLE_ARCHITECTURE_AND_DATA_STRATEGY.md) | Orchestration of variables, dynamic locals, and YAML-driven data. |
+| **213** | IaC Engineering and Patterns | Terraform Architecture | [Configuration Inventory](./docs/213-TERRAFORM_ENVIRONMENT_CONFIGURATION_AND_TFVARS_INVENTORY.md) | Inventory of environment configurations (.tfvars), provisioning sequence, and safety standards. |
 | **221** | IaC Engineering and Patterns | Visualization | [Visualizations](./docs/221-TERRAFORM_VISUALIZATIONS_AND_DEPENDENCY_GRAPHS.md) | Visualizing infrastructure dependencies and resource graphing. |
 | **311** | Infrastructure Pillars | Networking | [Hub-Spoke Backbone](./docs/311-SHARED_INFRA_NETWORKING_HUB_SPOKE_BACKBONE.md) | Hub-Spoke network backbone and shared infrastructure design. |
 | **312** | Infrastructure Pillars | Networking | [DNS Ecosystem](./docs/312-NETWORKING_AND_DNS_ECOSYSTEM.md) | Private DNS orchestration and global resolution strategy. |

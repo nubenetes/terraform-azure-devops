@@ -1,4 +1,4 @@
-[ Previous: 211. Module Design Patterns](211-TERRAFORM_MODULE_DESIGN_PATTERNS.md) | [ Home](../README.md) | [ Next: 221. Visualizations](221-TERRAFORM_VISUALIZATIONS_AND_DEPENDENCY_GRAPHS.md)
+[ Previous: 211. Module Design Patterns](211-TERRAFORM_MODULE_DESIGN_PATTERNS.md) | [ Home](../README.md) | [ Next: 213. Configuration Inventory](213-TERRAFORM_ENVIRONMENT_CONFIGURATION_AND_TFVARS_INVENTORY.md)
 
 ---
 
@@ -237,7 +237,7 @@ variable "container_runtime" {
 
 ---
 
-[ Previous: 211. Module Design Patterns](211-TERRAFORM_MODULE_DESIGN_PATTERNS.md) | [ Home](../README.md) | [ Next: 221. Visualizations](221-TERRAFORM_VISUALIZATIONS_AND_DEPENDENCY_GRAPHS.md)
+[ Previous: 211. Module Design Patterns](211-TERRAFORM_MODULE_DESIGN_PATTERNS.md) | [ Home](../README.md) | [ Next: 213. Configuration Inventory](213-TERRAFORM_ENVIRONMENT_CONFIGURATION_AND_TFVARS_INVENTORY.md)
 
 ---
 
