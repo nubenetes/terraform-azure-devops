@@ -1303,16 +1303,16 @@ The repository utilizes advanced HCL patterns to handle enterprise-scale workloa
 
 ### 9.9 Repository Engineering Metrics and Analytics
 
-| Domain / Stack | Terraform Resources | YAML Pipelines | Total Files |
-| :--- | :---: | :---: | :---: |
-| **`App-Core`** | 133 | 23 | 126 |
-| **`App-Catalog`** | 43 | 13 | 61 |
-| **`AKS Hub`** | 27 | 20 | 49 |
-| **`Shared-Infra`** | 22 | 19 | 57 |
-| **`Day2 Ops`** | 26 | 43 | 78 |
-| **`Integration`** | 0 | 37 | 106 |
-| **`Identity (Users)`** | 8 | 15 | 38 |
-| **`TOTAL`** | **259** | **170** | **515** |
+| Domain / Stack | Terraform Resources | YAML Pipelines | TFVars Files | Total Files |
+| :--- | :---: | :---: | :---: | :---: |
+| **`App-Core`** | 133 | 23 | 14 | 146 |
+| **`App-Catalog`** | 43 | 13 | 10 | 61 |
+| **`AKS Hub`** | 27 | 20 | 4 | 49 |
+| **`Shared-Infra`** | 22 | 19 | 4 | 57 |
+| **`Day2 Ops`** | 26 | 43 | 4 | 78 |
+| **`Integration`** | 0 | 37 | 0 | 106 |
+| **`Identity (Users)`** | 8 | 18 | 0 | 38 |
+| **`TOTAL`** | **259** | **173** | **36** | **535** |
 
 #### 9.9.1 Visual Distribution Analysis
 | 1. Terraform Resources | 2. YAML Pipelines | 3. Total Files |
@@ -1344,7 +1344,7 @@ pie title "Pipelines"
     "Integration" : 37
     "App-Core" : 23
     "AKS Hub" : 20
-    "Others" : 47
+    "Others" : 50
 ```
 
 </details>
@@ -1355,7 +1355,7 @@ pie title "Pipelines"
 
 ```mermaid
 pie title "Total Files"
-    "App-Core" : 126
+    "App-Core" : 146
     "Integration" : 106
     "Day2 Ops" : 78
     "App-Catalog" : 61
