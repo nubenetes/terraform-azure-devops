@@ -123,6 +123,8 @@ This repository is a definitive technical blueprint for orchestrating a producti
 
 > **Engineering Statement**: This architecture is designed to handle high-volume enterprise workloads with a "DRY-First" approach, where 100% of the infrastructure is managed as software, eliminating configuration drift and enabling rapid regional fan-outs.
 
+> **AI Usage Clarification**: This repository maintains a strict distinction between development and documentation. The **core code base** (Terraform, YAML, Scripts) is 100% **human-crafted**, developed without AI assistants to ensure maximum technical integrity. Subsequent **documentation, visualizations, and video summaries** have been enhanced using AI tools (NotebookLM, Gemini CLI) to provide a high-fidelity architectural experience.
+
 ## 2. Strategic Presentations and Video Overviews
 
 This repository includes high-fidelity architectural presentations and AI-generated video summaries designed to provide an immediate visual and strategic understanding of the Vision 2026 infrastructure. These resources serve as an excellent starting point before diving into the detailed Markdown documentation.
