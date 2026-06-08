@@ -61,7 +61,6 @@ sequenceDiagram
     participant R as App-Core
     participant K as AKS Cluster
     participant D as Day2 Ops
-    
     Note over S: 1. Core Network & DNS
     S->>U: Provides VNet Context
     Note over U: 2. Identity & RBAC
@@ -89,6 +88,10 @@ graph TD
     E[Azure Key Vault] -.->|Secret Injection| B
     F[YAML Configs] -->|Data Driven| C
 ```
+
+<p align="center">
+  <img src="../infographic/Environment_Data_Orchestration_Blueprint_tfvars.png" alt="Environment Data Orchestration Blueprint tfvars" width="100%">
+</p>
 
 ---
 
