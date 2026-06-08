@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-06-08
+
+### Added
+- **GitFlow Development Model**: Added a high-fidelity visualization of the Azure DevOps GitFlow model (`azure-devops-gitflow-based-devel-model-shared-infra.png`) across Shared Infrastructure and AKS documentation tiers.
+
+### Changed
+- **App Service Observability**: Updated the App Service Log Stream screenshot (`log-stream-in-azure-app-service-debugconsole.png`) with an improved, correctly cropped version for better visual clarity.
+
 ## [1.3.0] - 2026-06-08
 
 ### Added
