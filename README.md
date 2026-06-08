@@ -9,6 +9,7 @@
     - [2.1 AI-Generated Video Summaries (NotebookLM)](#21-ai-generated-video-summaries-notebooklm)
     - [2.2 Vision 2026 Architectural Executive Summary](#22-vision-2026-architectural-executive-summary)
     - [2.3 Vision 2026 Technical Engineering Patterns](#23-vision-2026-technical-engineering-patterns)
+    - [2.4 NotebookLM Technical Deep Dives](#24-notebooklm-technical-deep-dives)
 - [3. Document Inventory](#3-document-inventory)
 - [4. Foundations and Engineering Onboarding](#4-foundations-and-engineering-onboarding)
     - [4.1 Engineering Requirements](#41-engineering-requirements)
@@ -128,8 +129,23 @@ This repository includes high-fidelity architectural presentations and AI-genera
 
 ### 2.1 AI-Generated Video Summaries (NotebookLM)
 These videos provide a comprehensive audio-visual walkthrough of the entire project documentation (README and `docs/`). They are ideal for quick onboarding, offering a narrated dialogue that synthesizes the complex architectural patterns into an accessible format.
-- **English Version:** [Vision 2026 Cloud Blueprint (English)](./videos/Vision_2026_Cloud_Blueprint_English.mp4)
-- **Spanish Version:** [Vision 2026 Cloud Arch (Español)](./videos/Vision_2026__Cloud_Arch_Spanish.mp4)
+
+#### 2.1.1 Core Architecture and Strategy
+- **Project Overview (English):** [Vision 2026 Cloud Blueprint](./videos/Vision_2026_Cloud_Blueprint_English.mp4) | [Alternative Blueprint Summary](./videos/Vision_2026__Cloud_Blueprint.mp4)
+- **Project Overview (Español):** [Vision 2026 Cloud Arch](./videos/Vision_2026__Cloud_Arch_Spanish.mp4)
+- **Cloud Enterprise Vision (Español):** [Cloud Enterprise Vision 2026](./videos/Cloud_Enterprise__Vision_2026_Spanish.mp4)
+
+#### 2.1.2 Identity and Security (Zero-Trust)
+- **Identity Automation (English):** [App-Users Identity Automation](./videos/App-Users_Identity_Automation.mp4)
+- **Identidad Zero-Trust (Español):** [Identidad Zero-Trust](./videos/Identidad_Zero-Trust_Spanish.mp4)
+
+#### 2.1.3 Infrastructure Engine and tfvars
+- **Demystifying tfvars (English):** [The Deterministic Engine Logic](./videos/Demystifying_tfvars.mp4)
+- **Archivos tfvars (Español):** [Lógica de Archivos tfvars](./videos/Archivos_tfvars_Vision_2026_Spanish.mp4)
+
+#### 2.1.4 MLOps and Advanced Compute
+- **Secure MLOps (English):** [Vision 2026 Secure MLOps](./videos/Vision_2026__Secure_MLOps.mp4)
+- **MLOps Empresarial (Español):** [MLOps Empresarial](./videos/Vision_2026__MLOps_Empresarial_Spanish.mp4)
 
 ### 2.2 Vision 2026 Architectural Executive Summary
 - **Target Audience:** C-Level Executives, Engineering Directors, and Lead Cloud Architects.
@@ -140,6 +156,13 @@ These videos provide a comprehensive audio-visual walkthrough of the entire proj
 - **Target Audience:** Platform Engineers, DevOps Specialists, SREs, and Security Architects.
 - **Content:** An exhaustive, schematic breakdown of the engineering machinery. It details the custom "DRY Logic Engine", Tier Parity matrices (ENG vs PRO), strict CI/CD lifecycle pipelines, and the internal dependency flow of Terraform composite modules.
 - **Downloads:** [PPTX Format (Animated/Editable)](./slides/Vision_2026_Technical_Engineering_Patterns.pptx) | [PDF Format (Static/Viewable)](./slides/Vision_2026_Technical_Engineering_Patterns.pdf)
+
+### 2.4 NotebookLM Technical Deep Dives
+These high-fidelity technical presentations provide granular deep dives into specific architectural domains, complementing the primary documentation.
+- **Identity:** [Enterprise Identity GitOps](./slides/Enterprise_Identity_GitOps.pdf)
+- **Core Logic:** [The Deterministic Engine](./slides/The_Deterministic_Engine.pdf) | [Vision 2026 Infrastructure Engine](./slides/Vision_2026_Infrastructure_Engine.pdf)
+- **MLOps:** [Vision 2026 MLOps Blueprint](./slides/Vision_2026_MLOps_Blueprint.pdf)
+- **Infrastructure DNA (Español):** [Infrastructure DNA Blueprint](./slides/Infrastructure_DNA_Blueprint_Spanish.pdf)
 
 ## 3. Document Inventory
 
