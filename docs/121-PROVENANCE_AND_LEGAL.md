@@ -45,11 +45,12 @@ Integrating the patterns from Kalyan Reddy Daida's masterclass years ago was a d
 
 **Intent:** The code in this repository was originally adapted, extended, and hardened based on the patterns taught in the first version of the course. While the course has since been updated, this repository remains a solid reference for enterprise-grade AKS automation as it was specifically designed to exceed the basic requirements of the time.
 
-### 1.2 The "Human-Crafted" Quality Benchmark
+### 1.2 The "Human-Crafted" Quality Benchmark and AI-Enhanced Documentation
 In an era dominated by **AI-generated code** and automated agents, this repository stands as a benchmark for **Hand-Crafted Technical Excellence**. We aim to foster technical quality and serve as a pure reference for Terraform projects by emphasizing:
-*   **No AI Assistants:** The development, architectural design, and logic of this repo were executed **without the use of AI assistants or LLM-based tools**. This ensures that every component is the result of deliberate human engineering and deep technical reasoning.
-*   **Optimized for Humans:** By avoiding the "hallucinations" or excessive complexity sometimes found in AI-generated snippets, this code is optimized for **clarity, maintenance, and auditability**. We have established robust, simple, and secure pillars that are easy for third parties to understand, maintain, and evolve.
-*   **Strategic Referent:** This repo is designed to be a reliable foundation—a "Gold Standard"—demonstrating that manual optimization remains the safest path for building mission-critical enterprise infrastructure, even when subsequently managed or analyzed by modern AI agents.
+*   **No AI for Code Development:** The development, architectural design, and core logic of this repository were executed **entirely without the use of AI assistants or LLM-based tools**. Every line of Terraform and YAML is the result of deliberate human engineering and deep technical reasoning.
+*   **AI-Enhanced Documentation (Post-Development):** Following the completion of the code base, modern AI agents and tools (including **Gemini CLI**, **NotebookLM**, and others) have been utilized to synthesize, refine, and generate high-fidelity documentation (README.md, `docs/` inventory), video summaries, and architectural visualizations.
+*   **Optimized for Humans:** By avoiding "hallucinations" in the core logic, this code is optimized for **clarity, maintenance, and auditability**. We have established robust, simple, and secure pillars that are easy for third parties to understand, maintain, and evolve.
+*   **Strategic Referent:** This repo is designed to be a reliable foundation—a "Gold Standard"—demonstrating that manual optimization remains the safest path for building mission-critical enterprise infrastructure, even when subsequently documented or analyzed by modern AI agents.
 *   **Architectural Modularity:** We have prioritized **decoupled modules** over monolithic scripts. This granularity allows for "surgical" updates and localized troubleshooting, reflecting a human-centric approach to system reliability.
 
 ### 1.3 Official Ecosystem Standards

@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-06-08
+
+### Added
+- **AI Usage Clarification**: Formally documented the distinction between the **human-crafted code base** (Terraform, YAML, scripts) and the **AI-enhanced documentation** (README, docs inventory, NotebookLM). This ensures transparency regarding technical provenance.
+
+### Changed
+- **Provenance Documentation**: Updated `docs/121-PROVENANCE_AND_LEGAL.md` and the root `README.md` to reflect the repository's "Human-Crafted" quality benchmark for core engineering logic.
+
 ## [1.2.0] - 2026-06-08
 
 ### Added
