@@ -89,9 +89,29 @@ graph TD
     F[YAML Configs] -->|Data Driven| C
 ```
 
-<p align="center">
-  <img src="../infographic/Environment_Data_Orchestration_Blueprint_tfvars.png" alt="Environment Data Orchestration Blueprint tfvars" width="100%">
-</p>
+<details>
+  <summary>🔍 Click to expand: Data Orchestration and .tfvars Engine Blueprints</summary>
+
+  <p align="center">
+    <img src="../infographic/Environment_Data_Orchestration_Blueprint_tfvars.png" alt="Environment Data Orchestration Blueprint tfvars" width="100%">
+    <br><em>Blueprint 1: Environment Data Orchestration Blueprint (.tfvars Engine)</em>
+  </p>
+
+  <p align="center">
+    <img src="../infographic/Infrastructure_Configuration_Vision_2026_Blueprint_tfvars_detailed.png" alt="Infrastructure Configuration Vision 2026 Blueprint tfvars detailed" width="100%">
+    <br><em>Blueprint 2: Infrastructure Configuration Vision 2026 Blueprint (.tfvars Detailed)</em>
+  </p>
+
+  <p align="center">
+    <img src="../infographic/Infrastructure_Configuration_Vision_2026_Blueprint_tfvars_detailed2.png" alt="Infrastructure Configuration Vision 2026 Blueprint tfvars detailed 2" width="100%">
+    <br><em>Blueprint 3: Infrastructure Configuration Vision 2026 Blueprint (.tfvars Engine Flow)</em>
+  </p>
+
+  <p align="center">
+    <img src="../infographic/Guia_Maestra_Archivos_tfvars_detallado.png" alt="Guia Maestra Archivos tfvars detallado" width="100%">
+    <br><em>Blueprint 4: Guia Maestra Archivos tfvars detallado (Spanish Edition)</em>
+  </p>
+</details>
 
 ---
 

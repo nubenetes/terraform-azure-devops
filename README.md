@@ -157,6 +157,21 @@
     <img src="./infographic/Environment_Data_Orchestration_Blueprint_tfvars.png" alt="Environment Data Orchestration Blueprint tfvars" width="100%">
     <br><em>Blueprint 8: Environment Data Orchestration Blueprint (.tfvars Engine)</em>
   </p>
+
+  <p align="center">
+    <img src="./infographic/Infrastructure_Configuration_Vision_2026_Blueprint_tfvars_detailed.png" alt="Infrastructure Configuration Vision 2026 Blueprint tfvars detailed" width="100%">
+    <br><em>Blueprint 9: Infrastructure Configuration Vision 2026 Blueprint (.tfvars Detailed)</em>
+  </p>
+
+  <p align="center">
+    <img src="./infographic/Infrastructure_Configuration_Vision_2026_Blueprint_tfvars_detailed2.png" alt="Infrastructure Configuration Vision 2026 Blueprint tfvars detailed 2" width="100%">
+    <br><em>Blueprint 10: Infrastructure Configuration Vision 2026 Blueprint (.tfvars Engine Flow)</em>
+  </p>
+
+  <p align="center">
+    <img src="./infographic/Guia_Maestra_Archivos_tfvars_detallado.png" alt="Guia Maestra Archivos tfvars detallado" width="100%">
+    <br><em>Blueprint 11: Guia Maestra Archivos tfvars detallado (Spanish Edition)</em>
+  </p>
 </details>
 
 This repository is a definitive technical blueprint for orchestrating a production-ready, multi-tenant ecosystem on **Microsoft Azure**. It showcases the synergy between **Managed PaaS (App Services)**, **High-Performance Compute (AKS)**, and **Hybrid Connectivity**, underpinned by a strict **Zero-Trust Security model**.
