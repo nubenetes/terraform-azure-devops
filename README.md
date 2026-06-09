@@ -149,6 +149,10 @@ These videos provide a comprehensive audio-visual walkthrough of the entire proj
 - **Secure MLOps (English):** [Vision 2026 Secure MLOps](./videos/Vision_2026__Secure_MLOps.mp4)
 - **MLOps Empresarial (Español):** [MLOps Empresarial](./videos/Vision_2026__MLOps_Empresarial_Spanish.mp4)
 
+#### 2.1.5 Hybrid Integration and Legacy Connectivity
+- **Integration Service (English):** [Integration Service Guide](./videos/Integration-Service_Guide.mp4)
+- **Integration Service (Español):** [Guía de Integration Service](./videos/Integration-Service_Guide_Spanish.mp4)
+
 ### 2.2 Vision 2026 Architectural Executive Summary
 - **Target Audience:** C-Level Executives, Engineering Directors, and Lead Cloud Architects.
 - **Content:** A highly visual, strategic overview of the platform. It covers the core design principles (Zero-Trust Identity, IaC Sovereignty), high-level Hub & Spoke networking topography, global traffic engineering, and the roadmap for AI-ready infrastructure.
@@ -165,6 +169,7 @@ These high-fidelity technical presentations provide granular deep dives into spe
 - **Core Logic:** [The Deterministic Engine](./slides/The_Deterministic_Engine.pdf) | [Vision 2026 Infrastructure Engine](./slides/Vision_2026_Infrastructure_Engine.pdf)
 - **MLOps:** [Vision 2026 MLOps Blueprint](./slides/Vision_2026_MLOps_Blueprint.pdf)
 - **Networking:** [Networking and DNS Dynamic Infrastructure Blueprint](./slides/Networking_DNS_Dynamic_Infrastructure_Blueprint.pdf)
+- **Hybrid Integration:** [Integration Service Universal Connector Architecture Blueprint](./slides/Integration-Service_Universal_Connector_Architecture_Blueprint.pdf)
 - **Infrastructure DNA (Español):** [Infrastructure DNA Blueprint](./slides/Infrastructure_DNA_Blueprint_Spanish.pdf)
 
 ## 3. Document Inventory
