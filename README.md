@@ -149,6 +149,10 @@ These videos provide a comprehensive audio-visual walkthrough of the entire proj
 - **Secure MLOps (English):** [Vision 2026 Secure MLOps](./videos/Vision_2026__Secure_MLOps.mp4)
 - **MLOps Empresarial (Español):** [MLOps Empresarial](./videos/Vision_2026__MLOps_Empresarial_Spanish.mp4)
 
+#### 2.1.5 Networking and DNS
+- **Networking and DNS (English):** [Vision 2026 Terraform Networking and DNS](./videos/Vision_2026_Terraform_Networking_DNS.mp4)
+- **Networking y DNS (Español):** [Visión 2026 Terraform Networking y DNS](./videos/Visión_2026_Terraform_Networking_DNS_Spanish.mp4)
+
 ### 2.2 Vision 2026 Architectural Executive Summary
 - **Target Audience:** C-Level Executives, Engineering Directors, and Lead Cloud Architects.
 - **Content:** A highly visual, strategic overview of the platform. It covers the core design principles (Zero-Trust Identity, IaC Sovereignty), high-level Hub & Spoke networking topography, global traffic engineering, and the roadmap for AI-ready infrastructure.
