@@ -1576,10 +1576,4 @@ Special recognition to the experts whose architectural patterns influenced this 
 
 *Technical Documentation: Enterprise Cloud Infrastructure and DevSecOps Patterns | Vision 2026 Architectural Guide*
 
----026](./docs/111-ARCHITECTURE_2026.md)
-
----
-
-*Technical Documentation: Enterprise Cloud Infrastructure and DevSecOps Patterns | Vision 2026 Architectural Guide*
-
 ---
