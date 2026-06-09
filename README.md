@@ -177,7 +177,7 @@ These videos provide a comprehensive audio-visual walkthrough of the entire proj
 
 #### 2.1.5 Networking and DNS
 - **Networking and DNS (English):** [Vision 2026 Terraform Networking and DNS](./videos/Vision_2026_Terraform_Networking_DNS.mp4)
-- **Networking y DNS (Español):** [Visión 2026 Terraform Networking y DNS](./videos/Visión_2026_Terraform_Networking_DNS_Spanish.mp4)
+- **Networking y DNS (Español):** [Visión 2026 Terraform Networking y DNS](./videos/Vision_2026_Terraform_Networking_DNS_Spanish.mp4)
 - **DNS Module IaC (English):** [DNS Module Infrastructure](./videos/Enterprise_Cloud_IaC_DNS-top-level-domain-module.mp4)
 - **Desacoplamiento DNS (Español):** [Desacoplando el Módulo DNS](./videos/Desacoplando_el_Modulo_DNS-top-level-domain_Spanish.mp4)
 
