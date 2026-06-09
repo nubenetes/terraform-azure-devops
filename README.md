@@ -119,6 +119,30 @@
   <img src="./infographic/Cloud%20Infrastructure%20Vision%202026%20Blueprint%20-%20infographic.png" alt="Cloud Infrastructure Vision 2026 Blueprint" width="100%">
 </p>
 
+<details>
+  <summary>🔍 Click to expand: High-Fidelity Architectural Blueprints (2026 Edition)</summary>
+
+  <p align="center">
+    <img src="./infographic/2026_Enterprise_Cloud_Infrastructure_Blueprint_high-level.png" alt="2026 Enterprise Cloud Infrastructure Blueprint High-Level" width="100%">
+    <br><em>Blueprint 1: 2026 Enterprise Cloud Infrastructure Blueprint (High-Level)</em>
+  </p>
+
+  <p align="center">
+    <img src="./infographic/Enterprise_Cloud_Infrastructure_Blueprint_high-level-detailed.png" alt="Enterprise Cloud Infrastructure Blueprint High-Level Detailed" width="100%">
+    <br><em>Blueprint 2: Enterprise Cloud Infrastructure Blueprint (High-Level Detailed)</em>
+  </p>
+
+  <p align="center">
+    <img src="./infographic/Enterprise_Cloud_Infrastructure_Technical_Anatomy_low-level-detailed-architecture.png" alt="Enterprise Cloud Infrastructure Technical Anatomy Low-Level Detailed Architecture" width="100%">
+    <br><em>Blueprint 3: Enterprise Cloud Infrastructure Technical Anatomy (Low-Level Detailed Architecture)</em>
+  </p>
+
+  <p align="center">
+    <img src="./infographic/Enterprise_Cloud_and_DevSecOps_Blueprint_low-level-detailed.png" alt="Enterprise Cloud and DevSecOps Blueprint Low-Level Detailed" width="100%">
+    <br><em>Blueprint 4: Enterprise Cloud and DevSecOps Blueprint (Low-Level Detailed)</em>
+  </p>
+</details>
+
 This repository is a definitive technical blueprint for orchestrating a production-ready, multi-tenant ecosystem on **Microsoft Azure**. It showcases the synergy between **Managed PaaS (App Services)**, **High-Performance Compute (AKS)**, and **Hybrid Connectivity**, underpinned by a strict **Zero-Trust Security model**.
 
 > **Engineering Statement**: This architecture is designed to handle high-volume enterprise workloads with a "DRY-First" approach, where 100% of the infrastructure is managed as software, eliminating configuration drift and enabling rapid regional fan-outs.
@@ -136,6 +160,8 @@ These videos provide a comprehensive audio-visual walkthrough of the entire proj
 - **Project Overview (English):** [Vision 2026 Cloud Blueprint](./videos/Vision_2026_Cloud_Blueprint_English.mp4) | [Alternative Blueprint Summary](./videos/Vision_2026__Cloud_Blueprint.mp4)
 - **Project Overview (Español):** [Vision 2026 Cloud Arch](./videos/Vision_2026__Cloud_Arch_Spanish.mp4)
 - **Cloud Enterprise Vision (Español):** [Cloud Enterprise Vision 2026](./videos/Cloud_Enterprise__Vision_2026_Spanish.mp4)
+- **App-Core and App-Catalog (English):** [Vision 2026 App-Core App-Catalog](./videos/Vision_2026_App-Core_App-Catalog.mp4)
+- **App-Core and App-Catalog (Español):** [Visión 2026 App-Core App-Catalog](./videos/Visión_2026_App-Core_App-Catalog_Spanish.mp4)
 
 #### 2.1.2 Identity and Security (Zero-Trust)
 - **Identity Automation (English):** [App-Users Identity Automation](./videos/App-Users_Identity_Automation.mp4)
@@ -152,6 +178,8 @@ These videos provide a comprehensive audio-visual walkthrough of the entire proj
 #### 2.1.5 Networking and DNS
 - **Networking and DNS (English):** [Vision 2026 Terraform Networking and DNS](./videos/Vision_2026_Terraform_Networking_DNS.mp4)
 - **Networking y DNS (Español):** [Visión 2026 Terraform Networking y DNS](./videos/Visión_2026_Terraform_Networking_DNS_Spanish.mp4)
+- **DNS Module IaC (English):** [DNS Module Infrastructure](./videos/Enterprise_Cloud_IaC_DNS-top-level-domain-module.mp4)
+- **Desacoplamiento DNS (Español):** [Desacoplando el Módulo DNS](./videos/Desacoplando_el_Módulo_DNS-top-level-domain_Spanish.mp4)
 
 #### 2.1.6 Hybrid Integration and Legacy Connectivity
 - **Integration Service (English):** [Integration Service Guide](./videos/Integration-Service_Guide.mp4)
@@ -169,10 +197,11 @@ These videos provide a comprehensive audio-visual walkthrough of the entire proj
 
 ### 2.4 NotebookLM Technical Deep Dives
 These high-fidelity technical presentations provide granular deep dives into specific architectural domains, complementing the primary documentation.
+- **Core Architecture:** [Enterprise Cloud Blueprint (App-Core/App-Catalog)](./slides/Enterprise_Cloud_Blueprint_App-Core_App-Catalog.pdf)
 - **Identity:** [Enterprise Identity GitOps](./slides/Enterprise_Identity_GitOps.pdf)
 - **Core Logic:** [The Deterministic Engine](./slides/The_Deterministic_Engine.pdf) | [Vision 2026 Infrastructure Engine](./slides/Vision_2026_Infrastructure_Engine.pdf)
 - **MLOps:** [Vision 2026 MLOps Blueprint](./slides/Vision_2026_MLOps_Blueprint.pdf)
-- **Networking:** [Networking and DNS Dynamic Infrastructure Blueprint](./slides/Networking_DNS_Dynamic_Infrastructure_Blueprint.pdf)
+- **Networking:** [Networking and DNS Dynamic Infrastructure Blueprint](./slides/Networking_DNS_Dynamic_Infrastructure_Blueprint.pdf) | [The Decoupled Foundation (DNS Module)](./slides/The_Decoupled_Foundation_DNS-top-level-domain-module.pdf)
 - **Hybrid Integration:** [Integration Service Universal Connector Architecture Blueprint](./slides/Integration-Service_Universal_Connector_Architecture_Blueprint.pdf)
 - **Infrastructure DNA (Español):** [Infrastructure DNA Blueprint](./slides/Infrastructure_DNA_Blueprint_Spanish.pdf)
 
