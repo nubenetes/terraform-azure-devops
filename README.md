@@ -149,7 +149,11 @@ These videos provide a comprehensive audio-visual walkthrough of the entire proj
 - **Secure MLOps (English):** [Vision 2026 Secure MLOps](./videos/Vision_2026__Secure_MLOps.mp4)
 - **MLOps Empresarial (Español):** [MLOps Empresarial](./videos/Vision_2026__MLOps_Empresarial_Spanish.mp4)
 
-#### 2.1.5 Hybrid Integration and Legacy Connectivity
+#### 2.1.5 Networking and DNS
+- **Networking and DNS (English):** [Vision 2026 Terraform Networking and DNS](./videos/Vision_2026_Terraform_Networking_DNS.mp4)
+- **Networking y DNS (Español):** [Visión 2026 Terraform Networking y DNS](./videos/Visión_2026_Terraform_Networking_DNS_Spanish.mp4)
+
+#### 2.1.6 Hybrid Integration and Legacy Connectivity
 - **Integration Service (English):** [Integration Service Guide](./videos/Integration-Service_Guide.mp4)
 - **Integration Service (Español):** [Guía de Integration Service](./videos/Integration-Service_Guide_Spanish.mp4)
 
