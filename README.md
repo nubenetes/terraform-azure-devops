@@ -161,7 +161,7 @@ These videos provide a comprehensive audio-visual walkthrough of the entire proj
 - **Project Overview (Español):** [Vision 2026 Cloud Arch](./videos/Vision_2026__Cloud_Arch_Spanish.mp4)
 - **Cloud Enterprise Vision (Español):** [Cloud Enterprise Vision 2026](./videos/Cloud_Enterprise__Vision_2026_Spanish.mp4)
 - **App-Core and App-Catalog (English):** [Vision 2026 App-Core App-Catalog](./videos/Vision_2026_App-Core_App-Catalog.mp4)
-- **App-Core and App-Catalog (Español):** [Visión 2026 App-Core App-Catalog](./videos/Visión_2026_App-Core_App-Catalog_Spanish.mp4)
+- **App-Core and App-Catalog (Español):** [Visión 2026 App-Core App-Catalog](./videos/Vision_2026_App-Core_App-Catalog_Spanish.mp4)
 
 #### 2.1.2 Identity and Security (Zero-Trust)
 - **Identity Automation (English):** [App-Users Identity Automation](./videos/App-Users_Identity_Automation.mp4)
@@ -179,7 +179,7 @@ These videos provide a comprehensive audio-visual walkthrough of the entire proj
 - **Networking and DNS (English):** [Vision 2026 Terraform Networking and DNS](./videos/Vision_2026_Terraform_Networking_DNS.mp4)
 - **Networking y DNS (Español):** [Visión 2026 Terraform Networking y DNS](./videos/Visión_2026_Terraform_Networking_DNS_Spanish.mp4)
 - **DNS Module IaC (English):** [DNS Module Infrastructure](./videos/Enterprise_Cloud_IaC_DNS-top-level-domain-module.mp4)
-- **Desacoplamiento DNS (Español):** [Desacoplando el Módulo DNS](./videos/Desacoplando_el_Módulo_DNS-top-level-domain_Spanish.mp4)
+- **Desacoplamiento DNS (Español):** [Desacoplando el Módulo DNS](./videos/Desacoplando_el_Modulo_DNS-top-level-domain_Spanish.mp4)
 
 #### 2.1.6 Hybrid Integration and Legacy Connectivity
 - **Integration Service (English):** [Integration Service Guide](./videos/Integration-Service_Guide.mp4)
