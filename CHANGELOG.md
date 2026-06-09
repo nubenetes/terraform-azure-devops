@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.3] - 2026-06-10
+
+### Added
+- **High-Fidelity Blueprints**: Integrated new architectural infographics from the Vision 2026 collection, including a Strategy Blueprint and a Spanish edition for broader accessibility.
+
+### Changed
+- **Documentation Layout**: Consolidated all architectural blueprints into an expandable dropdown section in the root `README.md` to enhance readability and prioritize technical content.
+
 ## [1.7.2] - 2026-06-09
 
 ### Changed

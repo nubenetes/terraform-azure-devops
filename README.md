@@ -115,31 +115,47 @@
 [![Azure DevOps](https://img.shields.io/badge/azure%20devops-%230078D7.svg?style=for-the-badge&logo=azuredevops&logoColor=white)](https://azure.microsoft.com/en-us/services/devops/)
 [![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)](https://kubernetes.io/)
 
-<p align="center">
-  <img src="./infographic/Cloud%20Infrastructure%20Vision%202026%20Blueprint%20-%20infographic.png" alt="Cloud Infrastructure Vision 2026 Blueprint" width="100%">
-</p>
-
 <details>
   <summary>🔍 Click to expand: High-Fidelity Architectural Blueprints (2026 Edition)</summary>
 
   <p align="center">
+    <img src="./infographic/Cloud_Infrastructure_Vision_2026_Blueprint.png" alt="Cloud Infrastructure Vision 2026 Blueprint" width="100%">
+    <br><em>Blueprint 1: Cloud Infrastructure Vision 2026 Blueprint (High-Level)</em>
+  </p>
+
+  <p align="center">
+    <img src="./infographic/Enterprise_Cloud_Infrastructure_Strategy_Blueprint.png" alt="Enterprise Cloud Infrastructure Strategy Blueprint" width="100%">
+    <br><em>Blueprint 2: Enterprise Cloud Infrastructure Strategy Blueprint</em>
+  </p>
+
+  <p align="center">
+    <img src="./infographic/Arquitectura_de_Nube_Empresarial_2026.png" alt="Arquitectura de Nube Empresarial 2026" width="100%">
+    <br><em>Blueprint 3: Arquitectura de Nube Empresarial 2026 (Spanish Edition)</em>
+  </p>
+
+  <p align="center">
     <img src="./infographic/2026_Enterprise_Cloud_Infrastructure_Blueprint_high-level.png" alt="2026 Enterprise Cloud Infrastructure Blueprint High-Level" width="100%">
-    <br><em>Blueprint 1: 2026 Enterprise Cloud Infrastructure Blueprint (High-Level)</em>
+    <br><em>Blueprint 4: 2026 Enterprise Cloud Infrastructure Blueprint (High-Level Detailed)</em>
   </p>
 
   <p align="center">
     <img src="./infographic/Enterprise_Cloud_Infrastructure_Blueprint_high-level-detailed.png" alt="Enterprise Cloud Infrastructure Blueprint High-Level Detailed" width="100%">
-    <br><em>Blueprint 2: Enterprise Cloud Infrastructure Blueprint (High-Level Detailed)</em>
+    <br><em>Blueprint 5: Enterprise Cloud Infrastructure Blueprint (High-Level Deep-Dive)</em>
   </p>
 
   <p align="center">
     <img src="./infographic/Enterprise_Cloud_Infrastructure_Technical_Anatomy_low-level-detailed-architecture.png" alt="Enterprise Cloud Infrastructure Technical Anatomy Low-Level Detailed Architecture" width="100%">
-    <br><em>Blueprint 3: Enterprise Cloud Infrastructure Technical Anatomy (Low-Level Detailed Architecture)</em>
+    <br><em>Blueprint 6: Enterprise Cloud Infrastructure Technical Anatomy (Low-Level Detailed Architecture)</em>
   </p>
 
   <p align="center">
     <img src="./infographic/Enterprise_Cloud_and_DevSecOps_Blueprint_low-level-detailed.png" alt="Enterprise Cloud and DevSecOps Blueprint Low-Level Detailed" width="100%">
-    <br><em>Blueprint 4: Enterprise Cloud and DevSecOps Blueprint (Low-Level Detailed)</em>
+    <br><em>Blueprint 7: Enterprise Cloud and DevSecOps Blueprint (Low-Level Detailed)</em>
+  </p>
+
+  <p align="center">
+    <img src="./infographic/Environment_Data_Orchestration_Blueprint_tfvars.png" alt="Environment Data Orchestration Blueprint tfvars" width="100%">
+    <br><em>Blueprint 8: Environment Data Orchestration Blueprint (.tfvars Engine)</em>
   </p>
 </details>
 
