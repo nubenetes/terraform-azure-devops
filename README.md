@@ -198,6 +198,11 @@
     <img src="./infographic/Infrastructure_Strategy_Comparison_Terraform_Modules_Composite_vs_Atomic.png" alt="Infrastructure Strategy Comparison Terraform Modules Composite vs Atomic" width="100%">
     <br><em>Blueprint 13: Infrastructure Strategy Comparison (Composite vs Atomic Modules)</em>
   </p>
+
+  <p align="center">
+    <img src="./infographic/Infrastructure_Evolution_Vision_2026_terraform_stacks_module_versioning.png" alt="Infrastructure Evolution Vision 2026 Terraform Stacks and Module Versioning" width="100%">
+    <br><em>Blueprint 14: Infrastructure Evolution Vision 2026 (Terraform Stacks and Module Versioning)</em>
+  </p>
 </details>
 
 This repository is a definitive technical blueprint for orchestrating a production-ready, multi-tenant ecosystem on **Microsoft Azure**. It showcases the synergy between **Managed PaaS (App Services)**, **High-Performance Compute (AKS)**, and **Hybrid Connectivity**, underpinned by a strict **Zero-Trust Security model**.
