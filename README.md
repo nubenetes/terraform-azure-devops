@@ -188,6 +188,16 @@
     <img src="./infographic/Guia_Maestra_Archivos_tfvars_detallado.png" alt="Guia Maestra Archivos tfvars detallado" width="100%">
     <br><em>Blueprint 11: Guia Maestra Archivos tfvars detallado (Spanish Edition)</em>
   </p>
+
+  <p align="center">
+    <img src="./infographic/Enterprise_Infrastructure_Orchestration_Architecture_Terraform_Modules_Composite_vs_Atomic.png" alt="Enterprise Infrastructure Orchestration Architecture Terraform Modules Composite vs Atomic" width="100%">
+    <br><em>Blueprint 12: Enterprise Infrastructure Orchestration Architecture (Composite vs Atomic Modules)</em>
+  </p>
+
+  <p align="center">
+    <img src="./infographic/Infrastructure_Strategy_Comparison_Terraform_Modules_Composite_vs_Atomic.png" alt="Infrastructure Strategy Comparison Terraform Modules Composite vs Atomic" width="100%">
+    <br><em>Blueprint 13: Infrastructure Strategy Comparison (Composite vs Atomic Modules)</em>
+  </p>
 </details>
 
 This repository is a definitive technical blueprint for orchestrating a production-ready, multi-tenant ecosystem on **Microsoft Azure**. It showcases the synergy between **Managed PaaS (App Services)**, **High-Performance Compute (AKS)**, and **Hybrid Connectivity**, underpinned by a strict **Zero-Trust Security model**.
