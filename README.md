@@ -1,5 +1,21 @@
 # Enterprise Cloud Infrastructure and DevSecOps Patterns
 
+> [!IMPORTANT]
+> **Network and Access Anonymization Notice**: All networking and access data within this repository has been anonymized to protect architectural confidentiality. The original configurations utilize a private RFC 1918 addressing scheme.
+>
+> **1. Representative Allocation Patterns**:
+> The following generic examples illustrate the typical allocation logic used across the ecosystem:
+> - **Global Backbone (Hub)**: `10.0.0.0/16`
+> - **Production Spoke (VNet)**: `10.1.0.0/16`
+> - **Engineering Spoke (VNet)**: `10.2.0.0/16`
+> - **AKS Cluster Nodes**: `10.240.0.0/16`
+> - **AKS Pod Network**: `10.244.0.0/16`
+> - **PaaS Integration Subnets**: `10.1.10.0/24`
+>
+> **2. Access Governance and Whitelists**:
+> - **Authorized IP Ranges**: Public IPs in AKS `authorized_ip_ranges` and database whitelists (MongoDB Atlas) have been replaced with loopback addresses (`127.0.0.1`) or standard documentation ranges (RFC 5737) to protect management access points.
+> - **Technical Integrity**: While sensitive values are obfuscated, all Terraform logic, dependency chains, and orchestration patterns remain 100% functional and faithful to the original production architecture.
+
 ---
 
 ## Table of Contents

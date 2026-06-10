@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.5] - 2026-06-10
+
+### Security
+- **Network Anonymization Notice**: Integrated a comprehensive security notice in the root `README.md` header, documenting the anonymization of CIDR ranges, VNet addresses, and access whitelists to protect architectural confidentiality.
+
 ## [1.7.4] - 2026-06-10
 
 ### Added
