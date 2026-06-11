@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.0] - 2026-06-11
+
+### Added
+- **Global Infographic Gallery**: Integrated 13 additional high-fidelity infographics from the temporary inventory, expanding the collection to 27 architectural visualizations.
+- **Categorized Visual Experience**: Reorganized the root `README.md` infographic section into four strategic clusters:
+    - **Strategic Vision**: High-level blueprints and executive summaries.
+    - **Infrastructure Pillars**: Low-level technical anatomy and deep-dives into Networking, Identity, and Compute.
+    - **IaC Engine**: Variables orchestration, tfvars flow, and module composition strategies.
+    - **Future Evolution**: Roadmap focusing on Terraform Stacks.
+- **Master Gallery Toggle**: Implemented a "Show All" master dropdown to allow simultaneous viewing of all 27 blueprints, improving architectural assimilation.
+
 ## [1.7.7] - 2026-06-10
 
 ### Added
