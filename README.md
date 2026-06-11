@@ -226,33 +226,41 @@ To facilitate the assimilation of the complex Vision 2026 architecture, we have 
     <img src="./infographic/Automated_Enterprise_Software_Installation_Workflow_InnoSetup.png" alt="Automated Enterprise Software Installation" width="100%">
     <br><em>Blueprint 20: Automated Enterprise Software Installation Workflow (InnoSetup)</em>
   </p>
+  <p align="center">
+    <img src="./infographic/Cloud_Infrastructure_Orchestration_Engine_Azure_DevOps_Pipelines.png" alt="Cloud Infrastructure Orchestration Engine" width="100%">
+    <br><em>Blueprint 21: Cloud Infrastructure Orchestration Engine (Azure DevOps Pipelines)</em>
+  </p>
+  <p align="center">
+    <img src="./infographic/Post-Deployment_Infrastructure_Operations_Hierarchy_Day2.png" alt="Post-Deployment Infrastructure Operations Hierarchy" width="100%">
+    <br><em>Blueprint 22: Post-Deployment Infrastructure Operations Hierarchy (Day 2)</em>
+  </p>
 
   <hr>
 
   #### C. IaC Engine and Data Orchestration
   <p align="center">
     <img src="./infographic/Environment_Data_Orchestration_Blueprint_tfvars.png" alt="Environment Data Orchestration Blueprint" width="100%">
-    <br><em>Blueprint 21: Environment Data Orchestration Blueprint (.tfvars Engine)</em>
+    <br><em>Blueprint 23: Environment Data Orchestration Blueprint (.tfvars Engine)</em>
   </p>
   <p align="center">
     <img src="./infographic/Infrastructure_Configuration_Vision_2026_Blueprint_tfvars_detailed.png" alt="Infrastructure Configuration Vision 2026" width="100%">
-    <br><em>Blueprint 22: Infrastructure Configuration Vision 2026 (.tfvars Detailed)</em>
+    <br><em>Blueprint 24: Infrastructure Configuration Vision 2026 (.tfvars Detailed)</em>
   </p>
   <p align="center">
     <img src="./infographic/Infrastructure_Configuration_Vision_2026_Blueprint_tfvars_detailed2.png" alt="Infrastructure Configuration Vision 2026 Flow" width="100%">
-    <br><em>Blueprint 23: Infrastructure Configuration Vision 2026 (.tfvars Engine Flow)</em>
+    <br><em>Blueprint 25: Infrastructure Configuration Vision 2026 (.tfvars Engine Flow)</em>
   </p>
   <p align="center">
     <img src="./infographic/Guia_Maestra_Archivos_tfvars_detallado.png" alt="Guia Maestra Archivos tfvars" width="100%">
-    <br><em>Blueprint 24: Guia Maestra Archivos tfvars detallado (Spanish Edition)</em>
+    <br><em>Blueprint 26: Guia Maestra Archivos tfvars detallado (Spanish Edition)</em>
   </p>
   <p align="center">
     <img src="./infographic/Enterprise_Infrastructure_Orchestration_Architecture_Terraform_Modules_Composite_vs_Atomic.png" alt="Enterprise Infrastructure Orchestration" width="100%">
-    <br><em>Blueprint 25: Enterprise Infrastructure Orchestration (Composite vs Atomic Modules)</em>
+    <br><em>Blueprint 27: Enterprise Infrastructure Orchestration (Composite vs Atomic Modules)</em>
   </p>
   <p align="center">
     <img src="./infographic/Infrastructure_Strategy_Comparison_Terraform_Modules_Composite_vs_Atomic.png" alt="Infrastructure Strategy Comparison" width="100%">
-    <br><em>Blueprint 26: Infrastructure Strategy Comparison (Composite vs Atomic Modules)</em>
+    <br><em>Blueprint 28: Infrastructure Strategy Comparison (Composite vs Atomic Modules)</em>
   </p>
 
   <hr>
@@ -260,7 +268,7 @@ To facilitate the assimilation of the complex Vision 2026 architecture, we have 
   #### D. Future Roadmap and Evolution
   <p align="center">
     <img src="./infographic/Infrastructure_Evolution_Vision_2026_terraform_stacks_module_versioning.png" alt="Infrastructure Evolution Vision 2026" width="100%">
-    <br><em>Blueprint 27: Infrastructure Evolution Vision 2026 (Terraform Stacks and Module Versioning)</em>
+    <br><em>Blueprint 29: Infrastructure Evolution Vision 2026 (Terraform Stacks and Module Versioning)</em>
   </p>
 </details>
 
@@ -352,33 +360,41 @@ To facilitate the assimilation of the complex Vision 2026 architecture, we have 
     <img src="./infographic/Automated_Enterprise_Software_Installation_Workflow_InnoSetup.png" alt="Automated Enterprise Software Installation" width="100%">
     <br><em>Blueprint 20: Automated Enterprise Software Installation Workflow (InnoSetup)</em>
   </p>
+  <p align="center">
+    <img src="./infographic/Cloud_Infrastructure_Orchestration_Engine_Azure_DevOps_Pipelines.png" alt="Cloud Infrastructure Orchestration Engine" width="100%">
+    <br><em>Blueprint 21: Cloud Infrastructure Orchestration Engine (Azure DevOps Pipelines)</em>
+  </p>
+  <p align="center">
+    <img src="./infographic/Post-Deployment_Infrastructure_Operations_Hierarchy_Day2.png" alt="Post-Deployment Infrastructure Operations Hierarchy" width="100%">
+    <br><em>Blueprint 22: Post-Deployment Infrastructure Operations Hierarchy (Day 2)</em>
+  </p>
 </details>
 
 <details>
   <summary>⚙️ 3. IaC Engine and Data Orchestration</summary>
   <p align="center">
     <img src="./infographic/Environment_Data_Orchestration_Blueprint_tfvars.png" alt="Environment Data Orchestration Blueprint" width="100%">
-    <br><em>Blueprint 21: Environment Data Orchestration Blueprint (.tfvars Engine)</em>
+    <br><em>Blueprint 23: Environment Data Orchestration Blueprint (.tfvars Engine)</em>
   </p>
   <p align="center">
     <img src="./infographic/Infrastructure_Configuration_Vision_2026_Blueprint_tfvars_detailed.png" alt="Infrastructure Configuration Vision 2026" width="100%">
-    <br><em>Blueprint 22: Infrastructure Configuration Vision 2026 (.tfvars Detailed)</em>
+    <br><em>Blueprint 24: Infrastructure Configuration Vision 2026 (.tfvars Detailed)</em>
   </p>
   <p align="center">
     <img src="./infographic/Infrastructure_Configuration_Vision_2026_Blueprint_tfvars_detailed2.png" alt="Infrastructure Configuration Vision 2026 Flow" width="100%">
-    <br><em>Blueprint 23: Infrastructure Configuration Vision 2026 (.tfvars Engine Flow)</em>
+    <br><em>Blueprint 25: Infrastructure Configuration Vision 2026 (.tfvars Engine Flow)</em>
   </p>
   <p align="center">
     <img src="./infographic/Guia_Maestra_Archivos_tfvars_detallado.png" alt="Guia Maestra Archivos tfvars" width="100%">
-    <br><em>Blueprint 24: Guia Maestra Archivos tfvars detallado (Spanish Edition)</em>
+    <br><em>Blueprint 26: Guia Maestra Archivos tfvars detallado (Spanish Edition)</em>
   </p>
   <p align="center">
     <img src="./infographic/Enterprise_Infrastructure_Orchestration_Architecture_Terraform_Modules_Composite_vs_Atomic.png" alt="Enterprise Infrastructure Orchestration" width="100%">
-    <br><em>Blueprint 25: Enterprise Infrastructure Orchestration (Composite vs Atomic Modules)</em>
+    <br><em>Blueprint 27: Enterprise Infrastructure Orchestration (Composite vs Atomic Modules)</em>
   </p>
   <p align="center">
     <img src="./infographic/Infrastructure_Strategy_Comparison_Terraform_Modules_Composite_vs_Atomic.png" alt="Infrastructure Strategy Comparison" width="100%">
-    <br><em>Blueprint 26: Infrastructure Strategy Comparison (Composite vs Atomic Modules)</em>
+    <br><em>Blueprint 28: Infrastructure Strategy Comparison (Composite vs Atomic Modules)</em>
   </p>
 </details>
 
@@ -386,7 +402,7 @@ To facilitate the assimilation of the complex Vision 2026 architecture, we have 
   <summary>🔮 4. Future Roadmap and Evolution</summary>
   <p align="center">
     <img src="./infographic/Infrastructure_Evolution_Vision_2026_terraform_stacks_module_versioning.png" alt="Infrastructure Evolution Vision 2026" width="100%">
-    <br><em>Blueprint 27: Infrastructure Evolution Vision 2026 (Terraform Stacks and Module Versioning)</em>
+    <br><em>Blueprint 29: Infrastructure Evolution Vision 2026 (Terraform Stacks and Module Versioning)</em>
   </p>
 </details>
 
