@@ -1,4 +1,4 @@
-[ Previous: 121. Provenance and Legal](121-PROVENANCE_AND_LEGAL.md) | [ Home](../README.md) | [ Next: 211. Module Design Patterns](211-TERRAFORM_MODULE_DESIGN_PATTERNS.md)
+[ Previous: 121. Provenance and Legal](121-PROVENANCE_AND_LEGAL.md) | [ Home](../README.md) | [ Next: 141. Architecture Adoption and IPAM Guide](141-ARCHITECTURE_ADOPTION_AND_IPAM_GUIDE.md)
 
 ---
 
@@ -123,7 +123,7 @@ This platform reflects the highest level of IaC maturity:
 
 ---
 
-[ Previous: 121. Provenance and Legal](121-PROVENANCE_AND_LEGAL.md) | [ Home](../README.md) | [ Next: 211. Module Design Patterns](211-TERRAFORM_MODULE_DESIGN_PATTERNS.md)
+[ Previous: 121. Provenance and Legal](121-PROVENANCE_AND_LEGAL.md) | [ Home](../README.md) | [ Next: 141. Architecture Adoption and IPAM Guide](141-ARCHITECTURE_ADOPTION_AND_IPAM_GUIDE.md)
 
 ---
 

@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.4] - 2026-06-12
+
+### Added
+- **Architecture Adoption and IPAM Guide**: Integrated a new strategic manual (`docs/141-ARCHITECTURE_ADOPTION_AND_IPAM_GUIDE.md`) to facilitate the de-obfuscation of the repository's network CIDRs.
+- **De-Obfuscation Strategy**: Formally documented the "IPAM Reference Matrix" and the "Golden Rule" for variable injection via `.tfvars` to ensure safe real-world implementations.
+- **Developer Utility**: Provided a safe find-and-replace command for reverting hardcoded UDR loopback placeholders to standard internet routes.
+
 ## [1.8.3] - 2026-06-12
 
 ### Changed
