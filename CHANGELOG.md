@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.3] - 2026-06-12
+
+### Changed
+- **Roadmap Consolidation**: Reordered the infographic gallery to move the high-fidelity enterprise blueprint and the AI-assisted roadmap to the final "Future Roadmap and Evolution" category.
+- **Sequential Renumbering**: Updated all 35 architectural blueprints to maintain a clean numerical sequence (1-35) following the structural correction.
+
 ## [1.8.2] - 2026-06-12
 
 ### Added
