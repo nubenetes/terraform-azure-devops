@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.7] - 2026-06-12
+
+### Added
+- **Global Infographic Expansion**: Integrated 6 additional high-fidelity blueprints from the `tmp13` inventory, reaching a total of 41 architectural visualizations:
+    - **Multi-Tenant Identity Governance Infographic (AE Title)**
+    - **Managed AKS Cluster Certificate Bridge Workflow**
+    - **Cloud Infrastructure Global Variable Architecture Vision**
+    - **Strategic Architecture Roadmap Evolution**
+    - **Enterprise Architecture AKS Modernization Roadmap**
+    - **Database Roadmap Evolution and Architecture Shift (Cosmos DB)**
+- **Extended Roadmap Gallery**: Reorganized the future evolution category to include the new domain-specific roadmaps for AKS and Database modernization.
+
 ## [1.8.6] - 2026-06-12
 
 ### Changed

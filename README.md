@@ -215,12 +215,20 @@ To facilitate the assimilation of the complex Vision 2026 architecture, we have 
     <br><em>Blueprint 15: Identity-Driven Infrastructure Automation Overview (OAuth 2.0)</em>
   </p>
   <p align="center">
+    <img src="./infographic/Multi-Tenant_Identity_Governance_Infographic_AETitle.png" alt="Multi-Tenant Identity Governance" width="100%">
+    <br><em>Blueprint 16: Multi-Tenant Identity Governance Infographic (AE Title)</em>
+  </p>
+  <p align="center">
+    <img src="./infographic/Managed_AKS_Cluster_Certificate_Bridge_Workflow.png" alt="Managed AKS Cluster Certificate Bridge" width="100%">
+    <br><em>Blueprint 17: Managed AKS Cluster Certificate Bridge Workflow</em>
+  </p>
+  <p align="center">
     <img src="./infographic/Cloud_Security_Vault_Ecosystem_Architecture_AKV.png" alt="Cloud Security Vault Ecosystem" width="100%">
-    <br><em>Blueprint 16: Cloud Security Vault Ecosystem (Key Vault)</em>
+    <br><em>Blueprint 18: Cloud Security Vault Ecosystem (Key Vault)</em>
   </p>
   <p align="center">
     <img src="./infographic/Identity_Governance_as_Code_Ecosystem_App_users.png" alt="Identity Governance as Code" width="100%">
-    <br><em>Blueprint 17: Identity Governance as Code (App-Users)</em>
+    <br><em>Blueprint 19: Identity Governance as Code (App-Users)</em>
   </p>
 
   <hr>
@@ -228,23 +236,23 @@ To facilitate the assimilation of the complex Vision 2026 architecture, we have 
   #### E. Compute, Data and Hybrid Integration
   <p align="center">
     <img src="./infographic/Enterprise_Container_Orchestration_Blueprint_AKS.png" alt="Enterprise Container Orchestration Blueprint" width="100%">
-    <br><em>Blueprint 18: Enterprise Container Orchestration Blueprint (AKS Hub)</em>
+    <br><em>Blueprint 20: Enterprise Container Orchestration Blueprint (AKS Hub)</em>
   </p>
   <p align="center">
     <img src="./infographic/Enterprise_Cloud_Architecture_Vision_2026_App_Service.png" alt="Enterprise Cloud Architecture App Service" width="100%">
-    <br><em>Blueprint 19: Enterprise Cloud Architecture (App Service Ecosystem)</em>
+    <br><em>Blueprint 21: Enterprise Cloud Architecture (App Service Ecosystem)</em>
   </p>
   <p align="center">
     <img src="./infographic/Enterprise_Cloud_Governance_Vision_2026_Azure_Storage.png" alt="Enterprise Cloud Governance Azure Storage" width="100%">
-    <br><em>Blueprint 20: Enterprise Cloud Governance (Azure Storage)</em>
+    <br><em>Blueprint 22: Enterprise Cloud Governance (Azure Storage)</em>
   </p>
   <p align="center">
     <img src="./infographic/Enterprise_Data_Resilience_Strategy_Overview_Azure_Backup.png" alt="Enterprise Data Resilience Strategy" width="100%">
-    <br><em>Blueprint 21: Enterprise Data Resilience Strategy (Azure Backup)</em>
+    <br><em>Blueprint 23: Enterprise Data Resilience Strategy (Azure Backup)</em>
   </p>
   <p align="center">
     <img src="./infographic/Hybrid_Connectivity_Engine_Architecture_Integration_Service.png" alt="Hybrid Connectivity Engine Architecture" width="100%">
-    <br><em>Blueprint 22: Hybrid Connectivity Engine Architecture (Integration Service)</em>
+    <br><em>Blueprint 24: Hybrid Connectivity Engine Architecture (Integration Service)</em>
   </p>
 
   <hr>
@@ -252,31 +260,35 @@ To facilitate the assimilation of the complex Vision 2026 architecture, we have 
   #### F. IaC Engine and Data Orchestration
   <p align="center">
     <img src="./infographic/Environment_Data_Orchestration_Blueprint_tfvars.png" alt="Environment Data Orchestration Blueprint" width="100%">
-    <br><em>Blueprint 23: Environment Data Orchestration Blueprint (.tfvars Engine)</em>
+    <br><em>Blueprint 25: Environment Data Orchestration Blueprint (.tfvars Engine)</em>
   </p>
   <p align="center">
     <img src="./infographic/Infrastructure_Configuration_Vision_2026_Blueprint_tfvars_detailed.png" alt="Infrastructure Configuration Vision 2026" width="100%">
-    <br><em>Blueprint 24: Infrastructure Configuration Vision 2026 (.tfvars Detailed)</em>
+    <br><em>Blueprint 26: Infrastructure Configuration Vision 2026 (.tfvars Detailed)</em>
   </p>
   <p align="center">
     <img src="./infographic/Infrastructure_Configuration_Vision_2026_Blueprint_tfvars_detailed2.png" alt="Infrastructure Configuration Vision 2026 Flow" width="100%">
-    <br><em>Blueprint 25: Infrastructure Configuration Vision 2026 (.tfvars Engine Flow)</em>
+    <br><em>Blueprint 27: Infrastructure Configuration Vision 2026 (.tfvars Engine Flow)</em>
   </p>
   <p align="center">
     <img src="./infographic/Guia_Maestra_Archivos_tfvars_detallado.png" alt="Guia Maestra Archivos tfvars" width="100%">
-    <br><em>Blueprint 26: Guia Maestra Archivos tfvars detallado (Spanish Edition)</em>
+    <br><em>Blueprint 28: Guia Maestra Archivos tfvars detallado (Spanish Edition)</em>
   </p>
   <p align="center">
     <img src="./infographic/Infrastructure_State_Command_Center_tfstate.png" alt="Infrastructure State Command Center" width="100%">
-    <br><em>Blueprint 27: Infrastructure State Command Center (.tfstate Logic)</em>
+    <br><em>Blueprint 29: Infrastructure State Command Center (.tfstate Logic)</em>
   </p>
   <p align="center">
     <img src="./infographic/Enterprise_Infrastructure_Orchestration_Architecture_Terraform_Modules_Composite_vs_Atomic.png" alt="Enterprise Infrastructure Orchestration" width="100%">
-    <br><em>Blueprint 28: Enterprise Infrastructure Orchestration (Composite vs Atomic Modules)</em>
+    <br><em>Blueprint 30: Enterprise Infrastructure Orchestration (Composite vs Atomic Modules)</em>
   </p>
   <p align="center">
     <img src="./infographic/Infrastructure_Strategy_Comparison_Terraform_Modules_Composite_vs_Atomic.png" alt="Infrastructure Strategy Comparison" width="100%">
-    <br><em>Blueprint 29: Infrastructure Strategy Comparison (Composite vs Atomic Modules)</em>
+    <br><em>Blueprint 31: Infrastructure Strategy Comparison (Composite vs Atomic Modules)</em>
+  </p>
+  <p align="center">
+    <img src="./infographic/Cloud_Infrastructure_Global_Variable_Architecture_Vision.png" alt="Cloud Infrastructure Global Variable Architecture" width="100%">
+    <br><em>Blueprint 32: Cloud Infrastructure Global Variable Architecture Vision</em>
   </p>
 
   <hr>
@@ -284,15 +296,15 @@ To facilitate the assimilation of the complex Vision 2026 architecture, we have 
   #### G. DevSecOps and Day 2 Operations
   <p align="center">
     <img src="./infographic/Automated_Enterprise_Software_Installation_Workflow_InnoSetup.png" alt="Automated Enterprise Software Installation" width="100%">
-    <br><em>Blueprint 30: Automated Enterprise Software Installation Workflow (InnoSetup)</em>
+    <br><em>Blueprint 33: Automated Enterprise Software Installation Workflow (InnoSetup)</em>
   </p>
   <p align="center">
     <img src="./infographic/Cloud_Infrastructure_Orchestration_Engine_Azure_DevOps_Pipelines.png" alt="Cloud Infrastructure Orchestration Engine" width="100%">
-    <br><em>Blueprint 31: Cloud Infrastructure Orchestration Engine (Azure DevOps Pipelines)</em>
+    <br><em>Blueprint 34: Cloud Infrastructure Orchestration Engine (Azure DevOps Pipelines)</em>
   </p>
   <p align="center">
     <img src="./infographic/Post-Deployment_Infrastructure_Operations_Hierarchy_Day2.png" alt="Post-Deployment Infrastructure Operations Hierarchy" width="100%">
-    <br><em>Blueprint 32: Post-Deployment Infrastructure Operations Hierarchy (Day 2)</em>
+    <br><em>Blueprint 35: Post-Deployment Infrastructure Operations Hierarchy (Day 2)</em>
   </p>
 
   <hr>
@@ -300,15 +312,27 @@ To facilitate the assimilation of the complex Vision 2026 architecture, we have 
   #### H. Future Roadmap and Evolution
   <p align="center">
     <img src="./infographic/Infrastructure_Evolution_Vision_2026_terraform_stacks_module_versioning.png" alt="Infrastructure Evolution Vision 2026" width="100%">
-    <br><em>Blueprint 33: Infrastructure Evolution Vision 2026 (Terraform Stacks and Module Versioning)</em>
+    <br><em>Blueprint 36: Infrastructure Evolution Vision 2026 (Terraform Stacks and Module Versioning)</em>
   </p>
   <p align="center">
     <img src="./infographic/Vision_2026__Enterprise_Infrastructure_Blueprint_terraform_115.png" alt="Vision 2026 Enterprise Infrastructure Blueprint" width="100%">
-    <br><em>Blueprint 34: Vision 2026 Enterprise Infrastructure Blueprint (High-Fidelity)</em>
+    <br><em>Blueprint 37: Vision 2026 Enterprise Infrastructure Blueprint (High-Fidelity)</em>
   </p>
   <p align="center">
     <img src="./infographic/Infrastructure_Automation_Roadmap_2026_AI.png" alt="Infrastructure Automation Roadmap 2026 AI" width="100%">
-    <br><em>Blueprint 35: Infrastructure Automation Roadmap 2026 (AI-Assisted IaC)</em>
+    <br><em>Blueprint 38: Infrastructure Automation Roadmap 2026 (AI-Assisted IaC)</em>
+  </p>
+  <p align="center">
+    <img src="./infographic/Vision_2026_Strategic_Architecture_Roadmap_Evolution.png" alt="Vision 2026 Strategic Architecture Roadmap" width="100%">
+    <br><em>Blueprint 39: Vision 2026 Strategic Architecture Roadmap Evolution</em>
+  </p>
+  <p align="center">
+    <img src="./infographic/2026_Enterprise_Architecture_AKS_Modernization_Roadmap.png" alt="2026 Enterprise Architecture AKS Modernization Roadmap" width="100%">
+    <br><em>Blueprint 40: 2026 Enterprise Architecture AKS Modernization Roadmap</em>
+  </p>
+  <p align="center">
+    <img src="./infographic/Database_Roadmap_Evolution_and_Architecture_Shift_CosmosDB.png" alt="Database Roadmap Evolution" width="100%">
+    <br><em>Blueprint 41: Database Roadmap Evolution and Architecture Shift (Cosmos DB)</em>
   </p>
 </details>
 <details>
@@ -383,96 +407,120 @@ To facilitate the assimilation of the complex Vision 2026 architecture, we have 
     <br><em>Blueprint 15: Identity-Driven Infrastructure Automation Overview (OAuth 2.0)</em>
   </p>
   <p align="center">
+    <img src="./infographic/Multi-Tenant_Identity_Governance_Infographic_AETitle.png" alt="Multi-Tenant Identity Governance" width="100%">
+    <br><em>Blueprint 16: Multi-Tenant Identity Governance Infographic (AE Title)</em>
+  </p>
+  <p align="center">
+    <img src="./infographic/Managed_AKS_Cluster_Certificate_Bridge_Workflow.png" alt="Managed AKS Cluster Certificate Bridge" width="100%">
+    <br><em>Blueprint 17: Managed AKS Cluster Certificate Bridge Workflow</em>
+  </p>
+  <p align="center">
     <img src="./infographic/Cloud_Security_Vault_Ecosystem_Architecture_AKV.png" alt="Cloud Security Vault Ecosystem" width="100%">
-    <br><em>Blueprint 16: Cloud Security Vault Ecosystem (Key Vault)</em>
+    <br><em>Blueprint 18: Cloud Security Vault Ecosystem (Key Vault)</em>
   </p>
   <p align="center">
     <img src="./infographic/Identity_Governance_as_Code_Ecosystem_App_users.png" alt="Identity Governance as Code" width="100%">
-    <br><em>Blueprint 17: Identity Governance as Code (App-Users)</em>
+    <br><em>Blueprint 19: Identity Governance as Code (App-Users)</em>
   </p>
 </details>
 <details>
   <summary>⚡ 5. Compute, Data and Hybrid Integration</summary>
   <p align="center">
     <img src="./infographic/Enterprise_Container_Orchestration_Blueprint_AKS.png" alt="Enterprise Container Orchestration Blueprint" width="100%">
-    <br><em>Blueprint 18: Enterprise Container Orchestration Blueprint (AKS Hub)</em>
+    <br><em>Blueprint 20: Enterprise Container Orchestration Blueprint (AKS Hub)</em>
   </p>
   <p align="center">
     <img src="./infographic/Enterprise_Cloud_Architecture_Vision_2026_App_Service.png" alt="Enterprise Cloud Architecture App Service" width="100%">
-    <br><em>Blueprint 19: Enterprise Cloud Architecture (App Service Ecosystem)</em>
+    <br><em>Blueprint 21: Enterprise Cloud Architecture (App Service Ecosystem)</em>
   </p>
   <p align="center">
     <img src="./infographic/Enterprise_Cloud_Governance_Vision_2026_Azure_Storage.png" alt="Enterprise Cloud Governance Azure Storage" width="100%">
-    <br><em>Blueprint 20: Enterprise Cloud Governance (Azure Storage)</em>
+    <br><em>Blueprint 22: Enterprise Cloud Governance (Azure Storage)</em>
   </p>
   <p align="center">
     <img src="./infographic/Enterprise_Data_Resilience_Strategy_Overview_Azure_Backup.png" alt="Enterprise Data Resilience Strategy" width="100%">
-    <br><em>Blueprint 21: Enterprise Data Resilience Strategy (Azure Backup)</em>
+    <br><em>Blueprint 23: Enterprise Data Resilience Strategy (Azure Backup)</em>
   </p>
   <p align="center">
     <img src="./infographic/Hybrid_Connectivity_Engine_Architecture_Integration_Service.png" alt="Hybrid Connectivity Engine Architecture" width="100%">
-    <br><em>Blueprint 22: Hybrid Connectivity Engine Architecture (Integration Service)</em>
+    <br><em>Blueprint 24: Hybrid Connectivity Engine Architecture (Integration Service)</em>
   </p>
 </details>
 <details>
   <summary>⚙️ 6. IaC Engine and Data Orchestration</summary>
   <p align="center">
     <img src="./infographic/Environment_Data_Orchestration_Blueprint_tfvars.png" alt="Environment Data Orchestration Blueprint" width="100%">
-    <br><em>Blueprint 23: Environment Data Orchestration Blueprint (.tfvars Engine)</em>
+    <br><em>Blueprint 25: Environment Data Orchestration Blueprint (.tfvars Engine)</em>
   </p>
   <p align="center">
     <img src="./infographic/Infrastructure_Configuration_Vision_2026_Blueprint_tfvars_detailed.png" alt="Infrastructure Configuration Vision 2026" width="100%">
-    <br><em>Blueprint 24: Infrastructure Configuration Vision 2026 (.tfvars Detailed)</em>
+    <br><em>Blueprint 26: Infrastructure Configuration Vision 2026 (.tfvars Detailed)</em>
   </p>
   <p align="center">
     <img src="./infographic/Infrastructure_Configuration_Vision_2026_Blueprint_tfvars_detailed2.png" alt="Infrastructure Configuration Vision 2026 Flow" width="100%">
-    <br><em>Blueprint 25: Infrastructure Configuration Vision 2026 (.tfvars Engine Flow)</em>
+    <br><em>Blueprint 27: Infrastructure Configuration Vision 2026 (.tfvars Engine Flow)</em>
   </p>
   <p align="center">
     <img src="./infographic/Guia_Maestra_Archivos_tfvars_detallado.png" alt="Guia Maestra Archivos tfvars" width="100%">
-    <br><em>Blueprint 26: Guia Maestra Archivos tfvars detallado (Spanish Edition)</em>
+    <br><em>Blueprint 28: Guia Maestra Archivos tfvars detallado (Spanish Edition)</em>
   </p>
   <p align="center">
     <img src="./infographic/Infrastructure_State_Command_Center_tfstate.png" alt="Infrastructure State Command Center" width="100%">
-    <br><em>Blueprint 27: Infrastructure State Command Center (.tfstate Logic)</em>
+    <br><em>Blueprint 29: Infrastructure State Command Center (.tfstate Logic)</em>
   </p>
   <p align="center">
     <img src="./infographic/Enterprise_Infrastructure_Orchestration_Architecture_Terraform_Modules_Composite_vs_Atomic.png" alt="Enterprise Infrastructure Orchestration" width="100%">
-    <br><em>Blueprint 28: Enterprise Infrastructure Orchestration (Composite vs Atomic Modules)</em>
+    <br><em>Blueprint 30: Enterprise Infrastructure Orchestration (Composite vs Atomic Modules)</em>
   </p>
   <p align="center">
     <img src="./infographic/Infrastructure_Strategy_Comparison_Terraform_Modules_Composite_vs_Atomic.png" alt="Infrastructure Strategy Comparison" width="100%">
-    <br><em>Blueprint 29: Infrastructure Strategy Comparison (Composite vs Atomic Modules)</em>
+    <br><em>Blueprint 31: Infrastructure Strategy Comparison (Composite vs Atomic Modules)</em>
+  </p>
+  <p align="center">
+    <img src="./infographic/Cloud_Infrastructure_Global_Variable_Architecture_Vision.png" alt="Cloud Infrastructure Global Variable Architecture" width="100%">
+    <br><em>Blueprint 32: Cloud Infrastructure Global Variable Architecture Vision</em>
   </p>
 </details>
 <details>
   <summary>🛠️ 7. DevSecOps and Day 2 Operations</summary>
   <p align="center">
     <img src="./infographic/Automated_Enterprise_Software_Installation_Workflow_InnoSetup.png" alt="Automated Enterprise Software Installation" width="100%">
-    <br><em>Blueprint 30: Automated Enterprise Software Installation Workflow (InnoSetup)</em>
+    <br><em>Blueprint 33: Automated Enterprise Software Installation Workflow (InnoSetup)</em>
   </p>
   <p align="center">
     <img src="./infographic/Cloud_Infrastructure_Orchestration_Engine_Azure_DevOps_Pipelines.png" alt="Cloud Infrastructure Orchestration Engine" width="100%">
-    <br><em>Blueprint 31: Cloud Infrastructure Orchestration Engine (Azure DevOps Pipelines)</em>
+    <br><em>Blueprint 34: Cloud Infrastructure Orchestration Engine (Azure DevOps Pipelines)</em>
   </p>
   <p align="center">
     <img src="./infographic/Post-Deployment_Infrastructure_Operations_Hierarchy_Day2.png" alt="Post-Deployment Infrastructure Operations Hierarchy" width="100%">
-    <br><em>Blueprint 32: Post-Deployment Infrastructure Operations Hierarchy (Day 2)</em>
+    <br><em>Blueprint 35: Post-Deployment Infrastructure Operations Hierarchy (Day 2)</em>
   </p>
 </details>
 <details>
   <summary>🔮 8. Future Roadmap and Evolution</summary>
   <p align="center">
     <img src="./infographic/Infrastructure_Evolution_Vision_2026_terraform_stacks_module_versioning.png" alt="Infrastructure Evolution Vision 2026" width="100%">
-    <br><em>Blueprint 33: Infrastructure Evolution Vision 2026 (Terraform Stacks and Module Versioning)</em>
+    <br><em>Blueprint 36: Infrastructure Evolution Vision 2026 (Terraform Stacks and Module Versioning)</em>
   </p>
   <p align="center">
     <img src="./infographic/Vision_2026__Enterprise_Infrastructure_Blueprint_terraform_115.png" alt="Vision 2026 Enterprise Infrastructure Blueprint" width="100%">
-    <br><em>Blueprint 34: Vision 2026 Enterprise Infrastructure Blueprint (High-Fidelity)</em>
+    <br><em>Blueprint 37: Vision 2026 Enterprise Infrastructure Blueprint (High-Fidelity)</em>
   </p>
   <p align="center">
     <img src="./infographic/Infrastructure_Automation_Roadmap_2026_AI.png" alt="Infrastructure Automation Roadmap 2026 AI" width="100%">
-    <br><em>Blueprint 35: Infrastructure Automation Roadmap 2026 (AI-Assisted IaC)</em>
+    <br><em>Blueprint 38: Infrastructure Automation Roadmap 2026 (AI-Assisted IaC)</em>
+  </p>
+  <p align="center">
+    <img src="./infographic/Vision_2026_Strategic_Architecture_Roadmap_Evolution.png" alt="Vision 2026 Strategic Architecture Roadmap" width="100%">
+    <br><em>Blueprint 39: Vision 2026 Strategic Architecture Roadmap Evolution</em>
+  </p>
+  <p align="center">
+    <img src="./infographic/2026_Enterprise_Architecture_AKS_Modernization_Roadmap.png" alt="2026 Enterprise Architecture AKS Modernization Roadmap" width="100%">
+    <br><em>Blueprint 40: 2026 Enterprise Architecture AKS Modernization Roadmap</em>
+  </p>
+  <p align="center">
+    <img src="./infographic/Database_Roadmap_Evolution_and_Architecture_Shift_CosmosDB.png" alt="Database Roadmap Evolution" width="100%">
+    <br><em>Blueprint 41: Database Roadmap Evolution and Architecture Shift (Cosmos DB)</em>
   </p>
 </details>
 </details>
