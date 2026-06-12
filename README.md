@@ -545,6 +545,7 @@ These high-fidelity technical presentations provide granular deep dives into spe
 | **112** | Foundations and Strategy | Vision | [Presentation Notebook](./docs/112-PRESENTATION_NOTEBOOK.md) | High-level summary and reference architecture for notebook environments. |
 | **121** | Foundations and Strategy | Legal | [Provenance and Legal](./docs/121-PROVENANCE_AND_LEGAL.md) | Code provenance, technical references, and legal disclaimers. |
 | **131** | Foundations and Strategy | Platform | [Internal Developer Platform](./docs/131-INTERNAL_DEVELOPER_PLATFORM.md) | Platform Engineering strategy and IDP for elevating Developer Experience. |
+| **141** | Foundations and Strategy | Adoption | [IPAM and Adaptation](./docs/141-ARCHITECTURE_ADOPTION_AND_IPAM_GUIDE.md) | Guide for de-obfuscating network CIDRs and adapting the blueprint for production. |
 | **211** | IaC Engineering and Patterns | Terraform Architecture | [Module Design Patterns](./docs/211-TERRAFORM_MODULE_DESIGN_PATTERNS.md) | Deep-dive into module philosophy: Composite vs. Atomic patterns. |
 | **212** | IaC Engineering and Patterns | Terraform Architecture | [Variable Architecture](./docs/212-TERRAFORM_VARIABLE_ARCHITECTURE_AND_DATA_STRATEGY.md) | Orchestration of variables, dynamic locals, and YAML-driven data. |
 | **213** | IaC Engineering and Patterns | Terraform Architecture | [Configuration Inventory](./docs/213-TERRAFORM_ENVIRONMENT_CONFIGURATION_AND_TFVARS_INVENTORY.md) | Inventory of environment configurations (.tfvars), provisioning sequence, and safety standards. |
