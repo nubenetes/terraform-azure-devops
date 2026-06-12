@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.2] - 2026-06-12
+
+### Added
+- **Expanded Infographic Collection**: Integrated 6 new high-fidelity blueprints from the `tmp12` inventory, reaching a total of 35 architectural visualizations:
+    - **Vision 2026 Enterprise Infrastructure Blueprint (High-Fidelity)**
+    - **Shared Infrastructure Ecosystem**
+    - **Cloud Governance, RBAC and Subscriptions**
+    - **Identity-Driven Infrastructure Automation (OAuth 2.0)**
+    - **Infrastructure State Command Center (.tfstate Logic)**
+    - **Infrastructure Automation Roadmap 2026 (AI-Assisted IaC)**
+
+### Changed
+- **Advanced Gallery Categorization**: Restructured the root `README.md` infographic gallery into 8 specialized strategic categories to improve architectural discoverability and accommodate the growing collection.
+- **UI/UX Optimization**: Refined the gallery layout to eliminate formatting gaps between dropdowns and ensured sequential numbering across all 35 blueprints.
+
 ## [1.8.1] - 2026-06-11
 
 ### Added
