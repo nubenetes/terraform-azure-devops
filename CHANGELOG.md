@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.6] - 2026-06-12
+
+### Changed
+- **IPAM Alignment**: Synchronized the "IPAM Reference Matrix" in `docs/141-ARCHITECTURE_ADOPTION_AND_IPAM_GUIDE.md` with the "Representative Allocation Patterns" declared in the `README.md` header to ensure architectural consistency.
+- **Topology Refinement**: Updated recommended production CIDRs (10.0.0.0/16, 10.1.0.0/16, 10.240.0.0/16) to reflect the Hub-and-Spoke and AKS networking standards of the blueprint.
+
+## [1.8.5] - 2026-06-12
+
+### Fixed
+- **Documentation Standards**: Added missing bottom navigation bar to `docs/141-ARCHITECTURE_ADOPTION_AND_IPAM_GUIDE.md` to comply with the project's Dual Navigation mandate.
+
+### Changed
+- **Header Integration**: Added a direct strategic link to the Architecture Adoption Guide from the "Network and Access Anonymization Notice" in the root `README.md`.
+
 ## [1.8.4] - 2026-06-12
 
 ### Added

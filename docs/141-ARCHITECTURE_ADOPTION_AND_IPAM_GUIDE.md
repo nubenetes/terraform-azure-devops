@@ -28,10 +28,10 @@ The following table provides a mapping between the obfuscated values found in th
 
 | Component | Obfuscated Value (Repo) | Recommended Value (Production) | Rationale |
 | :--- | :--- | :--- | :--- |
-| **Hub VNet Address Space** | `127.0.0.1/8` | `10.100.0.0/16` | Sufficient space for centralized services and firewalls. |
-| **AKS Nodepool Subnet** | `127.0.0.1/19` | `10.101.0.0/19` | Required for Azure CNI scaling (8,192 IPs). |
-| **Application Gateway Subnet** | `127.0.0.1/24` | `10.100.1.0/24` | Azure standard for L7 traffic orchestration. |
-| **Private Endpoints Subnet** | `127.0.0.1/27` | `10.100.2.0/27` | Compact range for static PaaS IPs. |
+| **Global Backbone (Hub)** | `127.0.0.1/8` | `10.0.0.0/16` | Sufficient space for centralized services and firewalls. |
+| **AKS Cluster Nodes** | `127.0.0.1/19` | `10.240.0.0/16` | Required for Azure CNI scaling (nodes and dynamic IP allocation). |
+| **Application Gateway Subnet** | `127.0.0.1/24` | `10.1.1.0/24` | Spoke allocation. Azure standard for L7 traffic orchestration. |
+| **PaaS Integration Subnets** | `127.0.0.1/27` | `10.1.10.0/24` | Spoke allocation for Private Endpoints and integration. |
 | **Default Internet Route** | `127.0.0.1/0` | `0.0.0.0/0` | Standard UDR for next-hop Internet or Firewall. |
 
 ## 3. The Golden Rule of Terraform Variables and tfvars
