@@ -290,21 +290,25 @@ To facilitate the assimilation of the complex Vision 2026 architecture, we have 
     <img src="./infographic/Cloud_Infrastructure_Global_Variable_Architecture_Vision.png" alt="Cloud Infrastructure Global Variable Architecture" width="100%">
     <br><em>Blueprint 32: Cloud Infrastructure Global Variable Architecture Vision</em>
   </p>
+  <p align="center">
+    <img src="./infographic/Global_Configuration_Pipeline_Variable_Flow.png" alt="Global Configuration Pipeline Variable Flow" width="100%">
+    <br><em>Blueprint 33: Global Configuration Pipeline Variable Flow</em>
+  </p>
 
   <hr>
 
   #### G. DevSecOps and Day 2 Operations
   <p align="center">
     <img src="./infographic/Automated_Enterprise_Software_Installation_Workflow_InnoSetup.png" alt="Automated Enterprise Software Installation" width="100%">
-    <br><em>Blueprint 33: Automated Enterprise Software Installation Workflow (InnoSetup)</em>
+    <br><em>Blueprint 34: Automated Enterprise Software Installation Workflow (InnoSetup)</em>
   </p>
   <p align="center">
     <img src="./infographic/Cloud_Infrastructure_Orchestration_Engine_Azure_DevOps_Pipelines.png" alt="Cloud Infrastructure Orchestration Engine" width="100%">
-    <br><em>Blueprint 34: Cloud Infrastructure Orchestration Engine (Azure DevOps Pipelines)</em>
+    <br><em>Blueprint 35: Cloud Infrastructure Orchestration Engine (Azure DevOps Pipelines)</em>
   </p>
   <p align="center">
     <img src="./infographic/Post-Deployment_Infrastructure_Operations_Hierarchy_Day2.png" alt="Post-Deployment Infrastructure Operations Hierarchy" width="100%">
-    <br><em>Blueprint 35: Post-Deployment Infrastructure Operations Hierarchy (Day 2)</em>
+    <br><em>Blueprint 36: Post-Deployment Infrastructure Operations Hierarchy (Day 2)</em>
   </p>
 
   <hr>
@@ -312,27 +316,27 @@ To facilitate the assimilation of the complex Vision 2026 architecture, we have 
   #### H. Future Roadmap and Evolution
   <p align="center">
     <img src="./infographic/Infrastructure_Evolution_Vision_2026_terraform_stacks_module_versioning.png" alt="Infrastructure Evolution Vision 2026" width="100%">
-    <br><em>Blueprint 36: Infrastructure Evolution Vision 2026 (Terraform Stacks and Module Versioning)</em>
+    <br><em>Blueprint 37: Infrastructure Evolution Vision 2026 (Terraform Stacks and Module Versioning)</em>
   </p>
   <p align="center">
     <img src="./infographic/Vision_2026__Enterprise_Infrastructure_Blueprint_terraform_115.png" alt="Vision 2026 Enterprise Infrastructure Blueprint" width="100%">
-    <br><em>Blueprint 37: Vision 2026 Enterprise Infrastructure Blueprint (High-Fidelity)</em>
+    <br><em>Blueprint 38: Vision 2026 Enterprise Infrastructure Blueprint (High-Fidelity)</em>
   </p>
   <p align="center">
     <img src="./infographic/Infrastructure_Automation_Roadmap_2026_AI.png" alt="Infrastructure Automation Roadmap 2026 AI" width="100%">
-    <br><em>Blueprint 38: Infrastructure Automation Roadmap 2026 (AI-Assisted IaC)</em>
+    <br><em>Blueprint 39: Infrastructure Automation Roadmap 2026 (AI-Assisted IaC)</em>
   </p>
   <p align="center">
     <img src="./infographic/Vision_2026_Strategic_Architecture_Roadmap_Evolution.png" alt="Vision 2026 Strategic Architecture Roadmap" width="100%">
-    <br><em>Blueprint 39: Vision 2026 Strategic Architecture Roadmap Evolution</em>
+    <br><em>Blueprint 40: Vision 2026 Strategic Architecture Roadmap Evolution</em>
   </p>
   <p align="center">
     <img src="./infographic/2026_Enterprise_Architecture_AKS_Modernization_Roadmap.png" alt="2026 Enterprise Architecture AKS Modernization Roadmap" width="100%">
-    <br><em>Blueprint 40: 2026 Enterprise Architecture AKS Modernization Roadmap</em>
+    <br><em>Blueprint 41: 2026 Enterprise Architecture AKS Modernization Roadmap</em>
   </p>
   <p align="center">
     <img src="./infographic/Database_Roadmap_Evolution_and_Architecture_Shift_CosmosDB.png" alt="Database Roadmap Evolution" width="100%">
-    <br><em>Blueprint 41: Database Roadmap Evolution and Architecture Shift (Cosmos DB)</em>
+    <br><em>Blueprint 42: Database Roadmap Evolution and Architecture Shift (Cosmos DB)</em>
   </p>
 </details>
 <details>
@@ -480,47 +484,51 @@ To facilitate the assimilation of the complex Vision 2026 architecture, we have 
     <img src="./infographic/Cloud_Infrastructure_Global_Variable_Architecture_Vision.png" alt="Cloud Infrastructure Global Variable Architecture" width="100%">
     <br><em>Blueprint 32: Cloud Infrastructure Global Variable Architecture Vision</em>
   </p>
+  <p align="center">
+    <img src="./infographic/Global_Configuration_Pipeline_Variable_Flow.png" alt="Global Configuration Pipeline Variable Flow" width="100%">
+    <br><em>Blueprint 33: Global Configuration Pipeline Variable Flow</em>
+  </p>
 </details>
 <details>
   <summary>🛠️ 7. DevSecOps and Day 2 Operations</summary>
   <p align="center">
     <img src="./infographic/Automated_Enterprise_Software_Installation_Workflow_InnoSetup.png" alt="Automated Enterprise Software Installation" width="100%">
-    <br><em>Blueprint 33: Automated Enterprise Software Installation Workflow (InnoSetup)</em>
+    <br><em>Blueprint 34: Automated Enterprise Software Installation Workflow (InnoSetup)</em>
   </p>
   <p align="center">
     <img src="./infographic/Cloud_Infrastructure_Orchestration_Engine_Azure_DevOps_Pipelines.png" alt="Cloud Infrastructure Orchestration Engine" width="100%">
-    <br><em>Blueprint 34: Cloud Infrastructure Orchestration Engine (Azure DevOps Pipelines)</em>
+    <br><em>Blueprint 35: Cloud Infrastructure Orchestration Engine (Azure DevOps Pipelines)</em>
   </p>
   <p align="center">
     <img src="./infographic/Post-Deployment_Infrastructure_Operations_Hierarchy_Day2.png" alt="Post-Deployment Infrastructure Operations Hierarchy" width="100%">
-    <br><em>Blueprint 35: Post-Deployment Infrastructure Operations Hierarchy (Day 2)</em>
+    <br><em>Blueprint 36: Post-Deployment Infrastructure Operations Hierarchy (Day 2)</em>
   </p>
 </details>
 <details>
   <summary>🔮 8. Future Roadmap and Evolution</summary>
   <p align="center">
     <img src="./infographic/Infrastructure_Evolution_Vision_2026_terraform_stacks_module_versioning.png" alt="Infrastructure Evolution Vision 2026" width="100%">
-    <br><em>Blueprint 36: Infrastructure Evolution Vision 2026 (Terraform Stacks and Module Versioning)</em>
+    <br><em>Blueprint 37: Infrastructure Evolution Vision 2026 (Terraform Stacks and Module Versioning)</em>
   </p>
   <p align="center">
     <img src="./infographic/Vision_2026__Enterprise_Infrastructure_Blueprint_terraform_115.png" alt="Vision 2026 Enterprise Infrastructure Blueprint" width="100%">
-    <br><em>Blueprint 37: Vision 2026 Enterprise Infrastructure Blueprint (High-Fidelity)</em>
+    <br><em>Blueprint 38: Vision 2026 Enterprise Infrastructure Blueprint (High-Fidelity)</em>
   </p>
   <p align="center">
     <img src="./infographic/Infrastructure_Automation_Roadmap_2026_AI.png" alt="Infrastructure Automation Roadmap 2026 AI" width="100%">
-    <br><em>Blueprint 38: Infrastructure Automation Roadmap 2026 (AI-Assisted IaC)</em>
+    <br><em>Blueprint 39: Infrastructure Automation Roadmap 2026 (AI-Assisted IaC)</em>
   </p>
   <p align="center">
     <img src="./infographic/Vision_2026_Strategic_Architecture_Roadmap_Evolution.png" alt="Vision 2026 Strategic Architecture Roadmap" width="100%">
-    <br><em>Blueprint 39: Vision 2026 Strategic Architecture Roadmap Evolution</em>
+    <br><em>Blueprint 40: Vision 2026 Strategic Architecture Roadmap Evolution</em>
   </p>
   <p align="center">
     <img src="./infographic/2026_Enterprise_Architecture_AKS_Modernization_Roadmap.png" alt="2026 Enterprise Architecture AKS Modernization Roadmap" width="100%">
-    <br><em>Blueprint 40: 2026 Enterprise Architecture AKS Modernization Roadmap</em>
+    <br><em>Blueprint 41: 2026 Enterprise Architecture AKS Modernization Roadmap</em>
   </p>
   <p align="center">
     <img src="./infographic/Database_Roadmap_Evolution_and_Architecture_Shift_CosmosDB.png" alt="Database Roadmap Evolution" width="100%">
-    <br><em>Blueprint 41: Database Roadmap Evolution and Architecture Shift (Cosmos DB)</em>
+    <br><em>Blueprint 42: Database Roadmap Evolution and Architecture Shift (Cosmos DB)</em>
   </p>
 </details>
 </details>
