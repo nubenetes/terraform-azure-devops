@@ -14,7 +14,7 @@
 >
 > **2. Access Governance and Whitelists**:
 > - **Authorized IP Ranges**: Public IPs in AKS `authorized_ip_ranges` and database whitelists (MongoDB Atlas) have been replaced with loopback addresses (`127.0.0.1`) or standard documentation ranges (RFC 5737) to protect management access points.
-> - **Technical Integrity**: While sensitive values are obfuscated, all Terraform logic, dependency chains, and orchestration patterns remain 100% functional and faithful to the original production architecture.
+> - **Technical Integrity**: While sensitive values are obfuscated, all Terraform logic, dependency chains, and orchestration patterns remain 100% functional and faithful to the original production architecture. 👉 **For deployment instructions and how to de-obfuscate these values, refer to [141. Architecture Adoption and IPAM Guide](./docs/141-ARCHITECTURE_ADOPTION_AND_IPAM_GUIDE.md)**.
 
 ---
 
