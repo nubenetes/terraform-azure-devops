@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.9] - 2026-06-13
+
+### Added
+- **Global Infographic Expansion**: Integrated 7 additional high-fidelity blueprints from the `tmp15` inventory, reaching a total of 49 architectural visualizations:
+    - **Azure DevOps Secure Infrastructure Governance and Permissions**: Deep-dive into RBAC and security boundaries.
+    - **Cloud Secrets Vault Governance Playbook**: Advanced secret management strategies.
+    - **App-Core Variable Management Engine**: Variable flow and transformation logic.
+    - **The Vision 2026 Variable Engine**: Strategic variable architecture.
+    - **Cloud Infrastructure Pipeline Lifecycle Blueprint**: End-to-end pipeline stages.
+    - **Cloud Infrastructure Pipeline Logic**: Internal pipeline execution patterns.
+    - **Infrastructure Orchestration Azure DevOps Pipeline Template Blueprint**: Reusable pipeline templates.
+
 ## [1.8.8] - 2026-06-12
 
 ### Added
