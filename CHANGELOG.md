@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.11] - 2026-06-18
+
+### Changed
+- **Media Asset Normalization**: Renamed all 42 media files in `slides/`, `audio/`, and `videos/` to start with a double-digit sequential number prefix to ensure uniqueness and clean resource indexing.
+- **Documentation Standards Alignment**: Removed the emoji from the Infographic Gallery header in the root `README.md` to enforce the pure-text header governance mandate.
+- **Start Here Section Expansion**: Consolidated the four newly added PDF presentations into section 2.1, adding enriched text detailing their individual purposes, target audiences, and differences.
+- **Link Quality Assurance**: Updated all internal and relative links across the repository's Markdown documents to reflect the normalized filenames, verifying 100% link accessibility.
+
 ## [1.8.10] - 2026-06-13
 
 ### Added
