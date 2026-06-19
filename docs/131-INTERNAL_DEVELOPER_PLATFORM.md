@@ -79,7 +79,7 @@ We foster agility through a **Federated Governance** model:
 As we evolve towards 2026, the IDP is being enhanced with **AI-Assisted** capabilities:
 *   **Self-Healing Infrastructure**: Integration with AI agents to detect drift between the Terraform state and the actual Azure environment, automatically proposing remediation commits.
 *   **Intelligent Scaling**: Using AIOps to analyze traffic patterns and dynamically adjust AKS node pools and App Service plan tiers for cost optimization (FinOps).
-*   **Context-Aware Development**: Providing specialized context for AI assistants via [`.well-known/ai-context.md`](./.well-known/ai-context.md) to ensure that even AI-generated infrastructure changes adhere to our human-crafted quality standards.
+*   **Context-Aware Development**: Providing specialized context for AI assistants via [`.well-known/ai-context.md`](../.well-known/ai-context.md) to ensure that even AI-generated infrastructure changes adhere to our human-crafted quality standards.
 
 ## 7. Deep Dive: Observability-as-a-Service (OaaS)
 

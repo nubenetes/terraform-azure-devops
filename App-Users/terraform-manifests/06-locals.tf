@@ -52,7 +52,7 @@ locals {
         "city"                       = lookup(user,"city",null)
         "email"                      = "${user.email}"
         "center"                     = "${user.center}"
-        "login"                      = "https://appc${appcore_admin_role}.${var.dns_zone_per_env["${appcore_admin_role}"]}.Enterprise.com/login"
+        "login"                      = "https://appc${appcore_admin_role}.${var.dns_zone_per_env["${appcore_admin_role}"]}.enterprise.com/login"
         appcore-admin-role-key        = "${appcore_admin_role_key}.${appcore_admin_role}"
         appcore-admin-role            = "${appcore_admin_role}"
         appcore-user-role             = null
@@ -76,7 +76,7 @@ locals {
         "city"                       = lookup(user,"city",null)
         "email"                      = "${user.email}"
         "center"                     = "${user.center}"
-        "login"                      = "https://appc${appcore_user_role}.${var.dns_zone_per_env["${appcore_user_role}"]}.Enterprise.com/login"
+        "login"                      = "https://appc${appcore_user_role}.${var.dns_zone_per_env["${appcore_user_role}"]}.enterprise.com/login"
         appcore-user-role-key         = "${appcore_user_role_key}.${appcore_user_role}"
         appcore-user-role             = "${appcore_user_role}"
         appcore-admin-role            = null
@@ -100,7 +100,7 @@ locals {
         "city"                       = lookup(user,"city",null)
         "email"                      = "${user.email}"
         "center"                     = "${user.center}"
-        "login"                      = "https://appc${app-analysis_admin_role}.${var.dns_zone_per_env["${app-analysis_admin_role}"]}.Enterprise.com/login"
+        "login"                      = "https://appc${app-analysis_admin_role}.${var.dns_zone_per_env["${app-analysis_admin_role}"]}.enterprise.com/login"
         app-analysis-admin-role-key   = "${app-analysis_admin_role_key}.${app-analysis_admin_role}"
         app-analysis-admin-role       = "${app-analysis_admin_role}"
         appcore-admin-role            = null
@@ -124,7 +124,7 @@ locals {
         "city"                       = lookup(user,"city",null)
         "email"                      = "${user.email}"
         "center"                     = "${user.center}"
-        "login"                      = "https://appc${app-analysis_user_role}.${var.dns_zone_per_env["${app-analysis_user_role}"]}.Enterprise.com/login"
+        "login"                      = "https://appc${app-analysis_user_role}.${var.dns_zone_per_env["${app-analysis_user_role}"]}.enterprise.com/login"
         app-analysis-user-role-key    = "${app-analysis_user_role_key}.${app-analysis_user_role}"
         app-analysis-user-role        = "${app-analysis_user_role}"
         appcore-admin-role            = null
@@ -145,7 +145,7 @@ locals {
   load_yaml_external_users        = yamldecode(file("${local.yaml_filename_external_users}"))
   list_external_users_with_custom_security_attributes = flatten([for user in local.load_yaml_external_users :
     {
-      "upn"                        = join("#",[replace("${user.email}","@","_"),"EXT","@Enterprise.onmicrosoft.com"])
+      "upn"                        = join("#",[replace("${user.email}","@","_"),"EXT","@enterprise.onmicrosoft.com"])
       "center"                     = "${user.center}"
     }
   ])
@@ -153,7 +153,7 @@ locals {
     {
       "user-key"                   = user_key
       "email"                      = "${user.email}"
-      "upn"                        = join("#",[replace("${user.email}","@","_"),"EXT","@Enterprise.onmicrosoft.com"])
+      "upn"                        = join("#",[replace("${user.email}","@","_"),"EXT","@enterprise.onmicrosoft.com"])
       "center"                     = "${user.center}"
       "env"                        = "${user.env}"
       "role"                       = "${user.role}"
@@ -178,7 +178,7 @@ locals {
         "user-key"                   = user_key
         "email"                      = "${user.email}"
         "center"                     = "${user.center}"
-        "login"                      = "https://appc${appcore_admin_role}.${var.dns_zone_per_env["${appcore_admin_role}"]}.Enterprise.com/login"
+        "login"                      = "https://appc${appcore_admin_role}.${var.dns_zone_per_env["${appcore_admin_role}"]}.enterprise.com/login"
         appcore-admin-role-key        = "${appcore_admin_role_key}.${appcore_admin_role}"
         appcore-admin-role            = "${appcore_admin_role}"
         appcore-user-role             = null
@@ -197,7 +197,7 @@ locals {
         "user-key"                   = user_key
         "email"                      = "${user.email}"
         "center"                     = "${user.center}"
-        "login"                      = "https://appc${appcore_user_role}.${var.dns_zone_per_env["${appcore_user_role}"]}.Enterprise.com/login"
+        "login"                      = "https://appc${appcore_user_role}.${var.dns_zone_per_env["${appcore_user_role}"]}.enterprise.com/login"
         appcore-user-role-key         = "${appcore_user_role_key}.${appcore_user_role}"
         appcore-user-role             = "${appcore_user_role}"
         appcore-admin-role            = null
@@ -216,7 +216,7 @@ locals {
         "user-key"                   = user_key
         "email"                      = "${user.email}"
         "center"                     = "${user.center}"
-        "login"                      = "https://appc${app-analysis_admin_role}.${var.dns_zone_per_env["${app-analysis_admin_role}"]}.Enterprise.com/login"
+        "login"                      = "https://appc${app-analysis_admin_role}.${var.dns_zone_per_env["${app-analysis_admin_role}"]}.enterprise.com/login"
         app-analysis-admin-role-key   = "${app-analysis_admin_role_key}.${app-analysis_admin_role}"
         app-analysis-admin-role       = "${app-analysis_admin_role}"
         appcore-admin-role            = null
@@ -235,7 +235,7 @@ locals {
         "user-key"                   = user_key
         "email"                      = "${user.email}"
         "center"                     = "${user.center}"
-        "login"                      = "https://appc${app-analysis_user_role}.${var.dns_zone_per_env["${app-analysis_user_role}"]}.Enterprise.com/login"
+        "login"                      = "https://appc${app-analysis_user_role}.${var.dns_zone_per_env["${app-analysis_user_role}"]}.enterprise.com/login"
         app-analysis-user-role-key    = "${app-analysis_user_role_key}.${app-analysis_user_role}"
         app-analysis-user-role        = "${app-analysis_user_role}"
         appcore-admin-role            = null

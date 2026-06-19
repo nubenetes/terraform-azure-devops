@@ -55,7 +55,7 @@ resource "azuread_application" "skooner_login" {
   #   # A set of URLs where user tokens are sent for sign-in, or the redirect URIs where OAuth 2.0 authorization codes and access tokens are sent. Must be a valid https URL.
   #   # https://learn.microsoft.com/en-us/azure/app-service/configure-authentication-provider-aad#-create-an-app-registration-in-azure-ad-for-your-app-service-app
   #   # Redirect URI (reply URL) restrictions and limitations: https://learn.microsoft.com/en-us/azure/active-directory/develop/reply-url
-  #   redirect_uris = ["https://kubeapps.${local.environment}.Enterprise.com/oauth2/callback"]
+  #   redirect_uris = ["https://kubeapps.${local.environment}.enterprise.com/oauth2/callback"]
   #   # (Optional) A set of URLs where user tokens are sent for sign-in, or the redirect URIs where OAuth 2.0 authorization codes and access tokens are sent. Must be a valid https URL.
   # }
   #######################################################################################################################################
@@ -63,9 +63,9 @@ resource "azuread_application" "skooner_login" {
   # Web - Implicit grant and hybrid flows, enable ID tokens to allow OpenID Connect user sign-ins from App Service (but we use MSAL!).
   #######################################################################################################################################
   web {
-    #homepage_url  = "https://skooner.${local.environment}.Enterprise.com"  # Home page or landing page of the application.
-    #logout_url    = "https://skooner.${local.environment}.Enterprise.com/logout"  # The URL that will be used by Microsoft's authorization service to sign out a user using front-channel, back-channel or SAML logout protocols.
-    redirect_uris = ["https://skooner.${local.dns_child_zone}.Enterprise.com/"]
+    #homepage_url  = "https://skooner.${local.environment}.enterprise.com"  # Home page or landing page of the application.
+    #logout_url    = "https://skooner.${local.environment}.enterprise.com/logout"  # The URL that will be used by Microsoft's authorization service to sign out a user using front-channel, back-channel or SAML logout protocols.
+    redirect_uris = ["https://skooner.${local.dns_child_zone}.enterprise.com/"]
   #   implicit_grant {
   #     # Implicit grant and hybrid flows
   #     # Request a token directly from the authorization endpoint. If the application has a single-page architecture (SPA) and doesn't use the authorization code flow, or if it invokes a web API via JavaScript,

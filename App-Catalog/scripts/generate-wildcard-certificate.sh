@@ -4,11 +4,11 @@
 ################################################################
 # How to generate wildcard certs with this script:
 #
-# ./generate-wildcard-certificate.sh dev.Enterprise.com
-# ./generate-wildcard-certificate.sh qa.Enterprise.com
-# ./generate-wildcard-certificate.sh uat.Enterprise.com
-# ./generate-wildcard-certificate.sh pre.Enterprise.com
-# ./generate-wildcard-certificate.sh apps.Enterprise.com
+# ./generate-wildcard-certificate.sh dev.enterprise.com
+# ./generate-wildcard-certificate.sh qa.enterprise.com
+# ./generate-wildcard-certificate.sh uat.enterprise.com
+# ./generate-wildcard-certificate.sh pre.enterprise.com
+# ./generate-wildcard-certificate.sh apps.enterprise.com
 ################################################################
 
 # print usage

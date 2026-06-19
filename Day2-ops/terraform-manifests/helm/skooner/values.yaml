@@ -59,7 +59,7 @@ ingress:
     kubernetes.io/ingress.class: webapprouting.kubernetes.azure.com
     kubernetes.io/tls-acme: true
   hosts:
-    - host: kubeapps.deng.Enterprise.com #chart-example.local
+    - host: kubeapps.deng.enterprise.com #chart-example.local
       paths:
         - path: /
           pathType: ImplementationSpecific

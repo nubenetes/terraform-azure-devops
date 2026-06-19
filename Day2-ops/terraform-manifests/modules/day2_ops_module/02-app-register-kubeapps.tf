@@ -69,16 +69,16 @@ resource "azuread_application" "kubeapps_login" {
   #   # A set of URLs where user tokens are sent for sign-in, or the redirect URIs where OAuth 2.0 authorization codes and access tokens are sent. Must be a valid https URL.
   #   # https://learn.microsoft.com/en-us/azure/app-service/configure-authentication-provider-aad#-create-an-app-registration-in-azure-ad-for-your-app-service-app
   #   # Redirect URI (reply URL) restrictions and limitations: https://learn.microsoft.com/en-us/azure/active-directory/develop/reply-url
-  #   redirect_uris = ["https://kubeapps.${local.environment}.Enterprise.com/oauth2/callback"]
+  #   redirect_uris = ["https://kubeapps.${local.environment}.enterprise.com/oauth2/callback"]
   #   # (Optional) A set of URLs where user tokens are sent for sign-in, or the redirect URIs where OAuth 2.0 authorization codes and access tokens are sent. Must be a valid https URL.
   # }
   #######################################################################################################################################
   # Web - Implicit grant and hybrid flows, enable ID tokens to allow OpenID Connect user sign-ins from App Service (but we use MSAL!).
   #######################################################################################################################################
   web {
-    #homepage_url  = "https://kubeapps.${local.environment}.Enterprise.com"  # Home page or landing page of the application.
-    #logout_url    = "https://kubeapps.${local.environment}.Enterprise.com/logout"  # The URL that will be used by Microsoft's authorization service to sign out a user using front-channel, back-channel or SAML logout protocols.
-    redirect_uris = ["https://kubeapps.${local.dns_child_zone}.Enterprise.com/oauth2/callback"]
+    #homepage_url  = "https://kubeapps.${local.environment}.enterprise.com"  # Home page or landing page of the application.
+    #logout_url    = "https://kubeapps.${local.environment}.enterprise.com/logout"  # The URL that will be used by Microsoft's authorization service to sign out a user using front-channel, back-channel or SAML logout protocols.
+    redirect_uris = ["https://kubeapps.${local.dns_child_zone}.enterprise.com/oauth2/callback"]
     # implicit_grant {
     #   access_token_issuance_enabled = false # Whether this web application can request an access token using OAuth 2.0 implicit flow
     #   id_token_issuance_enabled     = false # Whether this web application can request an ID token using OAuth 2.0 implicit flow

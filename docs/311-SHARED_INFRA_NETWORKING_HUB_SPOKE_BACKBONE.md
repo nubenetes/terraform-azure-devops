@@ -97,7 +97,7 @@ The project implements a complex multi-tier DNS resolution strategy to handle Cl
 ```mermaid
 graph LR
     subgraph "Public Internet"
-        P_DNS[Public DNS: Enterprise.com]
+        P_DNS[Public DNS: enterprise.com]
     end
     subgraph "Azure Hub (../Shared-Infra)"
         ZONE_APPS[Private Zone: apps.enterprise.com]

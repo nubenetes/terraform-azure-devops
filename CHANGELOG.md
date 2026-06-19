@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.12] - 2026-06-19
+
+### Fixed
+- **Terraform PoC Manifest Integrity**: Restored malformed HCL blocks in the Cosmos DB PoC manifests (`App-Core/poc-cosmosdb-mongo/terraform-manifests/outputs.tf` and `variables.tf`). Two `output` blocks and two `variable` declarations had lost their header/value lines, which broke HCL parsing for that stack. The whole repository now parses cleanly with `terraform fmt`.
+- **Documentation Link Accessibility**: Fixed broken relative links in `docs/111`, `docs/131`, and `docs/324` (an incorrect relative path to `.well-known/ai-context.md` and two references using outdated document numbering), restoring 100% link resolution across the docs.
+
+### Changed
+- **Hostname Casing Consistency**: Standardized the DNS parent zone and Azure Container Registry hostnames to lowercase across all manifests, configuration files and documentation, aligning with DNS and container-registry naming conventions and removing casing inconsistencies between files.
+
 ## [1.8.11] - 2026-06-18
 
 ### Changed

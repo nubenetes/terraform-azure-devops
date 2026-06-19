@@ -66,7 +66,7 @@ resource "azurerm_linux_web_app" "App-Catalog" {
   # -e WEBSITE_HOSTNAME=app-omni-app-analysis-incliva.azurewebsites.net
   # -e WEBSITE_INSTANCE_ID=8abbdc668543073fd4dbc9b6900e09b2f327efcf0c94c1b510cf33d0c832cea0
   # -e WEBSITE_USE_DIAGNOSTIC_SERVER=False
-  # Enterpriseappanalysiscr.azurecr.io/omni:3.0.2
+  # enterpriseappanalysiscr.azurecr.io/omni:3.0.2
 
   # https://www.mongodb.com/docs/manual/reference/connection-string/
   # By Default: ?authSource=admin  -> this is why database name is not included in the connection_string

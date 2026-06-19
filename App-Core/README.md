@@ -460,7 +460,7 @@ Configuration files of this repo's pipelines:
         - [configuration/variable-group-with-secrets.yml](configuration/variable-group-with-secrets.yml)
     - **Terraform State files**, setup in [configuration/shared-azure-devops-pipeline-vars.yml](configuration/shared-azure-devops-pipeline-vars.yml)
 - This Azure Resource Group [CertificatesResourceGroup](https://portal.azure.com/#@enterprise.com/resource/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/CertificatesResourceGroup/overview) contains:
-    - Azure Key Vault with Enterprise.com wildcard certificates: [kv-wildcards-enterprise-com](https://portal.azure.com/#@enterprise.com/resource/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/CertificatesResourceGroup/providers/Microsoft.KeyVault/vaults/kv-wildcards-enterprise-com/overview)
+    - Azure Key Vault with enterprise.com wildcard certificates: [kv-wildcards-enterprise-com](https://portal.azure.com/#@enterprise.com/resource/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/CertificatesResourceGroup/providers/Microsoft.KeyVault/vaults/kv-wildcards-enterprise-com/overview)
 
 ## Azure Storage Account Settings and Azure Blob Settings with Terraform State Files
 

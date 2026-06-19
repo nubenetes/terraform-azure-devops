@@ -77,7 +77,7 @@ variable "Enterprise_product" {
 variable "dns_parent_zone" {
   description = "DNS Parent Zone"
   type        = string
-  default     = "Enterprise.com" #"Enterprise.com" # Don't change this
+  default     = "enterprise.com" #"enterprise.com" # Don't change this
 }
 variable "dns_child_zone" {
   description = "DNS Child Zone"

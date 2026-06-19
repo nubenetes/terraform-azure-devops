@@ -49,7 +49,7 @@ While this repository is a Mono-Repo for educational purposes, it is designed to
 
 This repository is "AI-First." We provide structured context to enable AI agents (like Gemini CLI, Copilot, or specialized autonomous agents) to assist in infrastructure management.
 
-- **Context Rules ([`.well-known/ai-context.md`](./.well-known/ai-context.md))**:
+- **Context Rules ([`.well-known/ai-context.md`](../.well-known/ai-context.md))**:
     - **Security Constraints**: AI must never propose public endpoints for databases.
     - **Naming Conventions**: Strict adherence to the `type-app-env-region` pattern.
 - **Autonomous Remediation**: Future-state includes agents that monitor `terraform plan` outputs and automatically suggest fixes for policy violations (e.g., Open Policy Agent (OPA) or Checkov).

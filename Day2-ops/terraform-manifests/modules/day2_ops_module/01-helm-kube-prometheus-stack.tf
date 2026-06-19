@@ -48,7 +48,7 @@ resource "helm_release" "kube_prometheus_stack" {
   }
   set {
     name  = "grafana.ingress.hosts"
-    value = "{ grafana.${local.dns_child_zone}.Enterprise.com }"
+    value = "{ grafana.${local.dns_child_zone}.enterprise.com }"
     #type  = "string"
   }
   set {
@@ -63,11 +63,11 @@ resource "helm_release" "kube_prometheus_stack" {
   set {
     # using set for array of maps: https://github.com/hashicorp/terraform-provider-helm/issues/586
     name  = "grafana.ingress.tls[0].hosts"
-    value = "{grafana.${local.dns_child_zone}.Enterprise.com}"
+    value = "{grafana.${local.dns_child_zone}.enterprise.com}"
   }
   set {
     name  = "grafana.grafana\\.ini.server.root_url"
-    value = "https://grafana.${local.dns_child_zone}.Enterprise.com/"
+    value = "https://grafana.${local.dns_child_zone}.enterprise.com/"
     type  = "string"
   }
   set {
