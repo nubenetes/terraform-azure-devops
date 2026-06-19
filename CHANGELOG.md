@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.13] - 2026-06-19
+
+### Changed
+- **Anonymization Notice Promoted to a Numbered Section**: Moved the "Network and Access Anonymization Notice" out of the document header into a dedicated, numbered **`## 3. Network and Access Anonymization Notice`** section placed right before *Document Inventory*, with a matching Table of Contents entry. Every subsequent section, subsection, TOC anchor, and in-body `Section X.Y` cross-reference was renumbered in cascade (old `3..15` → `4..16`).
+- **Notice Readability**: Reformatted the notice so each VNet, subnet, and whitelist resource and its CIDR appears on its own nested bullet, instead of packing multiple CIDRs into single prose lines.
+
+### Fixed
+- **Broken Internal Anchors**: Fixed four pre-existing broken internal links in `README.md` by aligning their anchors and section numbers to the real target headings (the `2.1` Start-Here entry, `7.4` Global Environment and Subscription Matrix, `10.2` Master Ecosystem Inventory and Deployment Order, and `9.5.1` Cluster Autoscaler). All 108 internal anchor links now resolve.
+
 ## [1.8.12] - 2026-06-19
 
 ### Added
