@@ -98,15 +98,15 @@ variable "aad_tenant_id" {
 variable "vnet_cidr" {
   description = "VNet CIDR"
   type = string
-  #default = "127.0.0.1/24"
-  default = "127.0.0.1/24"
+  #default = "10.20.0.0/24"
+  default = "10.10.0.0/24"
 }
 
 variable "subnet_cidr" {
   description = "Subnet CIDR"
   type = string
-  #default = "127.0.0.1/27"
-  default = "127.0.0.1/27"
+  #default = "10.20.0.0/27"
+  default = "10.10.0.0/27"
 }
 
 #######################
@@ -115,7 +115,7 @@ variable "subnet_cidr" {
 # variable "dns_parent_zone" {
 #   description = "DNS Parent Zone"
 #   type        = string
-#   default     = "Enterprise.com" # Don't change this
+#   default     = "enterprise.com" # Don't change this
 # }
 # variable "dns_child_zone_eng" {
 #   description = "DNS Child Zone"

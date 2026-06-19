@@ -68,7 +68,7 @@ resource "helm_release" "skooner" {
   # }
   # set {
   #   name  = "ingress.hosts[0].host"
-  #   value = "kubeapps.${local.environment}.Enterprise.com"
+  #   value = "kubeapps.${local.environment}.enterprise.com"
   #   #type  = "auto"
   # }
   # set {

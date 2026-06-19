@@ -35,7 +35,7 @@ resource "azurerm_dns_zone" "my_dns" {
   }
   # soa_record {
   #   #email = "adminit.${local.dns_zone}"
-  #   email = "adminit.Enterprise.com"  # required      
+  #   email = "adminit.enterprise.com"  # required      
   #   host_name = "ns1-35.azure-dns.com." # required
   #   expire_time = 300 # optional 
   #   minimum_ttl = 300 # optional

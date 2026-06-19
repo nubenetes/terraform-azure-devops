@@ -84,7 +84,7 @@ resource "azurerm_dns_cname_record" "pushgateway" {
 #   tags                = local.tags # optional
 #   # soa_record {
 #   #   #email = "adminit.${var.dns_zone}"
-#   #   email = "adminit.Enterprise.com"  # required
+#   #   email = "adminit.enterprise.com"  # required
 #   #   host_name = "ns1-36.azure-dns.com." # required
 #   #   expire_time = 300 # optional
 #   #   minimum_ttl = 300 # optional

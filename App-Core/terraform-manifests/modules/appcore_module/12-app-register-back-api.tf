@@ -175,7 +175,7 @@
 # "GET /core/pipeline-definition"
 # "Service Unavailable"
 # "Error trying to retrieve all the series standards from applink."
-# Http failure response for https://client-anon-app-envdev.deng.Enterprise.com/core/pipeline-definition: 503 OK
+# Http failure response for https://client-anon-app-envdev.deng.enterprise.com/core/pipeline-definition: 503 OK
 # "HttpErrorResponse"
 #
 # Required settings:

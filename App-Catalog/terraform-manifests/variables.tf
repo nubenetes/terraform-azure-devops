@@ -99,15 +99,15 @@ variable "aad_tenant_id" {
 variable "vnet_cidr" {
   description = "VNet CIDR"
   type        = string
-  #default = "127.0.0.1/24"
-  default     = "127.0.0.1/24"
+  #default = "10.20.0.0/24"
+  default     = "10.10.0.0/24"
 }
 
 variable "subnet_cidr" {
   description = "Subnet CIDR"
   type        = string
-  #default = "127.0.0.1/27"
-  default     = "127.0.0.1/27"
+  #default = "10.20.0.0/27"
+  default     = "10.10.0.0/27"
 }
 
 #######################
@@ -116,7 +116,7 @@ variable "subnet_cidr" {
 variable "dns_parent_zone" {
   description = "DNS Zone"
   type        = string
-  default     = "Enterprise.com" # Don't change this
+  default     = "enterprise.com" # Don't change this
 }
 variable "dns_child_zone" {
   description = "DNS Child Zone"
@@ -254,7 +254,7 @@ variable "prometheus_push_gateway" {
   #https://enterprise.atlassian.net/wiki/spaces/DEV/pages/00000000
   description = "IP addr of Prometheus Push Gateway, used by App Service Monitor Client (a prometheus exporter)"
   type        = string
-  default     = "pushgateway-app-analysis.Enterprise.com" # Production
+  default     = "pushgateway-app-analysis.enterprise.com" # Production
 }
 variable "docker_enable_ci" {
   description = "DOCKER_ENABLE_CI in App Service"
@@ -428,12 +428,12 @@ variable "mongodb_atlas_database_name" {
 variable "mongodb_atlas_cidr_block" {
   description = "The cidr range that the cluster will be accessed from"
   type        = string
-  default     = "127.0.0.1/0"  # any address is allowed
+  default     = "0.0.0.0/0"  # any address is allowed
 }
 # variable "mongodb_atlas_ip_address" {
 #   description = "The IP address that the cluster will be accessed from, can also be a CIDR range or AWS security group"
 #   type        = string
-#   default     =             # "127.0.0.1" is not valid
+#   default     =             # "0.0.0.0" is not valid
 # }
 
 #################################
@@ -442,7 +442,7 @@ variable "mongodb_atlas_cidr_block" {
 variable "docker_registry" {
   description = "Docker Registry Server URL"
   type        = string
-  default     = "https://Enterpriseappanalysiscr.azurecr.io" # "EnterpriseAppAnalysisCR"
+  default     = "https://enterpriseappanalysiscr.azurecr.io" # "EnterpriseAppAnalysisCR"
 }
 variable "docker_registry_username" {
   description = "Docker Registry Username"
@@ -458,7 +458,7 @@ variable "docker_registry_username" {
 variable "app_docker_image" {
   description = "Enterprise App-Catalog aka omni-app-analysis Docker Image"
   type        = string
-  default     = "Enterpriseappanalysiscr.azurecr.io/omni"
+  default     = "enterpriseappanalysiscr.azurecr.io/omni"
 }
 variable "app_docker_image_tag" {
   description = "Enterprise App-Catalog aka omni-app-analysis Docker Image Tag"
@@ -473,7 +473,7 @@ variable "app_docker_image_tag" {
 variable "prometheus_exporter_docker_image" {
   description = "Enterprise AppAnalysis Prometheus Exporter Docker Image"
   type        = string
-  default     = "Enterpriseappanalysiscr.azurecr.io/monitor-client"
+  default     = "enterpriseappanalysiscr.azurecr.io/monitor-client"
 }
 variable "prometheus_exporter_docker_image_tag" {
   description = "Enterprise AppAnalysis Prometheus Exporter Docker Image Tag"

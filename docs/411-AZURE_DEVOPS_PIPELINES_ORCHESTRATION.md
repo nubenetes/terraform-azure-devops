@@ -287,7 +287,7 @@ In addition to YAML-based variables, the architecture leverages **Azure DevOps L
 Defined in [`App-Core/configuration/variable-group-with-secrets.yml`](../App-Core/configuration/variable-group-with-secrets.yml):
 
 *   **`group: DevOps-appcore`**: Contains sensitive application secrets like database passwords (`secret_mongodb_password`) and API keys.
-*   **`group: Wildcard-Certificates`**: Centralized group for SSL/TLS certificates. It contains the binary content or identifiers for `*.Enterprise.com` and `*.eng.Enterprise.com`.
+*   **`group: Wildcard-Certificates`**: Centralized group for SSL/TLS certificates. It contains the binary content or identifiers for `*.enterprise.com` and `*.eng.enterprise.com`.
 *   **`group: DevOps-aks`**: Stores critical Kubernetes infrastructure secrets, such as the `kubeconfig` or service principal credentials needed to authenticate against AKS.
 
 #### 4.3.3 Example: Conditional Variable Loading

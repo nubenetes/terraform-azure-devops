@@ -272,6 +272,8 @@ output "id_linux_webapp_appclink_cloud_apiEurope" {
     module.europe,
   ]
 }
+output "id_linux_webapp_appcanalysis_pdf_rendererEurope" {
+  value = local.deploy_Europe ? module.europe.0.id_linux_webapp_appcanalysis_pdf_renderer : null
   # Feature Flag on Terraform
   depends_on = [
     module.europe,
@@ -312,6 +314,8 @@ output "id_linux_webapp_appclink_cloud_apiUS" {
     module.us,
   ]
 }
+output "id_linux_webapp_appcanalysis_pdf_rendererUS" {
+  value = local.deploy_United_States ? module.us.0.id_linux_webapp_appcanalysis_pdf_renderer : null
   # Feature Flag on Terraform
   depends_on = [
     module.us,

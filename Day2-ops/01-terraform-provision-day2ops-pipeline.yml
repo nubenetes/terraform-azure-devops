@@ -9,7 +9,7 @@ parameters:
   displayName: 'Create Day2_Ops ENG (Dev, QA, UAT, Pre)'
   type: boolean
   default: false
-- name: 'createDay2opsPRO'   # disabled since we don't want to create Enterprise.com DNZ Zone with terraform (already deployed)
+- name: 'createDay2opsPRO'   # disabled since we don't want to create enterprise.com DNZ Zone with terraform (already deployed)
   displayName: 'Create Day2_Ops PRO (Production)'
   type: boolean
   default: false

@@ -56,7 +56,7 @@ graph TD
 
 We avoid a monolithic Key Vault to prevent credential exposure across different environments and organizational boundaries.
 
-*   **Hub Key Vault (External)**: Hosts global wildcard certificates (`*.Enterprise.com`) and shared service principals. Referenced via `data` lookups in AKS modules.
+*   **Hub Key Vault (External)**: Hosts global wildcard certificates (`*.enterprise.com`) and shared service principals. Referenced via `data` lookups in AKS modules.
 *   **Infrastructure Vaults (`kv-agw-cert-*`)**: Dedicated vaults for regional AGW certificates. Defined in [`22-key-vault-app-gateway.tf`](../App-Core/terraform-manifests/modules/appcore_module/22-key-vault-app-gateway.tf).
 *   **Tenant Vaults (`kv-{client}-*`)**: Individual vaults per client for tenant-specific connection strings. Defined in [`23-key-vault-clients.tf`](../App-Core/terraform-manifests/modules/appcore_module/23-key-vault-clients.tf).
 

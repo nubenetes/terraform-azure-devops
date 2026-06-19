@@ -22,7 +22,7 @@ module "europe_aks" {
     azurerm.manualinfra = azurerm.manualinfra
   }
   # Defined in variables.tf :
-  # vpc_cidr                                                                      = "127.0.0.1/16" # example
+  # vpc_cidr                                                                       = "10.1.0.0/16" # example
   location                                                                        = var.location_europe
   environment                                                                     = var.environment
   gitbranch                                                                       = var.gitbranch
@@ -52,7 +52,7 @@ module "us_aks" {
     azurerm.manualinfra = azurerm.manualinfra
   }
   # Defined in variables.tf :
-  # vpc_cidr                                                                      = "127.0.0.1/16" # example
+  # vpc_cidr                                                                       = "10.1.0.0/16" # example
   location                                                                        = var.location_unitedstates
   environment                                                                     = var.environment
   gitbranch                                                                       = var.gitbranch

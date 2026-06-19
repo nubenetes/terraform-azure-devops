@@ -87,7 +87,7 @@ graph TD
 - **Technical Implementation (Low-Level)**:
   - **Key Vault Integration**: RSA keys are stored in Key Vaults protected with "Purge Protection".
   - **Assignment**: The `customer_managed_key` block is used in `azurerm_storage_account` resources and MongoDB Atlas encryption configurations.
-  - **Technical Evidence**: Documented as a mitigation strategy in [Doc 01: Architecture Strategy](./01-ARCHITECTURE_2026.md).
+  - **Technical Evidence**: Documented as a mitigation strategy in [Doc 111: Architecture Strategy](./111-ARCHITECTURE_2026.md).
 
 ## 4. TLS+ Sovereignty: Hardened Handshakes
 
@@ -107,7 +107,7 @@ graph TD
 - **Technical Implementation (Low-Level)**:
   - **Protection Plan**: Creation of an `azurerm_network_ddos_protection_plan` resource.
   - **VNet Link**: The Shared Infrastructure VNet is associated with the plan using the `ddos_protection_plan` block.
-  - **Technical Evidence**: Referenced in [Doc 08: Shared Infra Networking](./08-SHARED_INFRA_NETWORKING_HUB_SPOKE_BACKBONE.md).
+  - **Technical Evidence**: Referenced in [Doc 311: Shared Infra Networking](./311-SHARED_INFRA_NETWORKING_HUB_SPOKE_BACKBONE.md).
 
 ## 6. Defender for Cloud: Unified Security Monitoring
 

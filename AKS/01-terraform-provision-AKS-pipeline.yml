@@ -9,7 +9,7 @@ parameters:
   displayName: 'Create ENG AKS (Dev, QA, UAT, Pre)'
   type: boolean
   default: false
-- name: 'createPRO'   # disabled since we don't want to create Enterprise.com DNS Zone with terraform (already deployed)
+- name: 'createPRO'   # disabled since we don't want to create enterprise.com DNS Zone with terraform (already deployed)
   displayName: 'Create PRO AKS (Production)'
   type: boolean
   default: false

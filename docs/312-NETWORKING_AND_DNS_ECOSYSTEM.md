@@ -54,14 +54,14 @@ graph TD
 We use a **Parent-Child DNS architecture** to manage domains across different environments and Git branches.
 
 ### 3.1 The Hierarchy
-*   **Root (External)**: `Enterprise.com` (Managed externally or in a top-level subscription).
-*   **Parent Zone (Hub)**: `deng.Enterprise.com` or `apps.Enterprise.com`.
+*   **Root (External)**: `enterprise.com` (Managed externally or in a top-level subscription).
+*   **Parent Zone (Hub)**: `deng.enterprise.com` or `apps.enterprise.com`.
 *   **Child Zones (Spoke)**: Dynamically calculated in [`locals.tf`](../App-Core/terraform-manifests/modules/appcore_module/03-locals.tf).
 
 ### 3.2 DNS Zones Logic
 The implementation in [`06-dns.tf`](../Shared-Infra/terraform-manifests/modules/sharedinfra_dns_module/06-dns.tf) creates zones based on the environment:
-*   **ENG Environments**: `*.eng.Enterprise.com`
-*   **PRO Environments**: `*.apps.Enterprise.com`
+*   **ENG Environments**: `*.eng.enterprise.com`
+*   **PRO Environments**: `*.apps.enterprise.com`
 *   **Branch Isolation**: If on `develop`, the code prefixes names with `d` (e.g., `deng`), allowing parallel testing of DNS records without affecting production.
 
 ## 4. Integration: DNS -> Application Gateway
@@ -78,7 +78,7 @@ sequenceDiagram
     participant DNS as Azure DNS Zone
     participant AGW as Application Gateway
     participant BE as App Service (Backend)
-    User->>DNS: Resolves portal.deng.Enterprise.com
+    User->>DNS: Resolves portal.deng.enterprise.com
     DNS-->>User: Returns AGW Public IP
     User->>AGW: HTTPS Request (Host: portal.deng...)
     AGW->>AGW: WAF Inspection and Path Routing
@@ -102,7 +102,7 @@ The network resources follow a strict naming convention to ensure global uniquen
 | **VNet** | `vnet-{product}-{instance_env}` | `vnet-appcore-dnedev` |
 | **Subnet** | `snet-{product}-{instance_env}` | `snet-appcore-dnedev` |
 | **Public IP** | `pip-agw-{product}-{instance_env}` | `pip-agw-appcore-dnedev` |
-| **DNS Zone** | `{branch_env}.Enterprise.com` | `deng.Enterprise.com` |
+| **DNS Zone** | `{branch_env}.enterprise.com` | `deng.enterprise.com` |
 
 *Refer to [`03-locals.tf`](../App-Core/terraform-manifests/modules/appcore_module/03-locals.tf) for the full naming logic.*
 

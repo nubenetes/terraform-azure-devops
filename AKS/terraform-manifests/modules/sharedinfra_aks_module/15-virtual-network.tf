@@ -40,7 +40,7 @@ resource "azurerm_virtual_network" "aks_vnet" {
   name                = "aks-vnet-${local.environment}"
   location            = azurerm_resource_group.rg_aks.location
   resource_group_name = azurerm_resource_group.rg_aks.name
-  address_space       = ["127.0.0.1/8"]
+  address_space       = ["10.0.0.0/8"]
 }
 
 ############################################################
@@ -52,7 +52,7 @@ resource "azurerm_subnet" "aks_api_server" {
   name                 = "aks-control-plane-pods-subnet-${local.environment}"
   virtual_network_name = azurerm_virtual_network.aks_vnet.name
   resource_group_name  = azurerm_resource_group.rg_aks.name
-  address_prefixes     = ["127.0.0.1/28"] 
+  address_prefixes     = ["10.1.0.0/28"]
   delegation {
     name = "delegation"
 
@@ -80,13 +80,13 @@ resource "azurerm_subnet" "aks_nodes_data_plane" {
   name                 = "aks-data-plane-nodes-subnet-${local.environment}"
   virtual_network_name = azurerm_virtual_network.aks_vnet.name
   resource_group_name  = azurerm_resource_group.rg_aks.name
-  address_prefixes     = ["127.0.0.1/19"] # To allow plenty of room for growth while reducing the total number of addresses to a manageable level, we choose a 19-bit netmask that provides 8,192 addresses
+  address_prefixes     = ["10.0.32.0/19"] # To allow plenty of room for growth while reducing the total number of addresses to a manageable level, we choose a 19-bit netmask that provides 8,192 addresses
 }
 resource "azurerm_subnet" "aks_pods_data_plane" {
   name                 = "aks-data-plane-pods-subnet-${local.environment}"
   virtual_network_name = azurerm_virtual_network.aks_vnet.name
   resource_group_name  = azurerm_resource_group.rg_aks.name
-  address_prefixes     = ["127.0.0.1/19"] # To allow plenty of room for growth while reducing the total number of addresses to a manageable level, we choose a 19-bit netmask that provides 8,192 addresses
+  address_prefixes     = ["10.0.64.0/19"] # To allow plenty of room for growth while reducing the total number of addresses to a manageable level, we choose a 19-bit netmask that provides 8,192 addresses
 }
 
 # Network Profile
@@ -112,9 +112,9 @@ resource "azurerm_subnet" "aks_pods_data_plane" {
 # correspond to the applied default values when these settings are note set up.
 
 # Default network settings with kubenet when they are not configured:
-# Azure AKS VNet      = "127.0.0.1/8"
-# Azure AKS Subnet    = "127.0.0.1/16"
-# service_cidr        = "127.0.0.1/16"
-# pod_cidr            = "127.0.0.1/16"
-# docker_bridge_cidr  = "127.0.0.1/16" # Default. You can reuse this range across different AKS Clusters
-# dns_service_ip      = "127.0.0.1"
+# Azure AKS VNet      = "10.0.0.0/8"
+# Azure AKS Subnet    = "10.240.0.0/16"
+# service_cidr        = "10.0.0.0/16"
+# pod_cidr            = "10.244.0.0/16"
+# docker_bridge_cidr  = "172.17.0.1/16" # Default. You can reuse this range across different AKS Clusters
+# dns_service_ip      = "10.0.0.10"

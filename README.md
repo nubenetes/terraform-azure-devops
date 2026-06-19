@@ -1,20 +1,20 @@
 # Enterprise Cloud Infrastructure and DevSecOps Patterns
 
 > [!IMPORTANT]
-> **Network and Access Anonymization Notice**: All networking and access data within this repository has been anonymized to protect architectural confidentiality. The original configurations utilize a private RFC 1918 addressing scheme.
+> **Network and Access Anonymization Notice**: All networking and access data in this repository has been anonymized to protect architectural confidentiality, while keeping every Terraform manifest **deployable as-is**. The values below are deliberately drawn from the address blocks that standards bodies and cloud vendors reserve for documentation, demos, and PoCs — so they are safe to publish, never collide with a real corporate network, and read naturally to any engineer adapting the blueprint. **Every value is a default in a `variables.tf` and is meant to be overridden via a `.tfvars` file at deployment time** (see the [141. Architecture Adoption and IPAM Guide](./docs/141-ARCHITECTURE_ADOPTION_AND_IPAM_GUIDE.md)).
 >
-> **1. Representative Allocation Patterns**:
-> The following generic examples illustrate the typical allocation logic used across the ecosystem:
-> - **Global Backbone (Hub)**: `10.0.0.0/16`
-> - **Production Spoke (VNet)**: `10.1.0.0/16`
-> - **Engineering Spoke (VNet)**: `10.2.0.0/16`
-> - **AKS Cluster Nodes**: `10.240.0.0/16`
-> - **AKS Pod Network**: `10.244.0.0/16`
-> - **PaaS Integration Subnets**: `10.1.10.0/24`
+> **1. Private network ranges (RFC 1918)** — functional, non-secret, and the de-facto standard for Azure VNets:
+> - **Shared core VNet** (App-Core, App-Catalog, Day2-ops, Shared-Infra): `10.10.0.0/24` — workload subnets `10.10.0.0/26` (App-Core) and `10.10.0.0/27` (others); an alternative `10.20.0.0/24` is kept commented for a second region/environment.
+> - **AKS VNet**: `10.0.0.0/8` — API server subnet `10.1.0.0/28`, node subnet `10.0.32.0/19`, pod subnet `10.0.64.0/19`.
+> - **AKS service plane**: `service_cidr = 10.0.0.0/19`, `dns_service_ip = 10.0.0.10` (the Azure-documented Kubernetes service range, separate from the pod/node subnets).
 >
-> **2. Access Governance and Whitelists**:
-> - **Authorized IP Ranges**: Public IPs in AKS `authorized_ip_ranges` and database whitelists (MongoDB Atlas) have been replaced with loopback addresses (`127.0.0.1`) or standard documentation ranges (RFC 5737) to protect management access points.
-> - **Technical Integrity**: While sensitive values are obfuscated, all Terraform logic, dependency chains, and orchestration patterns remain 100% functional and faithful to the original production architecture. 👉 **For deployment instructions and how to de-obfuscate these values, refer to [141. Architecture Adoption and IPAM Guide](./docs/141-ARCHITECTURE_ADOPTION_AND_IPAM_GUIDE.md)**.
+> **2. Public access points and whitelists** — replaced with non-routable placeholders so no real management endpoint is exposed:
+> - **AKS `authorized_ip_ranges`**: `198.51.100.0/24` (RFC 5737 "TEST-NET-2", reserved for documentation) and `0.0.0.0/32`. These are commented examples — you **must** substitute your own egress IPs (VPN, office, CI/CD runners) before enabling public API access.
+> - **MongoDB Atlas (`mongodb_atlas_cidr_block`)**: `0.0.0.0/0` (open by design for the PoC; lock this down to your real CIDR for any non-demo use).
+>
+> **Why these ranges?** `10.0.0.0/8` is RFC 1918 private space — non-routable on the Internet and the conventional choice for Azure hub-and-spoke designs, so the topology stays realistic without revealing the production plan. `198.51.100.0/24` comes from RFC 5737, which reserves three blocks (`192.0.2.0/24`, `198.51.100.0/24`, `203.0.113.0/24`) exclusively for documentation — they are guaranteed never to route anywhere, which is exactly what you want for a public-IP placeholder in a published repo. Loopback (`127.0.0.0/8`) and `0.0.0.0/32` are used where a value must exist but must never reach a real host.
+>
+> **Technical Integrity**: although the values are anonymized, all Terraform logic, dependency chains, and orchestration patterns remain 100% functional and faithful to the original production architecture. 👉 **For how to change these values for a real deployment, refer to [141. Architecture Adoption and IPAM Guide](./docs/141-ARCHITECTURE_ADOPTION_AND_IPAM_GUIDE.md)**.
 
 ---
 

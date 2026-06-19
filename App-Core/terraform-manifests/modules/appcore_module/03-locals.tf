@@ -24,9 +24,9 @@ locals {
   sharedinfra_environment                         = (var.environment != "pro" && var.environment != "dem" && var.environment != "res") ? "eng":"pro" # PRO & DEM (demo) & RES (RESEARCH) environments are considered PRODUCTION
   sharedinfra_environment2                        = (var.gitbranch != "main") ? "deng":"${local.sharedinfra_environment}"
   dns_zone_resource_group_name                    = "${var.rg_prefix}-sharedinfra-dns-${local.sharedinfra_environment2}"
-    # rg-sharedinfra-dns-deng : cert widlcard *.deng.Enterprise.com : Dev, QA, UAT, Pre, Pro, Dem
-    # rg-sharedinfra-dns-eng : cert wildard *.eng.Enterprise.com : Dev, QA, UAT, Pre
-    # rg-sharedinfra-dns-pro : cert wildcard *.apps.Enterprise.com : Pro, Dem
+    # rg-sharedinfra-dns-deng : cert widlcard *.deng.enterprise.com : Dev, QA, UAT, Pre, Pro, Dem
+    # rg-sharedinfra-dns-eng : cert wildard *.eng.enterprise.com : Dev, QA, UAT, Pre
+    # rg-sharedinfra-dns-pro : cert wildcard *.apps.enterprise.com : Pro, Dem
   # Dynamic Environment Generator:
   # Used by dns names attached to apps (which lack of "prod" term when running in production)
   # Used by Azure Storage Account & Azure Key Vaults due to length constraints.

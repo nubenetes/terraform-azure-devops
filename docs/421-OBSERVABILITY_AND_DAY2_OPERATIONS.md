@@ -98,7 +98,7 @@ Enables real-time cost tracking of namespaces, pods, and deployments.
 To reduce complexity, we provide a developer-friendly Kubernetes dashboard (**Skooner**).
 
 *   **Authentication**: Integrated with Azure AD via [`02-app-register-skooner.tf`](../Day2-ops/terraform-manifests/modules/day2_ops_module/02-app-register-skooner.tf).
-*   **Dynamic DNS**: Accessible via `skooner.${local.dns_child_zone}.Enterprise.com`.
+*   **Dynamic DNS**: Accessible via `skooner.${local.dns_child_zone}.enterprise.com`.
 *   **Evidence**: [`05-helm-skooner.tf`](../Day2-ops/terraform-manifests/modules/day2_ops_module/05-helm-skooner.tf).
 
 ## 6. Ingress Observability: Nginx and WebApp Routing

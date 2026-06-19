@@ -20,7 +20,7 @@ module "dns" {
     azurerm      = azurerm.europe
   }
   # Defined in variables.tf :
-  # vpc_cidr                                                                      = "127.0.0.1/16" # example
+  # vpc_cidr                                                                       = "10.1.0.0/16" # example
   # vnet_cidr                                                                       = var.vnet_cidr
   location                                                                        = var.location_europe # "northeurope"
   rg_prefix                                                                       = var.rg_prefix
