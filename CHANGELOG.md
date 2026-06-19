@@ -7,12 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.8.12] - 2026-06-19
 
+### Added
+- **"Why These Ranges?" IPAM Rationale**: New section in `docs/141-ARCHITECTURE_ADOPTION_AND_IPAM_GUIDE.md` explaining why each address block (RFC 1918 private space, RFC 5737 documentation ranges, RFC 1122 loopback, and `0.0.0.0/0`) is the standard, safe choice for published demos and Proof-of-Concept repositories, plus a new "How to Change the Values for a Real Deployment" section and an RFC 5737 reference in the validated library.
+
+### Changed
+- **Network IPAM Anonymization Scheme (Functional & Deployable)**: Replaced the non-functional `127.0.0.1/x` loopback placeholders — left over from a previous blanket anonymization pass — with a two-tier, **anonymized-but-deployable** addressing scheme modeled on the original architecture. Every Terraform manifest is now valid and `plan`-able as-is, while no value reveals or collides with a real production network.
+    - **Private networks (RFC 1918, functional)**:
+        - **Shared core VNet** for `App-Core`, `App-Catalog`, `Day2-ops`, and `Shared-Infra`: `10.10.0.0/24` (with `10.20.0.0/24` kept commented as the second-region/environment alternative). Workload subnets are `10.10.0.0/26` for App-Core and `10.10.0.0/27` for the other stacks.
+        - **AKS VNet** `10.0.0.0/8`: API server subnet `10.1.0.0/28`, node subnet `10.0.32.0/19`, pod subnet `10.0.64.0/19`.
+        - **AKS service plane**: `service_cidr = 10.0.0.0/19` (kept non-overlapping with the node/pod subnets, as Azure CNI requires) and `dns_service_ip = 10.0.0.10`.
+    - **Public access points (non-routable placeholders)**:
+        - AKS `authorized_ip_ranges` → `198.51.100.0/24` (RFC 5737 "TEST-NET-2" documentation range) and `0.0.0.0/32` — commented examples that must be replaced with real egress IPs before enabling public API access.
+        - `mongodb_atlas_cidr_block` → `0.0.0.0/0` (intentionally open for the PoC; lock down for any non-demo use).
+    - **Comment & illustration consistency**: Updated the `sipcalc` split-network comment blocks, the AKS "default network settings" notes, the example `# vpc_cidr` annotations, and the commented UDR `address_prefix` to match the new values, so every illustrative comment is internally consistent with the deployed defaults.
+- **Anonymization Notice (README)**: Rewrote the root `README.md` "Network and Access Anonymization Notice" to accurately describe the implemented two-tier scheme, document that every value is a `variables.tf` default meant to be overridden via `.tfvars`, and explain why the chosen ranges are safe to publish.
+- **141 IPAM Guide Reconciliation**: Reworked the strategy, IPAM reference matrix (now "Anonymized vs Recommended Values" with the real repo values), Golden Rule, subnetting logic, and authorized-IP sections of `docs/141-ARCHITECTURE_ADOPTION_AND_IPAM_GUIDE.md` to match the implemented scheme instead of the previous loopback-obfuscation narrative.
+- **Hostname Casing Consistency**: Standardized the DNS parent zone and Azure Container Registry hostnames to lowercase across all manifests, configuration files and documentation, aligning with DNS and container-registry naming conventions and removing casing inconsistencies between files.
+
 ### Fixed
 - **Terraform PoC Manifest Integrity**: Restored malformed HCL blocks in the Cosmos DB PoC manifests (`App-Core/poc-cosmosdb-mongo/terraform-manifests/outputs.tf` and `variables.tf`). Two `output` blocks and two `variable` declarations had lost their header/value lines, which broke HCL parsing for that stack. The whole repository now parses cleanly with `terraform fmt`.
 - **Documentation Link Accessibility**: Fixed broken relative links in `docs/111`, `docs/131`, and `docs/324` (an incorrect relative path to `.well-known/ai-context.md` and two references using outdated document numbering), restoring 100% link resolution across the docs.
-
-### Changed
-- **Hostname Casing Consistency**: Standardized the DNS parent zone and Azure Container Registry hostnames to lowercase across all manifests, configuration files and documentation, aligning with DNS and container-registry naming conventions and removing casing inconsistencies between files.
 
 ## [1.8.11] - 2026-06-18
 
