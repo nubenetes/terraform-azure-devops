@@ -1,128 +1,113 @@
 # Enterprise Cloud Infrastructure and DevSecOps Patterns
 
-> [!IMPORTANT]
-> **Network and Access Anonymization Notice**: All networking and access data in this repository has been anonymized to protect architectural confidentiality, while keeping every Terraform manifest **deployable as-is**. The values below are deliberately drawn from the address blocks that standards bodies and cloud vendors reserve for documentation, demos, and PoCs — so they are safe to publish, never collide with a real corporate network, and read naturally to any engineer adapting the blueprint. **Every value is a default in a `variables.tf` and is meant to be overridden via a `.tfvars` file at deployment time** (see the [141. Architecture Adoption and IPAM Guide](./docs/141-ARCHITECTURE_ADOPTION_AND_IPAM_GUIDE.md)).
->
-> **1. Private network ranges (RFC 1918)** — functional, non-secret, and the de-facto standard for Azure VNets:
-> - **Shared core VNet** (App-Core, App-Catalog, Day2-ops, Shared-Infra): `10.10.0.0/24` — workload subnets `10.10.0.0/26` (App-Core) and `10.10.0.0/27` (others); an alternative `10.20.0.0/24` is kept commented for a second region/environment.
-> - **AKS VNet**: `10.0.0.0/8` — API server subnet `10.1.0.0/28`, node subnet `10.0.32.0/19`, pod subnet `10.0.64.0/19`.
-> - **AKS service plane**: `service_cidr = 10.0.0.0/19`, `dns_service_ip = 10.0.0.10` (the Azure-documented Kubernetes service range, separate from the pod/node subnets).
->
-> **2. Public access points and whitelists** — replaced with non-routable placeholders so no real management endpoint is exposed:
-> - **AKS `authorized_ip_ranges`**: `198.51.100.0/24` (RFC 5737 "TEST-NET-2", reserved for documentation) and `0.0.0.0/32`. These are commented examples — you **must** substitute your own egress IPs (VPN, office, CI/CD runners) before enabling public API access.
-> - **MongoDB Atlas (`mongodb_atlas_cidr_block`)**: `0.0.0.0/0` (open by design for the PoC; lock this down to your real CIDR for any non-demo use).
->
-> **Why these ranges?** `10.0.0.0/8` is RFC 1918 private space — non-routable on the Internet and the conventional choice for Azure hub-and-spoke designs, so the topology stays realistic without revealing the production plan. `198.51.100.0/24` comes from RFC 5737, which reserves three blocks (`192.0.2.0/24`, `198.51.100.0/24`, `203.0.113.0/24`) exclusively for documentation — they are guaranteed never to route anywhere, which is exactly what you want for a public-IP placeholder in a published repo. Loopback (`127.0.0.0/8`) and `0.0.0.0/32` are used where a value must exist but must never reach a real host.
->
-> **Technical Integrity**: although the values are anonymized, all Terraform logic, dependency chains, and orchestration patterns remain 100% functional and faithful to the original production architecture. 👉 **For how to change these values for a real deployment, refer to [141. Architecture Adoption and IPAM Guide](./docs/141-ARCHITECTURE_ADOPTION_AND_IPAM_GUIDE.md)**.
-
 ---
 
 ## Table of Contents
 
 - [1. Architectural Strategy and High-Impact Blueprint](#1-architectural-strategy-and-high-impact-blueprint)
 - [2. Strategic Presentations and Video Overviews](#2-strategic-presentations-and-video-overviews)
-    - [2.1 Master Architectural Summary (Start Here)](#21-master-architectural-summary-start-here)
+    - [2.1 Master Architectural Summary and Essential Blueprints (Start Here)](#21-master-architectural-summary-and-essential-blueprints-start-here)
     - [2.2 AI-Generated Video Summaries (NotebookLM)](#22-ai-generated-video-summaries-notebooklm)
     - [2.3 Vision 2026 Architectural Executive Summary](#23-vision-2026-architectural-executive-summary)
     - [2.4 Vision 2026 Technical Engineering Patterns](#24-vision-2026-technical-engineering-patterns)
     - [2.5 NotebookLM Technical Deep Dives](#25-notebooklm-technical-deep-dives)
     - [2.6 AI-Generated Audio Podcasts (NotebookLM)](#26-ai-generated-audio-podcasts-notebooklm)
-- [3. Document Inventory](#3-document-inventory)
-- [4. Foundations and Engineering Onboarding](#4-foundations-and-engineering-onboarding)
-    - [4.1 Engineering Requirements](#41-engineering-requirements)
-    - [4.2 Global Regions and Carbon-Aware Naming](#42-global-regions-and-carbon-aware-naming)
-        - [4.2.1 The Nomenclature Logic (prefix 'd')](#421-the-nomenclature-logic-prefix-d)
-    - [4.3 Automation Glossary](#43-automation-glossary)
-    - [4.4 Engineering Environment: VSCode Optimization](#44-engineering-environment-vscode-optimization)
-- [5. Core Design Principles](#5-core-design-principles)
-    - [5.1 Zero-Trust Identity and Compound Auth](#51-zero-trust-identity-and-compound-auth)
-    - [5.2 IaC Sovereignty (100% Terraform)](#52-iac-sovereignty-100-terraform)
-    - [5.3 Hybrid-First Integration and AppLink Pattern](#53-hybrid-first-integration-and-applink-pattern)
-    - [5.4 Observability-by-Design](#54-observability-by-design)
-    - [5.5 Immutable Infrastructure and Stateless Design](#55-immutable-infrastructure-and-stateless-design)
-- [6. Lifecycle Strategy and Environment Matrix](#6-lifecycle-strategy-and-environment-matrix)
-    - [6.1 IaC Engineering vs. Application Tiering](#61-iac-engineering-vs-application-tiering)
-        - [6.1.1 IaC Engineering Phase (Branch: `develop` and prefix `d`)](#611-iac-engineering-phase-branch-develop-and-prefix-d)
-        - [6.1.2 Stable IaC Execution (Branch: `main`)](#612-stable-iac-execution-branch-main)
-        - [6.1.3 Application Tiering (The Developer's View)](#613-application-tiering-the-developers-view)
-        - [6.1.4 Lifecycle Visualization and Environment Matrix](#614-lifecycle-visualization-and-environment-matrix)
-    - [6.2 Detailed Infrastructure Lifecycle Matrix](#62-detailed-infrastructure-lifecycle-matrix)
-    - [6.3 Tier Parity Strategy: ENG vs PRO](#63-tier-parity-strategy-eng-vs-pro)
-    - [6.4 Global Environment and Subscription Matrix](#64-global-environment-and-subscription-matrix)
-- [7. The Architecture Wiring: DRY Logic and Referential Linking](#7-the-architecture-wiring-dry-logic-and-referential-linking)
-    - [7.1 Multi-Layer Logic Lifecycle](#71-multi-layer-logic-lifecycle)
-    - [7.2 Logic Transformation Matrix: Module-Specific Evidence](#72-logic-transformation-matrix-module-specific-evidence)
-    - [7.3 The "Instance Generator" Core Logic: Deep-Dive](#73-the-instance-generator-core-logic-deep-dive)
-        - [7.3.1 Logic Transformation Matrix: Branch and Nomenclature Strategy](#731-logic-transformation-matrix-branch-and-nomenclature-strategy)
-        - [7.3.2 Branch Awareness and The "d" Prefix Logic (IaC Lab Mode)](#732-branch-awareness-and-the-d-prefix-logic-iac-lab-mode)
-        - [7.3.3 Shared Infrastructure Mapping: Tier Segregation](#733-shared-infrastructure-mapping-tier-segregation)
-        - [7.3.4 Dynamic App Registration and FQDN Naming](#734-dynamic-app-registration-and-fqdn-naming)
-    - [7.4 Multi-Region Fan-Out: The Regional Logic](#74-multi-region-fan-out-the-regional-logic)
-        - [7.4.1 Regional Short-Notation Matrix](#741-regional-short-notation-matrix)
-- [8. Architecture Blueprint: Visualizations and Deep-Dives](#8-architecture-blueprint-visualizations-and-deep-dives)
-    - [8.1 High-Fidelity Infrastructure Visualization and Traffic Flow](#81-high-fidelity-infrastructure-visualization-and-traffic-flow)
-    - [8.2 Global Traffic Engineering and Regional Failover](#82-global-traffic-engineering-and-regional-failover)
-    - [8.3 App Service and Microservices Ecosystem](#83-app-service-and-microservices-ecosystem)
-    - [8.4 AKS and Machine Learning Inference Ecosystem](#84-aks-and-machine-learning-inference-ecosystem)
-    - [8.5 Scaling Intelligence: Autoscale and Elasticity](#85-scaling-intelligence-autoscale-and-elasticity)
-        - [8.5.1 Cluster Autoscaler (CA) - The Compute Backbone](#851-cluster-autoscaler-ca-the-compute-backbone)
-        - [8.5.2 Workload Scaling (HPA and VPA)](#852-workload-scaling-hpa-and-vpa)
-        - [8.5.3 App Service Elasticity](#853-app-service-elasticity)
-        - [8.5.4 Scaling Strategy Comparison Matrix](#854-scaling-strategy-comparison-matrix)
-    - [8.6 Global CI/CD Pipeline Orchestration: The IaC Lifecycle](#86-global-cicd-pipeline-orchestration-the-iac-lifecycle)
-        - [8.6.1 Pipeline Architecture and Dependency Flow](#861-pipeline-architecture-and-dependency-flow)
-        - [8.6.2 Pipeline Inventory and Matrix (IaC Lifecycle Order)](#862-pipeline-inventory-and-matrix-iac-lifecycle-order)
-        - [8.6.3 The "Immutable Deployment" Execution Flow](#863-the-immutable-deployment-execution-flow)
-    - [8.7 Secure Secret Management and Pipeline Integration](#87-secure-secret-management-and-pipeline-integration)
-        - [8.7.1 The "Zero-Secret" Trust Fabric](#871-the-zero-secret-trust-fabric)
-        - [8.7.2 Secret Access and Governance Matrix](#872-secret-access-and-governance-matrix)
-        - [8.7.3 AKS "Triad" Certificate Provisioning and Day2 Lifecycle](#873-aks-triad-certificate-provisioning-and-day2-lifecycle)
-    - [8.8 Automated Secret and Certificate Rotation](#88-automated-secret-and-certificate-rotation)
-        - [8.8.1 Secret Rotation Inventory Matrix](#881-secret-rotation-inventory-matrix)
-    - [8.9 Backup, DR and Business Continuity Plan (BCP)](#89-backup-dr-and-business-continuity-plan-bcp)
-        - [8.9.1 Multi-Region Data Resiliency: Atlas vs. Cosmos DB (POC)](#891-multi-region-data-resiliency-atlas-vs-cosmos-db-poc)
-    - [8.10 Business Continuity Implementation Details](#810-business-continuity-implementation-details)
-- [9. Terraform Module Architecture: Domain-Driven Composition](#9-terraform-module-architecture-domain-driven-composition)
-    - [9.1 Categorization: Why "Composite" over "Atomic"?](#91-categorization-why-composite-over-atomic)
-    - [9.2 Master Ecosystem Inventory and Deployment Order](#92-master-ecosystem-inventory-and-deployment-order)
-    - [9.3 Architectural Dependency Chain (Logical Hierarchy)](#93-architectural-dependency-chain-logical-hierarchy)
-        - [9.3.1 Dependency Visualization](#931-dependency-visualization)
-    - [9.4 Internal Execution Flow (High-Fidelity Diagram)](#94-internal-execution-flow-high-fidelity-diagram)
-        - [9.4.1 The 5-Stage Lifecycle Breakdown](#941-the-5-stage-lifecycle-breakdown)
-    - [9.5 Referential Attribute Linking](#95-referential-attribute-linking)
-    - [9.6 Real-World Code Evidence](#96-real-world-code-evidence)
-    - [9.7 Orchestration Strategy](#97-orchestration-strategy)
-    - [9.8 Advanced Architectural Patterns](#98-advanced-architectural-patterns)
-        - [9.8.1 Data Transformation: YAML-Driven IaC](#981-data-transformation-yaml-driven-iac)
-        - [9.8.2 Advanced RBAC Matrixing and Granular Control](#982-advanced-rbac-matrixing-and-granular-control)
-        - [9.8.3 Collection-Driven Scaling Logic](#983-collection-driven-scaling-logic)
-    - [9.9 Repository Engineering Metrics and Analytics](#99-repository-engineering-metrics-and-analytics)
-        - [9.9.1 Visual Distribution Analysis](#991-visual-distribution-analysis)
-- [10. Engineering Strategy: Federated Multi-Repo vs. Mono-Repo](#10-engineering-strategy-federated-multi-repo-vs-mono-repo)
-    - [10.1 The "Enterprise Stack" Pattern](#101-the-enterprise-stack-pattern)
-    - [10.2 Architecture Comparison Matrix](#102-architecture-comparison-matrix)
-    - [10.3 Implementation Evidence: The Decoupling Logic](#103-implementation-evidence-the-decoupling-logic)
-- [11. DevSecOps: Identity, Secrets and OAuth Flow](#11-devsecops-identity-secrets-and-oauth-flow)
-    - [11.1 Governance-First Identity Model](#111-governance-first-identity-model)
-        - [11.1.1 OAuth 2.0 and OBO Flow Deep-Dive](#1111-oauth-20-and-obo-flow-deep-dive)
-        - [11.1.2 Advanced DevSecOps: The Compound Identity Model](#1112-advanced-devsecops-the-compound-identity-model)
-    - [11.2 Identity Flow and OAuth Deep-Dive](#112-identity-flow-and-oauth-deep-dive)
-    - [11.3 Token Comparison Table](#113-token-comparison-table)
-    - [11.4 Technical Flow Constraints](#114-technical-flow-constraints)
-- [12. Zero-Trust Identity and OIDC Flow (Secretless CI/CD)](#12-zero-trust-identity-and-oidc-flow-secretless-cicd)
-    - [12.1 The Workload Identity Trust Chain](#121-the-workload-identity-trust-chain)
-    - [12.2 Workload Identity Federation (OIDC) Evidence](#122-workload-identity-federation-oidc-evidence)
-- [13. Security-by-Design Checklist](#13-security-by-design-checklist)
-- [14. GreenOps and Sustainability](#14-greenops-and-sustainability)
-- [15. Validated Reference Library (Official and Community)](#15-validated-reference-library-official-and-community)
-    - [15.1 Foundational and Governance](#151-foundational-and-governance)
-    - [15.2 Infrastructure as Code (Terraform)](#152-infrastructure-as-code-terraform)
-    - [15.3 Security and Zero-Trust Identity](#153-security-and-zero-trust-identity)
-    - [15.4 Networking and Traffic Orchestration](#154-networking-and-traffic-orchestration)
-    - [15.5 Compute and Kubernetes (AKS)](#155-compute-and-kubernetes-aks)
-    - [15.6 SRE, FinOps and Sustainability](#156-sre-finops-and-sustainability)
-    - [15.7 Community and Expert Influences](#157-community-and-expert-influences)
+- [3. Network and Access Anonymization Notice](#3-network-and-access-anonymization-notice)
+- [4. Document Inventory](#4-document-inventory)
+- [5. Foundations and Engineering Onboarding](#5-foundations-and-engineering-onboarding)
+    - [5.1 Engineering Requirements](#51-engineering-requirements)
+    - [5.2 Global Regions and Carbon-Aware Naming](#52-global-regions-and-carbon-aware-naming)
+        - [5.2.1 The Nomenclature Logic (prefix 'd')](#521-the-nomenclature-logic-prefix-d)
+    - [5.3 Automation Glossary](#53-automation-glossary)
+    - [5.4 Engineering Environment: VSCode Optimization](#54-engineering-environment-vscode-optimization)
+- [6. Core Design Principles](#6-core-design-principles)
+    - [6.1 Zero-Trust Identity and Compound Auth](#61-zero-trust-identity-and-compound-auth)
+    - [6.2 IaC Sovereignty (100% Terraform)](#62-iac-sovereignty-100-terraform)
+    - [6.3 Hybrid-First Integration and AppLink Pattern](#63-hybrid-first-integration-and-applink-pattern)
+    - [6.4 Observability-by-Design](#64-observability-by-design)
+    - [6.5 Immutable Infrastructure and Stateless Design](#65-immutable-infrastructure-and-stateless-design)
+- [7. Lifecycle Strategy and Environment Matrix](#7-lifecycle-strategy-and-environment-matrix)
+    - [7.1 IaC Engineering vs. Application Tiering](#71-iac-engineering-vs-application-tiering)
+        - [7.1.1 IaC Engineering Phase (Branch: `develop` and prefix `d`)](#711-iac-engineering-phase-branch-develop-and-prefix-d)
+        - [7.1.2 Stable IaC Execution (Branch: `main`)](#712-stable-iac-execution-branch-main)
+        - [7.1.3 Application Tiering (The Developer's View)](#713-application-tiering-the-developers-view)
+        - [7.1.4 Lifecycle Visualization and Environment Matrix](#714-lifecycle-visualization-and-environment-matrix)
+    - [7.2 Detailed Infrastructure Lifecycle Matrix](#72-detailed-infrastructure-lifecycle-matrix)
+    - [7.3 Tier Parity Strategy: ENG vs PRO](#73-tier-parity-strategy-eng-vs-pro)
+    - [7.4 Global Environment and Subscription Matrix](#74-global-environment-and-subscription-matrix)
+- [8. The Architecture Wiring: DRY Logic and Referential Linking](#8-the-architecture-wiring-dry-logic-and-referential-linking)
+    - [8.1 Multi-Layer Logic Lifecycle](#81-multi-layer-logic-lifecycle)
+    - [8.2 Logic Transformation Matrix: Module-Specific Evidence](#82-logic-transformation-matrix-module-specific-evidence)
+    - [8.3 The "Instance Generator" Core Logic: Deep-Dive](#83-the-instance-generator-core-logic-deep-dive)
+        - [8.3.1 Logic Transformation Matrix: Branch and Nomenclature Strategy](#831-logic-transformation-matrix-branch-and-nomenclature-strategy)
+        - [8.3.2 Branch Awareness and The "d" Prefix Logic (IaC Lab Mode)](#832-branch-awareness-and-the-d-prefix-logic-iac-lab-mode)
+        - [8.3.3 Shared Infrastructure Mapping: Tier Segregation](#833-shared-infrastructure-mapping-tier-segregation)
+        - [8.3.4 Dynamic App Registration and FQDN Naming](#834-dynamic-app-registration-and-fqdn-naming)
+    - [8.4 Multi-Region Fan-Out: The Regional Logic](#84-multi-region-fan-out-the-regional-logic)
+        - [8.4.1 Regional Short-Notation Matrix](#841-regional-short-notation-matrix)
+- [9. Architecture Blueprint: Visualizations and Deep-Dives](#9-architecture-blueprint-visualizations-and-deep-dives)
+    - [9.1 High-Fidelity Infrastructure Visualization and Traffic Flow](#91-high-fidelity-infrastructure-visualization-and-traffic-flow)
+    - [9.2 Global Traffic Engineering and Regional Failover](#92-global-traffic-engineering-and-regional-failover)
+    - [9.3 App Service and Microservices Ecosystem](#93-app-service-and-microservices-ecosystem)
+    - [9.4 AKS and Machine Learning Inference Ecosystem](#94-aks-and-machine-learning-inference-ecosystem)
+    - [9.5 Scaling Intelligence: Autoscale and Elasticity](#95-scaling-intelligence-autoscale-and-elasticity)
+        - [9.5.1 Cluster Autoscaler (CA) - The Compute Backbone](#951-cluster-autoscaler-ca---the-compute-backbone)
+        - [9.5.2 Workload Scaling (HPA and VPA)](#952-workload-scaling-hpa-and-vpa)
+        - [9.5.3 App Service Elasticity](#953-app-service-elasticity)
+        - [9.5.4 Scaling Strategy Comparison Matrix](#954-scaling-strategy-comparison-matrix)
+    - [9.6 Global CI/CD Pipeline Orchestration: The IaC Lifecycle](#96-global-cicd-pipeline-orchestration-the-iac-lifecycle)
+        - [9.6.1 Pipeline Architecture and Dependency Flow](#961-pipeline-architecture-and-dependency-flow)
+        - [9.6.2 Pipeline Inventory and Matrix (IaC Lifecycle Order)](#962-pipeline-inventory-and-matrix-iac-lifecycle-order)
+        - [9.6.3 The "Immutable Deployment" Execution Flow](#963-the-immutable-deployment-execution-flow)
+    - [9.7 Secure Secret Management and Pipeline Integration](#97-secure-secret-management-and-pipeline-integration)
+        - [9.7.1 The "Zero-Secret" Trust Fabric](#971-the-zero-secret-trust-fabric)
+        - [9.7.2 Secret Access and Governance Matrix](#972-secret-access-and-governance-matrix)
+        - [9.7.3 AKS "Triad" Certificate Provisioning and Day2 Lifecycle](#973-aks-triad-certificate-provisioning-and-day2-lifecycle)
+    - [9.8 Automated Secret and Certificate Rotation](#98-automated-secret-and-certificate-rotation)
+        - [9.8.1 Secret Rotation Inventory Matrix](#981-secret-rotation-inventory-matrix)
+    - [9.9 Backup, DR and Business Continuity Plan (BCP)](#99-backup-dr-and-business-continuity-plan-bcp)
+        - [9.9.1 Multi-Region Data Resiliency: Atlas vs. Cosmos DB (POC)](#991-multi-region-data-resiliency-atlas-vs-cosmos-db-poc)
+    - [9.10 Business Continuity Implementation Details](#910-business-continuity-implementation-details)
+- [10. Terraform Module Architecture: Domain-Driven Composition](#10-terraform-module-architecture-domain-driven-composition)
+    - [10.1 Categorization: Why "Composite" over "Atomic"?](#101-categorization-why-composite-over-atomic)
+    - [10.2 Master Ecosystem Inventory and Deployment Order](#102-master-ecosystem-inventory-and-deployment-order)
+    - [10.3 Architectural Dependency Chain (Logical Hierarchy)](#103-architectural-dependency-chain-logical-hierarchy)
+        - [10.3.1 Dependency Visualization](#1031-dependency-visualization)
+    - [10.4 Internal Execution Flow (High-Fidelity Diagram)](#104-internal-execution-flow-high-fidelity-diagram)
+        - [10.4.1 The 5-Stage Lifecycle Breakdown](#1041-the-5-stage-lifecycle-breakdown)
+    - [10.5 Referential Attribute Linking](#105-referential-attribute-linking)
+    - [10.6 Real-World Code Evidence](#106-real-world-code-evidence)
+    - [10.7 Orchestration Strategy](#107-orchestration-strategy)
+    - [10.8 Advanced Architectural Patterns](#108-advanced-architectural-patterns)
+        - [10.8.1 Data Transformation: YAML-Driven IaC](#1081-data-transformation-yaml-driven-iac)
+        - [10.8.2 Advanced RBAC Matrixing and Granular Control](#1082-advanced-rbac-matrixing-and-granular-control)
+        - [10.8.3 Collection-Driven Scaling Logic](#1083-collection-driven-scaling-logic)
+    - [10.9 Repository Engineering Metrics and Analytics](#109-repository-engineering-metrics-and-analytics)
+        - [10.9.1 Visual Distribution Analysis](#1091-visual-distribution-analysis)
+- [11. Engineering Strategy: Federated Multi-Repo vs. Mono-Repo](#11-engineering-strategy-federated-multi-repo-vs-mono-repo)
+    - [11.1 The "Enterprise Stack" Pattern](#111-the-enterprise-stack-pattern)
+    - [11.2 Architecture Comparison Matrix](#112-architecture-comparison-matrix)
+    - [11.3 Implementation Evidence: The Decoupling Logic](#113-implementation-evidence-the-decoupling-logic)
+- [12. DevSecOps: Identity, Secrets and OAuth Flow](#12-devsecops-identity-secrets-and-oauth-flow)
+    - [12.1 Governance-First Identity Model](#121-governance-first-identity-model)
+        - [12.1.1 OAuth 2.0 and OBO Flow Deep-Dive](#1211-oauth-20-and-obo-flow-deep-dive)
+        - [12.1.2 Advanced DevSecOps: The Compound Identity Model](#1212-advanced-devsecops-the-compound-identity-model)
+    - [12.2 Identity Flow and OAuth Deep-Dive](#122-identity-flow-and-oauth-deep-dive)
+    - [12.3 Token Comparison Table](#123-token-comparison-table)
+    - [12.4 Technical Flow Constraints](#124-technical-flow-constraints)
+- [13. Zero-Trust Identity and OIDC Flow (Secretless CI/CD)](#13-zero-trust-identity-and-oidc-flow-secretless-cicd)
+    - [13.1 The Workload Identity Trust Chain](#131-the-workload-identity-trust-chain)
+    - [13.2 Workload Identity Federation (OIDC) Evidence](#132-workload-identity-federation-oidc-evidence)
+- [14. Security-by-Design Checklist](#14-security-by-design-checklist)
+- [15. GreenOps and Sustainability](#15-greenops-and-sustainability)
+- [16. Validated Reference Library (Official and Community)](#16-validated-reference-library-official-and-community)
+    - [16.1 Foundational and Governance](#161-foundational-and-governance)
+    - [16.2 Infrastructure as Code (Terraform)](#162-infrastructure-as-code-terraform)
+    - [16.3 Security and Zero-Trust Identity](#163-security-and-zero-trust-identity)
+    - [16.4 Networking and Traffic Orchestration](#164-networking-and-traffic-orchestration)
+    - [16.5 Compute and Kubernetes (AKS)](#165-compute-and-kubernetes-aks)
+    - [16.6 SRE, FinOps and Sustainability](#166-sre-finops-and-sustainability)
+    - [16.7 Community and Expert Influences](#167-community-and-expert-influences)
 
 ---
 
@@ -717,7 +702,51 @@ These audio summaries provide deep-dive verbal discussions of the architecture, 
 - **Sovereign Infrastructure and Security (Español):** [03_Infraestructura_soberana_y_seguridad_sin_contrasenas_Spanish.m4a](./audio/03_Infraestructura_soberana_y_seguridad_sin_contrasenas_Spanish.m4a) (Spanish Edition, Primary) — Localized discussion of zero-trust identity, Key Vault RBAC, and OIDC workloads.
 - **ClickOps and Passwordless IaC (Español):** [04_Azure_Terraform_2026_sin_contrasenas_ni_ClickOps_Spanish.m4a](./audio/04_Azure_Terraform_2026_sin_contrasenas_ni_ClickOps_Spanish.m4a) (Spanish Edition) — Discussion focused on eliminating portal manual changes and deploying exclusively via pipelines.
 
-## 3. Document Inventory
+---
+
+## 3. Network and Access Anonymization Notice
+
+> [!IMPORTANT]
+> All networking and access data in this repository has been anonymized to protect architectural confidentiality, while keeping every Terraform manifest **deployable as-is**. The values below are deliberately drawn from the address blocks that standards bodies and cloud vendors reserve for documentation, demos, and PoCs — so they are safe to publish, never collide with a real corporate network, and read naturally to any engineer adapting the blueprint. **Every value is a default in a `variables.tf` and is meant to be overridden via a `.tfvars` file at deployment time** (see the [141. Architecture Adoption and IPAM Guide](./docs/141-ARCHITECTURE_ADOPTION_AND_IPAM_GUIDE.md)).
+
+### Private network ranges (RFC 1918)
+
+Functional, non-secret, and the de-facto standard for Azure VNets:
+
+- **Shared core VNet** (App-Core, App-Catalog, Day2-ops, Shared-Infra):
+  - VNet: `10.10.0.0/24` &nbsp;·&nbsp; alternative `10.20.0.0/24` (kept commented for a second region/environment)
+  - App-Core workload subnet: `10.10.0.0/26`
+  - Other stacks subnet: `10.10.0.0/27`
+- **AKS VNet**: `10.0.0.0/8`
+  - API server subnet: `10.1.0.0/28`
+  - Node subnet: `10.0.32.0/19`
+  - Pod subnet: `10.0.64.0/19`
+- **AKS service plane** (Kubernetes ranges, separate from the node/pod subnets):
+  - `service_cidr`: `10.0.0.0/19`
+  - `dns_service_ip`: `10.0.0.10`
+
+### Public access points and whitelists
+
+Replaced with non-routable placeholders so no real management endpoint is exposed:
+
+- **AKS `authorized_ip_ranges`** &nbsp;— commented examples; **substitute your own egress IPs** (VPN, office, CI/CD runners) before enabling public API access:
+  - `198.51.100.0/24` (RFC 5737 "TEST-NET-2", reserved for documentation)
+  - `0.0.0.0/32`
+- **MongoDB Atlas** (`mongodb_atlas_cidr_block`):
+  - `0.0.0.0/0` — open by design for the PoC; lock down to your real CIDR for any non-demo use
+
+### Why these ranges?
+
+- **RFC 1918 private space** — `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`: non-routable on the Internet and the conventional choice for Azure hub-and-spoke designs, so the topology stays realistic without revealing the production plan.
+- **RFC 5737 documentation ranges** — `192.0.2.0/24`, `198.51.100.0/24`, `203.0.113.0/24`: guaranteed never to route anywhere, ideal stand-ins for *public* IPs in a published repo.
+- **Loopback / unspecified** — `127.0.0.0/8` and `0.0.0.0/32`: used where a value must exist but must never reach a real host.
+
+> [!NOTE]
+> **Technical Integrity**: although the values are anonymized, all Terraform logic, dependency chains, and orchestration patterns remain 100% functional and faithful to the original production architecture. 👉 **For how to change these values for a real deployment, refer to [141. Architecture Adoption and IPAM Guide](./docs/141-ARCHITECTURE_ADOPTION_AND_IPAM_GUIDE.md)**.
+
+---
+
+## 4. Document Inventory
 
 | Code | Primary Category | Sub-Category | Document | Description |
 | :--- | :--- | :--- | :--- | :--- |
@@ -751,22 +780,22 @@ These audio summaries provide deep-dive verbal discussions of the architecture, 
 | **999** | Reference and Closure | Roadmap and Backlog | [Future Roadmap and Strategic Architectural Backlog](./docs/999-FUTURE_ROADMAP_AND_IMPROVEMENT_BACKLOG.md) | Strategic evolution path and engineering improvement backlog. |
 
 
-## 4. Foundations and Engineering Onboarding
+## 5. Foundations and Engineering Onboarding
 
-### 4.1 Engineering Requirements
+### 5.1 Engineering Requirements
 Before initiating the first deployment, ensure the following prerequisites are met:
 
 | Category | Requirement | Source of Truth |
 | :--- | :--- | :--- |
-| **Azure** | 2x Enterprise Subscriptions (ENG, PRO) | [Section 6.3](#63-global-environment--subscription-matrix) |
+| **Azure** | 2x Enterprise Subscriptions (ENG, PRO) | [Section 7.4](#74-global-environment-and-subscription-matrix) |
 | **SCM** | `git` (CLI version `>= 2.40`) | [Git Docs](https://git-scm.com/) |
 | **Terraform** | CLI Version `>= 1.5.2` | [`providers.tf`](./App-Core/terraform-manifests/providers.tf) |
 | **ADO** | Terraform Extension by Microsoft DevLabs | [Pipelines](./AKS/01-terraform-provision-AKS-pipeline.yml) |
 | **Identity** | Global Admin (for initial SPN / OIDC setup) | [Entra ID](./docs/321-MICROSOFT_ENTRA_ID_INTEGRATION.md) |
 | **Tools** | `az cli`, `pwsh` (7+), `bash`, `kubelogin`, `kubectl`, `helm` | [`scripts/`](./Shared-Infra/scripts/) |
-| **IDE** | `VSCode` + [HashiCorp Terraform Extension](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform) | [Section 4.4](#44-engineering-environment-vscode-optimization) |
+| **IDE** | `VSCode` + [HashiCorp Terraform Extension](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform) | [Section 5.4](#54-engineering-environment-vscode-optimization) |
 
-### 4.2 Global Regions and Carbon-Aware Naming
+### 5.2 Global Regions and Carbon-Aware Naming
 Naming in this platform is a functional identifier. It encapsulates the geographical footprint, the carbon intensity of the datacenter, and the branch lifecycle status.
 
 | Region Name | Logical Code | Carbon Intensity | Primary Use Case | Source of Truth |
@@ -775,14 +804,14 @@ Naming in this platform is a functional identifier. It encapsulates the geograph
 | **West Europe** | `we` | Moderate | Disaster Recovery & Staging | [`03-locals.tf`](./App-Core/terraform-manifests/modules/appcore_module/03-locals.tf) |
 | **East US** | `eus` | High | North American Edge & Global Expansion | [`03-locals.tf`](./App-Core/terraform-manifests/modules/appcore_module/03-locals.tf) |
 
-#### 4.2.1 The Nomenclature Logic (prefix 'd')
-As detailed in [Section 6.1](#61-iac-engineering-vs-application-tiering), the platform distinguishes between stable and experimental code via branch-based prefixes.
+#### 5.2.1 The Nomenclature Logic (prefix 'd')
+As detailed in [Section 7.1](#71-iac-engineering-vs-application-tiering), the platform distinguishes between stable and experimental code via branch-based prefixes.
 - **Shadow Infrastructure (prefix 'd')**: Automatically prepended when deploying from `develop` (e.g., `stdnedev`). This allows engineers to safely test IaC logic without affecting production-grade resources.
 - **Production Sovereignty (no prefix)**: Reserved for resources deployed from `main` (e.g., `stnepro`), ensuring that mission-critical resources follow a clean, immutable naming standard.
 - **Logic Verification**: `gitbranch = (var.gitbranch != 'main') ? 'd':''` in [`03-locals.tf`](./App-Core/terraform-manifests/modules/appcore_module/03-locals.tf).
 
 
-### 4.3 Automation Glossary
+### 5.3 Automation Glossary
 - **IaC (Infrastructure as Code)**: The practice of managing and provisioning infrastructure through machine-readable definition files.
 - **Idempotency**: A property of our Terraform manifests where multiple executions of the same code result in the same state without side effects.
 - **Zero-Trust**: A security framework requiring all users/devices, whether in or out of the network, to be authenticated and authorized.
@@ -790,7 +819,7 @@ As detailed in [Section 6.1](#61-iac-engineering-vs-application-tiering), the pl
 - **Private Link / Endpoint**: A technology that provides private connectivity between a VNet and an Azure PaaS service, removing public internet exposure.
 - **UDR (User Defined Route)**: A manual routing rule used here to force all spoke traffic through the central Firewall.
 
-### 4.4 Engineering Environment: VSCode Optimization
+### 5.4 Engineering Environment: VSCode Optimization
 For the best engineering experience, use the following `settings.json` configuration:
 
 ```json
@@ -805,56 +834,56 @@ For the best engineering experience, use the following `settings.json` configura
 }
 ```
 
-## 5. Core Design Principles
+## 6. Core Design Principles
 
-### 5.1 Zero-Trust Identity and Compound Auth
+### 6.1 Zero-Trust Identity and Compound Auth
 We eliminate the concept of "Trusted Networks" by requiring every service interaction to be authenticated.
 - **Managed Identities (MSI)**: Microservices use User-Assigned Managed Identities to authenticate against Azure services (Key Vault, Storage) without static secrets.
 - **Workload Identity Federation**: Azure DevOps pipelines authenticate to Azure using OIDC, removing long-lived service principal keys.
 - **Evidence**: [`15-app-register-service-principals.tf`](./App-Core/terraform-manifests/modules/appcore_module/15-app-register-service-principals.tf) and [`shared-azure-devops-pipeline-vars.yml`](./Shared-Infra/configuration/shared-azure-devops-pipeline-vars.yml).
 
-### 5.2 IaC Sovereignty (100% Terraform)
+### 6.2 IaC Sovereignty (100% Terraform)
 The infrastructure is treated as software. Any change made via the Azure Portal is considered "Configuration Drift" and is automatically rectified by the next pipeline run.
 - **Declarative State**: 100% of resources are defined in HCL.
 - **Idempotency**: Rerunning the code with the same inputs produces zero changes, guaranteeing deterministic environments.
 - **Evidence**: [`AKS/01-terraform-provision-AKS-pipeline.yml`](./AKS/01-terraform-provision-AKS-pipeline.yml).
 
-### 5.3 Hybrid-First Integration and AppLink Pattern
+### 6.3 Hybrid-First Integration and AppLink Pattern
 Seamless connectivity between modern Cloud-Native APIs and legacy On-Premises systems.
 - **AppLink Signaling**: A custom pattern that allows secure, mTLS-encrypted tunnels for data exchange across hybrid networks.
 - **Evidence**: [`Integration-Service/README.md`](./Integration-Service/README.md) and [`Shared-Infra/terraform-manifests/modules/sharedinfra_dns_module/`](./Shared-Infra/terraform-manifests/modules/sharedinfra_dns_module/).
 
-### 5.4 Observability-by-Design
+### 6.4 Observability-by-Design
 Infrastructure is "born" with monitoring. No resource exists without telemetry.
 - **Evidence**: [`35-log-analytics-workspace.tf`](./App-Core/terraform-manifests/modules/appcore_module/35-log-analytics-workspace.tf) and [`36-application-insights.tf`](./App-Core/terraform-manifests/modules/appcore_module/36-application-insights.tf).
 
-### 5.5 Immutable Infrastructure and Stateless Design
+### 6.5 Immutable Infrastructure and Stateless Design
 We prioritize resource replacement over patching.
 - **Evidence**: [`18-app-service-back-api.tf`](./App-Core/terraform-manifests/modules/appcore_module/18-app-service-back-api.tf).
 
 
-## 6. Lifecycle Strategy and Environment Matrix
+## 7. Lifecycle Strategy and Environment Matrix
 
-### 6.1 IaC Engineering vs. Application Tiering
+### 7.1 IaC Engineering vs. Application Tiering
 It is critical to distinguish between the **Lifecycle of the Infrastructure Code (IaC)** and the **Functional Tiering of the Applications**.
 
-#### 6.1.1 IaC Engineering Phase (Branch: `develop` and prefix `d`)
+#### 7.1.1 IaC Engineering Phase (Branch: `develop` and prefix `d`)
 The **`develop` branch** is the laboratory for the Platform Engineering team. All changes to Terraform manifests and pipelines are developed and tested here first.
 - **The "d" Prefix Logic**: When deploying from any branch other than `main` (typically `develop` or feature branches), the Logic Engine automatically prepends a **`d`** to all resource names.
 - **Purpose**: This creates a "Shadow Infrastructure" where engineers can test IaC changes across **all tiers** (Dev, QA, and even Pro) without overwriting or impacting the stable, "gold" resources.
 - **Evidence**: [`03-locals.tf`](./App-Core/terraform-manifests/modules/appcore_module/03-locals.tf) logic: `gitbranch = (var.gitbranch != "main") ? "d":""`.
 
-#### 6.1.2 Stable IaC Execution (Branch: `main`)
+#### 7.1.2 Stable IaC Execution (Branch: `main`)
 The **`main` branch** contains the validated, "Productive" version of the infrastructure code.
 - **Clean Naming**: Resources deployed from `main` lack the `d` prefix, representing the official state of the environment.
 - **Dual Support**: Both Engineering Tiers (Dev/QA) and Production Tiers (Pro/Demo) use the code from their respective `main` states once validated.
 
-#### 6.1.3 Application Tiering (The Developer's View)
+#### 7.1.3 Application Tiering (The Developer's View)
 Independent of the IaC branch, the architecture provides two distinct **Subscription Tiers** for application developers:
 1.  **Engineering Spoke (ENG)**: Hosting functional environments for day-to-day development: **DEV, QA, UAT, and PRE**.
 2.  **Production Spoke (PRO)**: Hosting mission-critical environments: **PRO and DEMO**.
 
-#### 6.1.4 Lifecycle Visualization and Environment Matrix
+#### 7.1.4 Lifecycle Visualization and Environment Matrix
 
 The following diagram illustrates the flow of code and the separation between the **Engineering of the Code (IaC)** and the **Production of the Resources**.
 
@@ -904,7 +933,7 @@ graph TD
 
 </details>
 
-### 6.2 Detailed Infrastructure Lifecycle Matrix
+### 7.2 Detailed Infrastructure Lifecycle Matrix
 | Dimension | Engineering IaC (develop/d) | Stable IaC (main) |
 | :--- | :--- | :--- |
 | **Primary Goal** | Test new Terraform logic & patterns | Host production-ready workloads |
@@ -915,7 +944,7 @@ graph TD
 | **Target Audience** | Platform Engineers / SRE | App Developers / End Users |
 | **Evidence** | [`App-Core/03-locals.tf`](./App-Core/terraform-manifests/modules/appcore_module/03-locals.tf) | [`AKS/01-provisioning-pipeline.yml`](./AKS/01-terraform-provision-AKS-pipeline.yml) |
 
-### 6.3 Tier Parity Strategy: ENG vs PRO
+### 7.3 Tier Parity Strategy: ENG vs PRO
 We enforce strict **Tier Parity** to ensure that code tested in ENG behaves identically in PRO, with the only differences being **Scale** and **Cost**.
 
 | Feature | Engineering (ENG) | Production (PRO) | Code Evidence |
@@ -926,7 +955,7 @@ We enforce strict **Tier Parity** to ensure that code tested in ENG behaves iden
 | **Replication** | LRS (Local) | GRS / ZRS (Geo/Zone) | [`07-storage-account.tf`](./App-Core/terraform-manifests/modules/appcore_module/07-storage-account.tf) |
 | **Backup** | 7 Days Retention | 180+ Days Retention | [`10-backup-policy.tf`](./App-Core/terraform-manifests/modules/appcore_module/10-file-share-clients-backup-policy.tf) |
 
-### 6.4 Global Environment and Subscription Matrix
+### 7.4 Global Environment and Subscription Matrix
 The platform utilizes a **Spoke-Per-Tier** subscription model to ensure absolute billing and quota isolation. **Source of Truth**: Mapping logic in [`App-Core/03-locals.tf`](./App-Core/terraform-manifests/modules/appcore_module/03-locals.tf) where `sharedinfra_environment` is calculated.
 
 | Shared-Infra Env | App Env | Subscription Role | Service Connection | SPN Permission Level |
@@ -937,11 +966,11 @@ The platform utilizes a **Spoke-Per-Tier** subscription model to ensure absolute
 - **Service Connection Isolation**: Each environment tier is bound to a dedicated Azure DevOps Service Connection, preventing a "Dev" pipeline from accidentally touching "Prod" resources.
 - **Quota Management**: By separating ENG and PRO into different subscriptions, we avoid AKS core-limit exhaustion during heavy testing phases.
 
-## 7. The Architecture Wiring: DRY Logic and Referential Linking
+## 8. The Architecture Wiring: DRY Logic and Referential Linking
 
 This repository transcends traditional IaC by implementing a **Custom Logic Engine**. It ensures that high-level architectural intent is automatically translated into hundreds of low-level Azure resources, enforcing organizational standards without duplicating a single line of code.
 
-### 7.1 Multi-Layer Logic Lifecycle
+### 8.1 Multi-Layer Logic Lifecycle
 
 The following diagram illustrates how raw inputs are processed by the Engine (`locals.tf`) to produce a deterministic environment.
 
@@ -985,7 +1014,7 @@ graph TD
 
 </details>
 
-### 7.2 Logic Transformation Matrix: Module-Specific Evidence
+### 8.2 Logic Transformation Matrix: Module-Specific Evidence
 
 The Engine is distributed across specialized `locals.tf` files. Each module handles its own logic transformations to maintain strict encapsulation while adhering to global standards.
 
@@ -997,11 +1026,11 @@ The Engine is distributed across specialized `locals.tf` files. Each module hand
 | **Day2 Ops** | Mapping of operational tools and monitoring prefixes. | [`Day2-ops/locals.tf`](./Day2-ops/terraform-manifests/modules/day2_ops_module/locals.tf) |
 | **User Identity** | Dynamic YAML mapping for user provisioning. | [`App-Users/06-locals.tf`](./App-Users/terraform-manifests/06-locals.tf) |
 
-### 7.3 The "Instance Generator" Core Logic: Deep-Dive
+### 8.3 The "Instance Generator" Core Logic: Deep-Dive
 
-The **Environment Instance Generator** is the deterministic function that defines the "DNA" of the stack. It synthesizes inputs to ensure environment parity and cost isolation, strictly adhering to the **IaC Engineering vs. Application Tiering** strategy defined in Section 6.1.
+The **Environment Instance Generator** is the deterministic function that defines the "DNA" of the stack. It synthesizes inputs to ensure environment parity and cost isolation, strictly adhering to the **IaC Engineering vs. Application Tiering** strategy defined in Section 7.1.
 
-#### 7.3.1 Logic Transformation Matrix: Branch and Nomenclature Strategy
+#### 8.3.1 Logic Transformation Matrix: Branch and Nomenclature Strategy
 
 The Logic Engine applies distinct transformation rules based on the resource category. A critical feature is the **Branch Awareness** logic, which automatically segregates Engineering from Production resources.
 
@@ -1013,7 +1042,7 @@ The Logic Engine applies distinct transformation rules based on the resource cat
 | **Identity** | Automated Service Principal mapping. | `appr-appcore-back-dnedev` | [`12-app-register-back-api.tf`](./App-Core/terraform-manifests/modules/appcore_module/12-app-register-back-api.tf) |
 | **DNS** | Child zones are generated based on branch status. | `deng.enterprise.com` vs `apps.enterprise.com` | [`Shared-Infra/locals.tf`](./Shared-Infra/terraform-manifests/modules/dns_top_level_domain_module/locals.tf) |
 
-#### 7.3.2 Branch Awareness and The "d" Prefix Logic (IaC Lab Mode)
+#### 8.3.2 Branch Awareness and The "d" Prefix Logic (IaC Lab Mode)
 The master switch for nomenclature is the Git branch detection.
 
 - **High-Level Intent**: Ensure that IaC development work (in `develop` or feature branches) never conflicts with stable production naming, regardless of the target subscription.
@@ -1028,7 +1057,7 @@ The master switch for nomenclature is the Git branch detection.
 
   This creates a **Shadow Infrastructure** (e.g., `stdnedev`) that mirrors the structure of official resources (`stnepro`) for testing purposes.
 
-#### 7.3.3 Shared Infrastructure Mapping: Tier Segregation
+#### 8.3.3 Shared Infrastructure Mapping: Tier Segregation
 The engine distinguishes between **Engineering (ENG)** and **Production (PRO)** Shared-Infra tiers, including non-standard environments.
 
 - **PRO-Grade**: Environments `pro`, `dem` (Demo), and `res` (Research) are treated as **Production**.
@@ -1048,14 +1077,14 @@ The engine distinguishes between **Engineering (ENG)** and **Production (PRO)** 
     dns_child_zone = (var.environment != "pro") ? "${local.gitbranch}eng":"${local.gitbranch}apps"
   ```
 
-#### 7.3.4 Dynamic App Registration and FQDN Naming
+#### 8.3.4 Dynamic App Registration and FQDN Naming
 To prevent identity collisions, even **Entra ID App Registrations** and **DNS Zones** follow the branch-aware logic.
 
 - **Naming Pattern**: `appr-{product}-{service}-{prefix}{region}{env}`
 - **DNS Pattern**: `${dns_prefix}${gitbranch}{env}.enterprise.com`
 - **Technical Evidence**: Defined via the `suffix_name` and `appcore_dns_name` variables in [`App-Core/03-locals.tf`](./App-Core/terraform-manifests/modules/appcore_module/03-locals.tf). This ensures that an engineer testing a new AAD permission in `develop` branch creates a separate App Registration (`appr-...-dnedev`) rather than modifying the stable one.
 
-### 7.4 Multi-Region Fan-Out: The Regional Logic
+### 8.4 Multi-Region Fan-Out: The Regional Logic
 The architecture is designed for global scale, allowing for the independent activation of geographical footprints via Terraform "Feature Flags".
 
 - **Activation Flags**: Managed in `.tfvars` files.
@@ -1064,16 +1093,16 @@ The architecture is designed for global scale, allowing for the independent acti
 - **Regional Nomenclature**:
   The Logic Engine synthesizes regional codes into every resource name to prevent global namespace collisions.
 
-#### 7.4.1 Regional Short-Notation Matrix
+#### 8.4.1 Regional Short-Notation Matrix
 | Region | Short Code | DNS Prefix | Example Resource |
 | :--- | :---: | :---: | :--- |
 | **North Europe** | `ne` | `ne` | `stdnedev` |
 | **East US** | `us` | `us` | `stuspro` |
 | **West Europe** | `we` | `we` | `stwedev` |
 
-## 8. Architecture Blueprint: Visualizations and Deep-Dives
+## 9. Architecture Blueprint: Visualizations and Deep-Dives
 
-### 8.1 High-Fidelity Infrastructure Visualization and Traffic Flow
+### 9.1 High-Fidelity Infrastructure Visualization and Traffic Flow
 
 <details>
 <summary><b>Click to expand: High-Fidelity Infrastructure Visualization and Traffic Flow</b></summary>
@@ -1179,7 +1208,7 @@ graph LR
   - **Naming Convention Synergy**: Resources use the `d` prefix for ENG (e.g., `vnet-appcore-dnedev`) and clean naming for PRO (e.g., `vnet-appcore-nepro`), as defined in [`03-locals.tf`](./App-Core/terraform-manifests/modules/appcore_module/03-locals.tf).
   - **Edge Security**: The **Application Gateway WAF v2** terminates SSL and routes traffic to Spokes over peering links, ensuring L7 protection for all public-facing services.
 
-### 8.2 Global Traffic Engineering and Regional Failover
+### 9.2 Global Traffic Engineering and Regional Failover
 
 <details>
 <summary><b>Click to expand: Global Traffic Engineering and Regional Failover</b></summary>
@@ -1213,7 +1242,7 @@ graph TB
 
 </details>
 
-### 8.3 App Service and Microservices Ecosystem
+### 9.3 App Service and Microservices Ecosystem
 
 Detailed view of the polyglot application ecosystem (Angular, NestJS, Java) and its secure integration with MongoDB Atlas.
 
@@ -1296,7 +1325,7 @@ graph LR
     - **Network Security**: Connection is restricted via **IP Whitelisting** (IP Access List) in Atlas, allowing traffic only from the NAT Gateways or Public IPs of the corresponding Azure Spokes.
   - **Identity Propagation**: User identity is maintained via **MSAL** on the frontend and the **OAuth 2.0 OBO (On-Behalf-Of) Flow** on the backend to propagate the security context to downstream services.
 
-### 8.4 AKS and Machine Learning Inference Ecosystem
+### 9.4 AKS and Machine Learning Inference Ecosystem
 
 This sub-architecture details the high-performance compute layer dedicated to **ML Model Inference** within the AKS cluster, including its strict network isolation and DevSecOps integrations.
 
@@ -1354,7 +1383,7 @@ graph LR
   - **DevSecOps Integration (Registry)**: The AKS cluster's Kubelet Managed Identity is programmatically granted the `AcrPull` RBAC role over the private Azure Container Registry (`acr-{env}`). This eliminates the need to manage Kubernetes ImagePullSecrets manually ([`14-rbac.tf`](./AKS/terraform-manifests/modules/sharedinfra_aks_module/14-rbac.tf)).
   - **Secure Data & Secrets (Private Link)**: When an ML pod spins up, it uses **Workload Identity** to securely authenticate against Azure Key Vault to retrieve decryption keys or external API tokens. It then fetches multi-gigabyte model weights from Azure Blob Storage via a **Private Endpoint**, guaranteeing that sensitive AI assets are never exposed to the public internet.
 
-### 8.5 Scaling Intelligence: Autoscale and Elasticity
+### 9.5 Scaling Intelligence: Autoscale and Elasticity
 
 This architecture implements a **Four-Tier Scaling Model** to handle massive enterprise throughput while optimizing cost during idle periods.
 
@@ -1363,24 +1392,24 @@ This architecture implements a **Four-Tier Scaling Model** to handle massive ent
 
 - **Technical Implementation (Low-Level - Reverse Engineering):**
 
-#### 8.5.1 Cluster Autoscaler (CA) - The Compute Backbone
+#### 9.5.1 Cluster Autoscaler (CA) - The Compute Backbone
 The AKS cluster is configured to automatically adjust the number of nodes in the system node pool based on resource requests.
 - **Master Switch**: `enable_auto_scaling = true` in [`06-aks-cluster.tf`](./AKS/terraform-manifests/modules/sharedinfra_aks_module/06-aks-cluster.tf).
 - **Profile Tuning**:
   - `expander = "most-pods"`: Logic that prioritizes nodes capable of scheduling the largest number of pending pods.
   - `scale_down_utilization_threshold = 0.5`: Triggers node removal when the average load drops below 50%, optimized for cost.
 
-#### 8.5.2 Workload Scaling (HPA and VPA)
+#### 9.5.2 Workload Scaling (HPA and VPA)
 - **Horizontal Pod Autoscaler (HPA)**: Enforced via Helm values for core components like Nginx Ingress.
   - **Logic**: `targetCPUUtilizationPercentage = 50`, ensuring that new replicas are spawned before the existing ones reach exhaustion.
 - **Vertical Pod Autoscaler (VPA)**: Utilized in the [`kube-prometheus-stack`](./Day2-ops/terraform-manifests/helm/kube-prometheus-stack/values.yaml) to automatically size monitoring pods based on historical metrics.
 
-#### 8.5.3 App Service Elasticity
+#### 9.5.3 App Service Elasticity
 App Service Plans are configured with metric-based autoscale rules.
 - **Evidence**: [`16-app-service-plan.tf`](./App-Core/terraform-manifests/modules/appcore_module/16-app-service-plan.tf).
 - **Rules**: Scale-out triggered by **CPU > 70%** or **RAM > 80%**, maintaining a minimum of 2 instances in PRO for high availability.
 
-#### 8.5.4 Scaling Strategy Comparison Matrix
+#### 9.5.4 Scaling Strategy Comparison Matrix
 | Tier | Component | Method | Metric | Source of Truth |
 | :--- | :--- | :--- | :--- | :--- |
 | **Compute (Nodes)** | AKS | **Autoscaler (CA)** | Pending Pods | [`06-aks-cluster.tf`](./AKS/terraform-manifests/modules/sharedinfra_aks_module/06-aks-cluster.tf) |
@@ -1388,13 +1417,13 @@ App Service Plans are configured with metric-based autoscale rules.
 | **PaaS (Web)** | App Service | **Scale-Out** | CPU > 70% | [`16-app-service-plan.tf`](./App-Core/terraform-manifests/modules/appcore_module/16-app-service-plan.tf) |
 | **Edge (WAF)** | App Gateway | **Autoscale Units** | Throughput | [`21-app-gateway.tf`](./App-Core/terraform-manifests/modules/appcore_module/21-app-gateway.tf) |
 
-### 8.6 Global CI/CD Pipeline Orchestration: The IaC Lifecycle
+### 9.6 Global CI/CD Pipeline Orchestration: The IaC Lifecycle
 
 The repository acts as the **Central Control Plane** for the entire enterprise cloud estate. Infrastructure is deployed through a multi-tiered pipeline strategy that ensures architectural consistency, security compliance, and zero-drift environments.
 
 - **High-Level Intent**: Automate the full lifecycle of the Hub-Spoke ecosystem, from foundational networking to application-level microservices, using a "Plan-First, Verify-Always" approach.
 
-#### 8.6.1 Pipeline Architecture and Dependency Flow
+#### 9.6.1 Pipeline Architecture and Dependency Flow
 
 Infrastructure must be provisioned in a specific order to satisfy network and identity dependencies. The following diagram illustrates the **Sequential Provisioning Logic**:
 
@@ -1435,7 +1464,7 @@ graph TD
 
 </details>
 
-#### 8.6.2 Pipeline Inventory and Matrix (IaC Lifecycle Order)
+#### 9.6.2 Pipeline Inventory and Matrix (IaC Lifecycle Order)
 
 | Order | Pipeline Name | Responsibility | Orchestrator YAML (Source of Truth) |
 | :--- | :--- | :--- | :--- |
@@ -1446,7 +1475,7 @@ graph TD
 | **5** | **App-Catalog** | Dynamic catalog services and metadata management for client analysis. | [`App-Catalog/01-terraform-provision-catalog3-pipeline.yml`](./App-Catalog/01-terraform-provision-catalog3-pipeline.yml) |
 | **6** | **Day2-Ops** | Post-deployment orchestration: Helm-based monitoring stacks, Ingress controllers, and Dashboards. | [`Day2-ops/01-terraform-provision-day2ops-pipeline.yml`](./Day2-ops/01-terraform-provision-day2ops-pipeline.yml) |
 
-#### 8.6.3 The "Immutable Deployment" Execution Flow
+#### 9.6.3 The "Immutable Deployment" Execution Flow
 
 Every pipeline follows a strict **four-stage gate** to ensure that production is never compromised by unverified changes.
 
@@ -1488,11 +1517,11 @@ sequenceDiagram
 
 </details>
 
-### 8.7 Secure Secret Management and Pipeline Integration
+### 9.7 Secure Secret Management and Pipeline Integration
 
 This architecture implements a **Zero-Secret Pipeline** model, where credentials are never stored in the repository, hardcoded in YAML, or persistent on build agents. Secrets are treated as ephemeral assets retrieved *Just-In-Time* (JIT).
 
-#### 8.7.1 The "Zero-Secret" Trust Fabric
+#### 9.7.1 The "Zero-Secret" Trust Fabric
 
 <details>
 <summary><b>Click to expand: Zero-Secret Trust Fabric</b></summary>
@@ -1539,7 +1568,7 @@ graph TB
 
 </details>
 
-#### 8.7.2 Secret Access and Governance Matrix
+#### 9.7.2 Secret Access and Governance Matrix
 
 | Secret Category | Storage Location | Access Protocol | Source of Truth |
 | :--- | :--- | :--- | :--- |
@@ -1547,7 +1576,7 @@ graph TB
 | **Application Secrets** | `kv-{client}-{env}` | On-Behalf-Of (OBO) Flow | [`23-key-vault-clients.tf`](./App-Core/terraform-manifests/modules/appcore_module/23-key-vault-clients.tf) |
 | **K8s Credentials** | `kv-sharedinfra-pro` | Azure AD RBAC | [`06-aks-cluster.tf`](./AKS/terraform-manifests/modules/sharedinfra_aks_module/06-aks-cluster.tf) |
 
-#### 8.7.3 AKS "Triad" Certificate Provisioning and Day2 Lifecycle
+#### 9.7.3 AKS "Triad" Certificate Provisioning and Day2 Lifecycle
 
 A critical security bridge in this architecture is the manual/automated transition from **AKS Provisioning** to **AKS Configuration (Day2 Ops)**. Because the CI/CD agent needs cluster-admin rights to deploy Helm charts, we use a **Triple Certificate Auth** pattern.
 
@@ -1555,11 +1584,11 @@ A critical security bridge in this architecture is the manual/automated transiti
 2.  **Vaulting**: These are stored as individual secrets in the Shared-Infra Key Vault.
 3.  **Consumption**: Pipelines for [**Day2-ops**](./Day2-ops) and [**App-Catalog**](./App-Catalog) retrieve these JIT to authenticate the Helm and Kubernetes providers.
 
-### 8.8 Automated Secret and Certificate Rotation
+### 9.8 Automated Secret and Certificate Rotation
 
 - **High-Level Strategic Intent**: Eliminate "Static Credential Risk" by ensuring that no password or certificate lives long enough to be effectively exploited.
 
-#### 8.8.1 Secret Rotation Inventory Matrix
+#### 9.8.1 Secret Rotation Inventory Matrix
 
 | Secret Type | Rotation Mechanism | Frequency | Evidence |
 | :--- | :--- | :--- | :--- |
@@ -1567,9 +1596,9 @@ A critical security bridge in this architecture is the manual/automated transiti
 | **TLS/SSL Certs** | KV Versionless Reference | Automatic | [`28-rbac-azurerm-clients.tf`](./App-Core/terraform-manifests/modules/appcore_module/28-rbac-azurerm-clients.tf) |
 | **Service Tokens** | OAuth 2.0 Short-Lived JWT | **1 Hour** | [`App-Core/03-locals.tf`](./App-Core/terraform-manifests/modules/appcore_module/03-locals.tf) |
 
-### 8.9 Backup, DR and Business Continuity Plan (BCP)
+### 9.9 Backup, DR and Business Continuity Plan (BCP)
 
-#### 8.9.1 Multi-Region Data Resiliency: Atlas vs. Cosmos DB (POC)
+#### 9.9.1 Multi-Region Data Resiliency: Atlas vs. Cosmos DB (POC)
 
 To ensure business continuity across geographical boundaries, the persistence layer utilizes a multi-cloud and multi-region replication strategy.
 
@@ -1600,14 +1629,14 @@ graph LR
 
 </details>
 
-### 8.10 Business Continuity Implementation Details
+### 9.10 Business Continuity Implementation Details
 The architecture enforces data survival through automated vaulting and regional redundancy.
 - **Persistence Backup**: Managed via **Azure Recovery Services Vault** ([`10-backup-policy.tf`](./App-Core/terraform-manifests/modules/appcore_module/10-file-share-clients-backup-policy.tf)), providing daily snapshots for client data shares.
 - **Failover Sovereignty**: Cosmos DB (POC) and MongoDB Atlas are configured with multi-region write/read capabilities and **Automatic Failover** enabled.
 
-## 9. Terraform Module Architecture: Domain-Driven Composition
+## 10. Terraform Module Architecture: Domain-Driven Composition
 
-### 9.1 Categorization: Why "Composite" over "Atomic"?
+### 10.1 Categorization: Why "Composite" over "Atomic"?
 
 | Feature | Composite Architecture (This Repo) | Atomic Architecture (AVM) |
 | :--- | :--- | :--- |
@@ -1616,7 +1645,7 @@ The architecture enforces data survival through automated vaulting and regional 
 | **Maintenance** | 🛠 Focused (Update domain logic once) | 🔄 Heavy (Update dozens of dependencies) |
 | **Business Fit** | **Agile Mid/Large Multinational** | **Fragmented Giant Enterprise** |
 
-### 9.2 Master Ecosystem Inventory and Deployment Order
+### 10.2 Master Ecosystem Inventory and Deployment Order
 
 The following table serves as the **Source of Truth** for the entire ecosystem, mapping logical tiers to physical folders and defining their primary responsibilities and mandatory deployment sequence.
 
@@ -1631,11 +1660,11 @@ The following table serves as the **Source of Truth** for the entire ecosystem, 
 | **4** | `Day2-ops` | [`/Day2-ops`](./Day2-ops/terraform-manifests/modules/) | **Observability & Ingress**: Prometheus, Grafana, Kubecost, Nginx Ingress & K8s Dashboards. |
 | **4** | `Integration-Service` | [`/Integration-Service`](./Integration-Service/) | **Hybrid Connectivity**: AppLink Signaling, mTLS Tunnels and Legacy On-Premise Links. |
 
-### 9.3 Architectural Dependency Chain (Logical Hierarchy)
+### 10.3 Architectural Dependency Chain (Logical Hierarchy)
 
 Although this repository uses isolated Terraform states for safety (Blast Radius control), it follows a strict **3-Tier Logical Hierarchy** derived from the inventory above. Each tier provides the "hook points" required by the next layer.
 
-#### 9.3.1 Dependency Visualization
+#### 10.3.1 Dependency Visualization
 
 <details>
 <summary><b>Click to expand: Dependency Visualization</b></summary>
@@ -1668,11 +1697,11 @@ This "Stacking" approach allows for **Partial Lifecycle Management**. For exampl
 ---
 
 
-### 9.4 Internal Execution Flow (High-Fidelity Diagram)
+### 10.4 Internal Execution Flow (High-Fidelity Diagram)
 
 Every major module in this repository follows a deterministic **5-Stage Execution Lifecycle**. This pattern ensures that logic is separated from provisioning, and that security is wired into the resource at the moment of creation.
 
-#### 9.4.1 The 5-Stage Lifecycle Breakdown
+#### 10.4.1 The 5-Stage Lifecycle Breakdown
 
 1.  **Input Transformation (The Logic Engine)**: 
     Raw variables are ingested and transformed using `locals.tf`. This is where complex logic (like the `"d"` prefix for branches) is calculated before any resource is touched.
@@ -1723,7 +1752,7 @@ graph TD
 ---
 
 
-### 9.5 Referential Attribute Linking
+### 10.5 Referential Attribute Linking
 
 In this repository, we strictly avoid hardcoding resource IDs or names. Instead, we utilize **Referential Attribute Linking**—the practice of passing the output attribute of one resource directly as the input of another.
 
@@ -1761,7 +1790,7 @@ graph TD
 
 </details>
 
-### 9.6 Real-World Code Evidence
+### 10.6 Real-World Code Evidence
 *   **App Service Plan Link**: In [`18-app-service-back-api.tf`](./App-Core/terraform-manifests/modules/appcore_module/18-app-service-back-api.tf), the `service_plan_id` is linked directly to the plan's attribute: `service_plan_id = azurerm_service_plan.appcore_service_plan.id`.
 *   **WAF Policy Link**: In [`21-app-gateway.tf`](./App-Core/terraform-manifests/modules/appcore_module/21-app-gateway.tf), the Application Gateway references the WAF Policy ID and the Public IP ID dynamically.
 *   **Identity Wiring**: Managed Identities and Role Assignments (RBAC) are wired using `.principal_id` and `.id` attributes in [`27-rbac-azurerm.tf`](./App-Core/terraform-manifests/modules/appcore_module/27-rbac-azurerm.tf).
@@ -1771,7 +1800,7 @@ graph TD
 *   **[Terraform: Implicit Dependencies](https://developer.hashicorp.com/terraform/language/resources/behavior#dependencies)**
 *   **[Azure: App Service VNet Integration Logic](https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration)**
 
-### 9.7 Orchestration Strategy
+### 10.7 Orchestration Strategy
 
 The repository transitions from an **External Orchestration** model (Legacy) to a **Native HCL Orchestration** model (2026 Standard).
 
@@ -1827,17 +1856,17 @@ graph LR
 </details>
 
 For a deep-dive technical analysis of this shift, refer to:
-👉 **[Doc 01: Enterprise Architecture Strategy 2026 - Section 5](./docs/111-ARCHITECTURE_2026.md#5-deep-dive-terraform-stacks-2026-vs-pipeline-orchestration)**
+👉 **[Doc 01: Enterprise Architecture Strategy 2026 - Section 6](./docs/111-ARCHITECTURE_2026.md#5-deep-dive-terraform-stacks-2026-vs-pipeline-orchestration)**
 
-### 9.8 Advanced Architectural Patterns
+### 10.8 Advanced Architectural Patterns
 
-#### 9.8.1 Data Transformation: YAML-Driven IaC
+#### 10.8.1 Data Transformation: YAML-Driven IaC
 The platform goes beyond simple variable inputs by utilizing **YAML-Driven Orchestration** for complex identity management.
 - **The Logic**: Instead of defining each user manually, the `App-Users` module ingests structured YAML files.
 - **Reverse Engineering Evidence**: In [`App-Users/06-locals.tf`](./App-Users/terraform-manifests/06-locals.tf), we utilize nested `flatten()` functions to parse multi-layered user objects.
 - **Strategic Benefit**: This allows the "Business" (e.g., HR or Security departments) to manage user access via simple YAML commits without touching core Terraform logic.
 
-#### 9.8.2 Advanced RBAC Matrixing and Granular Control
+#### 10.8.2 Advanced RBAC Matrixing and Granular Control
 The repository implements a **Decoupled Identity Mapping** strategy to manage permissions at scale.
 - **Implicit Standardization**: Role assignments are derived from the **Logical Tiers**. For example, the Kubelet identity of the AKS cluster is programmatically granted `AcrPull` on the registry without human intervention.
 - **Evidence**: [`14-rbac.tf`](./AKS/terraform-manifests/modules/sharedinfra_aks_module/14-rbac.tf).
@@ -1850,12 +1879,12 @@ The repository implements a **Decoupled Identity Mapping** strategy to manage pe
   ```
 - **Impact**: This "Self-Healing Identity" pattern ensures that every new cluster is automatically wired to its registry, fulfilling the Zero-Trust requirement of **Automatic Least Privilege**.
 
-#### 9.8.3 Collection-Driven Scaling Logic
+#### 10.8.3 Collection-Driven Scaling Logic
 The repository utilizes advanced HCL patterns to handle enterprise-scale workloads.
 - **Dynamic Orchestration**: Every backend pool, listener, and rule in the Application Gateway is generated via **Dynamic Blocks** iterating over client collections.
 - **Evidence**: [`21-app-gateway.tf`](./App-Core/terraform-manifests/modules/appcore_module/21-app-gateway.tf).
 
-### 9.9 Repository Engineering Metrics and Analytics
+### 10.9 Repository Engineering Metrics and Analytics
 
 | Domain / Stack | Terraform Resources | YAML Pipelines | TFVars Files | Total Files |
 | :--- | :---: | :---: | :---: | :---: |
@@ -1868,7 +1897,7 @@ The repository utilizes advanced HCL patterns to handle enterprise-scale workloa
 | **`Identity (Users)`** | 8 | 18 | 0 | 38 |
 | **`TOTAL`** | **259** | **173** | **36** | **535** |
 
-#### 9.9.1 Visual Distribution Analysis
+#### 10.9.1 Visual Distribution Analysis
 | 1. Terraform Resources | 2. YAML Pipelines | 3. Total Files |
 | :---: | :---: | :---: |
 | See Chart Below | See Chart Below | See Chart Below |
@@ -1918,12 +1947,12 @@ pie title "Total Files"
 
 </details>
 
-## 10. Engineering Strategy: Federated Multi-Repo vs. Mono-Repo
+## 11. Engineering Strategy: Federated Multi-Repo vs. Mono-Repo
 
 This repository implements a **Hybrid Repository Strategy**. While presented as a **Mono-Repo** on GitHub, it was designed using a **Federated Multi-Repo** architecture.
 
-### 10.1 The "Enterprise Stack" Pattern
-In production, each tier defined in the **[Master Inventory (Section 8.2)](#82-master-ecosystem-inventory--deployment-order)** exists as a separate repository to ensure isolation.
+### 11.1 The "Enterprise Stack" Pattern
+In production, each tier defined in the **[Master Inventory (Section 10.2)](#102-master-ecosystem-inventory-and-deployment-order)** exists as a separate repository to ensure isolation.
 
 <details>
 <summary><b>Click to expand: Enterprise Stack Pattern</b></summary>
@@ -1939,7 +1968,7 @@ graph LR
 
 </details>
 
-### 10.2 Architecture Comparison Matrix
+### 11.2 Architecture Comparison Matrix
 
 | Feature | Federated Multi-Repo (Production) | Mono-Repo (GitHub/Distribution) |
 | :--- | :--- | :--- |
@@ -1952,18 +1981,18 @@ graph LR
 
 **Conclusion**: We use **Multi-Repo** for development to ensure security and isolation, but we publish as a **Mono-Repo** to provide a "Single Pane of Glass" for architects to understand the entire ecosystem.
 
-### 10.3 Implementation Evidence: The Decoupling Logic
+### 11.3 Implementation Evidence: The Decoupling Logic
 
 - **State Decoupling**: Each stack maintains its own `terraform.tfstate` file stored in a centralized, locked Azure Storage Container. This prevents a single lock from blocking the entire engineering team.
 - **Referential Integrity**: Downstream stacks (like `App-Core`) consume outputs from upstream stacks (like `Shared-Infra`) via **Data Sources** or **Pipeline Variables**, ensuring network IDs are always consistent.
 - **Cross-Repo Promotion**: Changes are promoted through versioned module tags, allowing for "Canary Infrastructure" deployments.
 
-## 11. DevSecOps: Identity, Secrets and OAuth Flow
+## 12. DevSecOps: Identity, Secrets and OAuth Flow
 
-### 11.1 Governance-First Identity Model
+### 12.1 Governance-First Identity Model
 We move beyond basic secret management into a **Governance-First** model where identity is the primary perimeter.
 
-#### 11.1.1 OAuth 2.0 and OBO Flow Deep-Dive
+#### 12.1.1 OAuth 2.0 and OBO Flow Deep-Dive
 
 To protect downstream databases (MongoDB Atlas), we utilize the **On-Behalf-Of (OBO)** flow. The backend API never uses a "Master Service Account"; instead, it exchanges the user's JWT for a scoped token.
 
@@ -1988,7 +2017,7 @@ sequenceDiagram
 
 </details>
 
-#### 11.1.2 Advanced DevSecOps: The Compound Identity Model
+#### 12.1.2 Advanced DevSecOps: The Compound Identity Model
 Access to client-specific sensitive data is governed by a **Dual-Lock mechanism** known as **Compound Identity** (Application-plus-User).
 
 - **The Logic**: A Key Vault secret is only released if the request satisfies TWO conditions simultaneously:
@@ -2005,25 +2034,25 @@ Access to client-specific sensitive data is governed by a **Dual-Lock mechanism*
   }
   ```
 
-### 11.2 Identity Flow and OAuth Deep-Dive
+### 12.2 Identity Flow and OAuth Deep-Dive
 The [**On-Behalf-Of (OBO)**](./App-Core/terraform-manifests/modules/appcore_module/12-app-register-back-api.tf) flow ([MS Ref](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow)) is the cornerstone of our multi-tenant security.
 
-### 11.3 Token Comparison Table
+### 12.3 Token Comparison Table
 | Token Type | Issuer | Life | Scope | Purpose |
 | :--- | :--- | :--- | :--- | :--- |
 | **ID Token** | Entra ID | 1hr | [`openid`](./App-Core/terraform-manifests/modules/appcore_module/11-app-register-front-spa.tf) ([MS Ref](https://learn.microsoft.com/en-us/entra/identity-platform/scopes-oidc#openid-connect-scopes)), [`profile`](./App-Core/terraform-manifests/modules/appcore_module/11-app-register-front-spa.tf) ([MS Ref](https://learn.microsoft.com/en-us/entra/identity-platform/scopes-oidc#profile-scope)) | User Identification (Frontend) |
 | **Access Token** | Entra ID | 1hr | [`user_impersonation`](./App-Core/terraform-manifests/modules/appcore_module/12-app-register-back-api.tf) ([MS Ref](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow)) | Calling Backend API |
 | **OBO Token** | Entra ID | 1hr | [`https://vault.azure.net/.default`](./App-Core/terraform-manifests/modules/appcore_module/12-app-register-back-api.tf) ([MS Ref](https://learn.microsoft.com/en-us/azure/key-vault/general/authentication#authentication-in-a-backend-service)) | Backend calling Key Vault as User |
 
-### 11.4 Technical Flow Constraints
+### 12.4 Technical Flow Constraints
 - **Application ID URI**: Must be unique per environment (`api://appcore-back-dnedev`).
 - **Claim Validation**: The backend validates the `iss` (Issuer) and `aud` (Audience) claims before requesting the OBO exchange.
 
-## 12. Zero-Trust Identity and OIDC Flow (Secretless CI/CD)
+## 13. Zero-Trust Identity and OIDC Flow (Secretless CI/CD)
 
 We eliminate the most common attack vector in CI/CD: **Long-lived Service Principal Secrets**. By implementing **OpenID Connect (OIDC)**, the pipeline "trades" a short-lived token from Azure DevOps for an Azure access token.
 
-### 12.1 The Workload Identity Trust Chain
+### 13.1 The Workload Identity Trust Chain
 
 <details>
 <summary><b>Click to expand: Workload Identity Trust Chain</b></summary>
@@ -2042,7 +2071,7 @@ sequenceDiagram
 
 </details>
 
-### 12.2 Workload Identity Federation (OIDC) Evidence
+### 13.2 Workload Identity Federation (OIDC) Evidence
 The platform enforces `use_oidc = true` across all core providers to ensure that build agents are always secretless.
 
 - **Trust Subject Pattern**: `sc://{organization}/{project}/{service_connection}`.
@@ -2054,14 +2083,14 @@ The platform enforces `use_oidc = true` across all core providers to ensure that
   }
   ```
 
-## 13. Security-by-Design Checklist
+## 14. Security-by-Design Checklist
 
 This repository undergoes automated security scanning to ensure compliance with the **Enterprise Security Guardrails**. For a high-fidelity technical deep-dive into the implementation of these controls (Private Link, Forced Egress, CMK, DDoS), please refer to the dedicated document:
 
 👉 **[Doc 15: Security-by-Design Checklist](./docs/324-SECURITY_BY_DESIGN_CHECKLIST.md)**
 
 
-## 14. GreenOps and Sustainability
+## 15. GreenOps and Sustainability
 
 Sustainability is treated as a first-class citizen through **Carbon-Aware Engineering**.
 
@@ -2072,38 +2101,38 @@ Sustainability is treated as a first-class citizen through **Carbon-Aware Engine
 
 ---
 
-## 15. Validated Reference Library (Official and Community)
+## 16. Validated Reference Library (Official and Community)
 
 This library provides a curated list of authoritative resources that form the technical and strategic foundation of this architecture.
 
-### 15.1 Foundational and Governance
+### 16.1 Foundational and Governance
 *   **[Microsoft Cloud Adoption Framework (CAF)](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/)**: Best practices for cloud adoption.
 *   **[Azure Well-Architected Framework (WAF)](https://learn.microsoft.com/en-us/azure/architecture/framework/)**: Five pillars of architectural excellence.
 *   **[Enterprise-Scale Landing Zones](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/)**: Design principles for large-scale Azure environments.
 
-### 15.2 Infrastructure as Code (Terraform)
+### 16.2 Infrastructure as Code (Terraform)
 *   **[Terraform Standard Module Structure](https://developer.hashicorp.com/terraform/language/modules/develop/structure)**: Official guidance on module design.
 *   **[Terraform Stacks (Vision 2026)](https://developer.hashicorp.com/terraform/cloud-docs/stacks)**: The future of native HCL orchestration.
 *   **[Azure Verified Modules (AVM)](https://azure.github.io/Azure-Verified-Modules/)**: Industry-standard library for Azure resources.
 *   **[Terraform Best Practices](https://www.terraform-best-practices.com/)**: Community-driven guide for scalable IaC.
 
-### 15.3 Security and Zero-Trust Identity
+### 16.3 Security and Zero-Trust Identity
 *   **[Microsoft Zero Trust Model](https://www.microsoft.com/en-us/security/business/zero-trust)**: Principles of verify explicitly, least privilege, and assume breach.
 *   **[OAuth 2.0 On-Behalf-Of (OBO) Flow](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow)**: Securing multi-tier service calls.
 *   **[Workload Identity Federation](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation)**: Eliminating secrets in AKS and CI/CD.
 *   **[OWASP Top 10 Security Risks](https://owasp.org/www-project-top-ten/)**: Essential guide for web application security.
 
-### 15.4 Networking and Traffic Orchestration
+### 16.4 Networking and Traffic Orchestration
 *   **[Hub-Spoke Topology in Azure](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/hybrid-networking/hub-spoke)**: Standard reference for regional network design.
 *   **[Azure Private Link Deep-Dive](https://learn.microsoft.com/en-us/azure/private-link/private-link-overview)**: Keeping traffic within the Microsoft backbone.
 *   **[WAF Policy Orchestration](https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/ag-overview)**: Managing edge protection at scale.
 
-### 15.5 Compute and Kubernetes (AKS)
+### 16.5 Compute and Kubernetes (AKS)
 *   **[AKS Baseline Architecture](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/baseline-aks)**: Production-ready cluster design.
 *   **[Azure CNI Overlay](https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay)**: Advanced networking for high-density pod environments.
 *   **[Helm: The Package Manager for Kubernetes](https://helm.sh/docs/)**: Managing complex K8s application lifecycles.
 
-### 15.6 SRE, FinOps and Sustainability
+### 16.6 SRE, FinOps and Sustainability
 *   **[The Google SRE Book](https://sre.google/sre-book/table-of-contents/)**: Foundational principles of Site Reliability Engineering.
 *   **[Azure Monitor Overview](https://learn.microsoft.com/en-us/azure/azure-monitor/overview)**: Centralized observability for Azure resources.
 *   **[FinOps Foundation](https://www.finops.org/)**: Cloud financial management best practices.
@@ -2111,7 +2140,7 @@ This library provides a curated list of authoritative resources that form the te
 *   **[Green Software Foundation](https://greensoftware.foundation/)**: Carbon-aware engineering standards.
 
 
-### 15.7 Community and Expert Influences
+### 16.7 Community and Expert Influences
 Special recognition to the experts whose architectural patterns influenced this repository:
 *   **[John Savill](https://www.youtube.com/@ntfaqguy)**: Masterclass in Azure Networking and Identity.
 *   **[Kalyan Reddy Daida](https://stacksimplify.com/)**: Founder of **StackSimplify** and author of the foundational AKS Masterclass patterns. Source code available at **[GitHub/stacksimplify](https://github.com/stacksimplify)**.
