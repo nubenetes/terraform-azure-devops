@@ -6,7 +6,7 @@
 
 - [1. Architectural Strategy and High-Impact Blueprint](#1-architectural-strategy-and-high-impact-blueprint)
 - [2. Strategic Presentations and Video Overviews](#2-strategic-presentations-and-video-overviews)
-    - [2.1 Master Architectural Summary (Start Here)](#21-master-architectural-summary-start-here)
+    - [2.1 Master Architectural Summary and Essential Blueprints (Start Here)](#21-master-architectural-summary-and-essential-blueprints-start-here)
     - [2.2 AI-Generated Video Summaries (NotebookLM)](#22-ai-generated-video-summaries-notebooklm)
     - [2.3 Vision 2026 Architectural Executive Summary](#23-vision-2026-architectural-executive-summary)
     - [2.4 Vision 2026 Technical Engineering Patterns](#24-vision-2026-technical-engineering-patterns)
@@ -51,7 +51,7 @@
     - [9.3 App Service and Microservices Ecosystem](#93-app-service-and-microservices-ecosystem)
     - [9.4 AKS and Machine Learning Inference Ecosystem](#94-aks-and-machine-learning-inference-ecosystem)
     - [9.5 Scaling Intelligence: Autoscale and Elasticity](#95-scaling-intelligence-autoscale-and-elasticity)
-        - [9.5.1 Cluster Autoscaler (CA) - The Compute Backbone](#951-cluster-autoscaler-ca-the-compute-backbone)
+        - [9.5.1 Cluster Autoscaler (CA) - The Compute Backbone](#951-cluster-autoscaler-ca---the-compute-backbone)
         - [9.5.2 Workload Scaling (HPA and VPA)](#952-workload-scaling-hpa-and-vpa)
         - [9.5.3 App Service Elasticity](#953-app-service-elasticity)
         - [9.5.4 Scaling Strategy Comparison Matrix](#954-scaling-strategy-comparison-matrix)
@@ -787,7 +787,7 @@ Before initiating the first deployment, ensure the following prerequisites are m
 
 | Category | Requirement | Source of Truth |
 | :--- | :--- | :--- |
-| **Azure** | 2x Enterprise Subscriptions (ENG, PRO) | [Section 7.3](#73-global-environment--subscription-matrix) |
+| **Azure** | 2x Enterprise Subscriptions (ENG, PRO) | [Section 7.4](#74-global-environment-and-subscription-matrix) |
 | **SCM** | `git` (CLI version `>= 2.40`) | [Git Docs](https://git-scm.com/) |
 | **Terraform** | CLI Version `>= 1.5.2` | [`providers.tf`](./App-Core/terraform-manifests/providers.tf) |
 | **ADO** | Terraform Extension by Microsoft DevLabs | [Pipelines](./AKS/01-terraform-provision-AKS-pipeline.yml) |
@@ -1952,7 +1952,7 @@ pie title "Total Files"
 This repository implements a **Hybrid Repository Strategy**. While presented as a **Mono-Repo** on GitHub, it was designed using a **Federated Multi-Repo** architecture.
 
 ### 11.1 The "Enterprise Stack" Pattern
-In production, each tier defined in the **[Master Inventory (Section 9.2)](#92-master-ecosystem-inventory--deployment-order)** exists as a separate repository to ensure isolation.
+In production, each tier defined in the **[Master Inventory (Section 10.2)](#102-master-ecosystem-inventory-and-deployment-order)** exists as a separate repository to ensure isolation.
 
 <details>
 <summary><b>Click to expand: Enterprise Stack Pattern</b></summary>
