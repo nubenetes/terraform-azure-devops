@@ -62,26 +62,26 @@ variable "aad_tenant_id" {
 variable "vnet_cidr" {
   description = "VNet CIDR"
   type        = string
-  default     = "127.0.0.1/24"
+  default     = "10.10.0.0/24"
 }
 
-# % sipcalc 127.0.0.1/24 -s 26
-# -[ipv4 : 127.0.0.1/24] - 0
+# % sipcalc 10.10.0.0/24 -s 26
+# -[ipv4 : 10.10.0.0/24] - 0
 #
 # [Split network]
-# Network			- 127.0.0.1      - 127.0.0.1
-# Network			- 127.0.0.1     - 127.0.0.1
-# Network			- 127.0.0.1    - 127.0.0.1
-# Network			- 127.0.0.1    - 127.0.0.1
+# Network			- 10.10.0.0      - 10.10.0.63
+# Network			- 10.10.0.64     - 10.10.0.127
+# Network			- 10.10.0.128    - 10.10.0.191
+# Network			- 10.10.0.192    - 10.10.0.255
 variable "subnet_cidr" {
   description = "Subnet CIDR"
   type        = string
-  default     = "127.0.0.1/26"
+  default     = "10.10.0.0/26"
 }
 # variable "subnet_cidr_2" {
 #   description = "Subnet CIDR 2"
 #   type = string
-#   default = "127.0.0.1/26"
+#   default = "10.10.0.64/26"
 # }
 
 #######################
