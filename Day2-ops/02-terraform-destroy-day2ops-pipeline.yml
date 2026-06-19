@@ -9,7 +9,7 @@ parameters:
   displayName: 'Destroy Day2ops ENG (Dev, QA, UAT, Pre)'
   type: boolean
   default: false
-- name: 'destroyDay2opsPRO'    # disabled since we don't want to create Enterprise.com DNZ Zone with terraform (already deployed)
+- name: 'destroyDay2opsPRO'    # disabled since we don't want to create enterprise.com DNZ Zone with terraform (already deployed)
   displayName: 'Destroy Day2ops PRO (Production)'
   type: boolean
   default: false

@@ -12,19 +12,19 @@
 # Answer: NO, 
 #   Self-signed wildcard certs are NOT App-Core compliant (connection between appcore and applink-cloud would fail)
 #
-# Purchasing *.dapps.Enterprise.com wildcard cert is avoided (300€ per year). Instead we use a signed/purchased *.deng.Enterprise.com wildard cert.
+# Purchasing *.dapps.enterprise.com wildcard cert is avoided (300€ per year). Instead we use a signed/purchased *.deng.enterprise.com wildard cert.
 ################################################################################################################################################################################################################################
 
 ################################################################
 # How to generate self-signed wildcard certs with this script:
 #
 # Main branch:
-# ./05-generate-wildcard-certificate.sh eng.Enterprise.com
-# ./05-generate-wildcard-certificate.sh apps.Enterprise.com
+# ./05-generate-wildcard-certificate.sh eng.enterprise.com
+# ./05-generate-wildcard-certificate.sh apps.enterprise.com
 #
 # Develop branch:
-# ./05-generate-wildcard-certificate.sh deng.Enterprise.com
-# ./05-generate-wildcard-certificate.sh dapps.Enterprise.com
+# ./05-generate-wildcard-certificate.sh deng.enterprise.com
+# ./05-generate-wildcard-certificate.sh dapps.enterprise.com
 ################################################################
 
 #######################################################################################################################

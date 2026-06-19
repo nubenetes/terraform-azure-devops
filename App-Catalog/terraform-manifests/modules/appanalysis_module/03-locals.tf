@@ -23,7 +23,7 @@ locals {
   env_generator                               = (var.environment != "pro") ? var.environment:""
 
   # Enterprise Monitor Client (Prometheus exporter): Our Prometheus is setup as Push-Based Metrics System
-  # Legacy: https://pushgateway-app-analysis.Enterprise.com
+  # Legacy: https://pushgateway-app-analysis.enterprise.com
   push_gateway_prometheus_metrics             = "${local.gitbranch}${local.env_generator}${var.Enterprise_product}-pushgateway.${local.dns_zone}"
 
   # Mongodb

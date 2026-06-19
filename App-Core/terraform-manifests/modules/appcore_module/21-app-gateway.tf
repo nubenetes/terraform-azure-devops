@@ -78,7 +78,7 @@ resource "azurerm_application_gateway" "appcore_agw" {
     rule_set_version = "3.2"
   }
   ###########################################################################################################################
-  # Check your wildcard certificate (i.e. app-envdev.deng.Enterprise.com):
+  # Check your wildcard certificate (i.e. app-envdev.deng.enterprise.com):
   #    https://www.sslshopper.com/ssl-checker.html
   #    https://www.ssllabs.com/ssltest/
   # Outcome: The certificate is not trusted in all web browsers. You may need to install an

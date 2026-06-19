@@ -11,8 +11,8 @@
 # Solution: Add Custom domain Name in https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/Domains :
 # https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/add-custom-domain
 #
-# eng.Enterprise.com
-# subdomains like core.eng.Enterprise.com are required (DNS MX aka e-mail)
+# eng.enterprise.com
+# subdomains like core.eng.enterprise.com are required (DNS MX aka e-mail)
 ###############################################################################################################################################################
 
 ###############################################################################################################################################################

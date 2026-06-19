@@ -12,7 +12,7 @@ resource "azuread_invitation" "appcore_external_user" {
     for external_user in local.yaml_external_users : "${external_user.email}" => external_user
   }
   user_email_address          = each.value.email
-  redirect_url                = "https://appc${each.value.env}.${var.dns_zone_per_env["${each.value.env}"]}.Enterprise.com/login"
+  redirect_url                = "https://appc${each.value.env}.${var.dns_zone_per_env["${each.value.env}"]}.enterprise.com/login"
   user_type                   = "Guest"
   message {
     language                  = "en-US"

@@ -69,14 +69,14 @@ resource "azuread_application" "grafana_login" {
   #   # A set of URLs where user tokens are sent for sign-in, or the redirect URIs where OAuth 2.0 authorization codes and access tokens are sent. Must be a valid https URL.
   #   # https://learn.microsoft.com/en-us/azure/app-service/configure-authentication-provider-aad#-create-an-app-registration-in-azure-ad-for-your-app-service-app
   #   # Redirect URI (reply URL) restrictions and limitations: https://learn.microsoft.com/en-us/azure/active-directory/develop/reply-url
-  #   redirect_uris = ["https://grafana.${local.environment}.Enterprise.com/oauth2/callback"]
+  #   redirect_uris = ["https://grafana.${local.environment}.enterprise.com/oauth2/callback"]
   #   # (Optional) A set of URLs where user tokens are sent for sign-in, or the redirect URIs where OAuth 2.0 authorization codes and access tokens are sent. Must be a valid https URL.
   # }
   #######################################################################################################################################
   # Web - Implicit grant and hybrid flows, enable ID tokens to allow OpenID Connect user sign-ins from App Service (but we use MSAL!).
   #######################################################################################################################################
   web {
-    redirect_uris = ["https://grafana.${local.dns_child_zone}.Enterprise.com/login/azuread","https://grafana.${local.dns_child_zone}.Enterprise.com/"]
+    redirect_uris = ["https://grafana.${local.dns_child_zone}.enterprise.com/login/azuread","https://grafana.${local.dns_child_zone}.enterprise.com/"]
   }
 }
 

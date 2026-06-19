@@ -68,11 +68,11 @@
 #   set {
 #     # using set for array of maps: https://github.com/hashicorp/terraform-provider-helm/issues/586
 #     name  = "server.ingress.tls[0].hosts"
-#     value = "{prometheus.${local.dns_child_zone}.Enterprise.com}"
+#     value = "{prometheus.${local.dns_child_zone}.enterprise.com}"
 #   }
 #   set {
 #     name  = "server.ingress.hosts"
-#     value = "{prometheus.${local.dns_child_zone}.Enterprise.com}"
+#     value = "{prometheus.${local.dns_child_zone}.enterprise.com}"
 #   }
 #   set {
 #     name  = "server.ingress.ingressClassName"

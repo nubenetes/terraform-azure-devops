@@ -92,7 +92,7 @@ resource "helm_release" "kubeapps" {
   }
   set {
     name  = "ingress.hostname"
-    value = "kubeapps.${local.dns_child_zone}.Enterprise.com"
+    value = "kubeapps.${local.dns_child_zone}.enterprise.com"
     #type  = "string"
   }
   set {
@@ -184,7 +184,7 @@ resource "helm_release" "kubeapps" {
     #value = "{--oidc-issuer-url=https://login.microsoftonline.com/00000000-0000-0000-0000-000000000000/v2.0,--azure-tenant=00000000-0000-0000-0000-000000000000}"
     #value = "{--oidc-issuer-url=https://login.microsoftonline.com/00000000-0000-0000-0000-000000000000/v2.0,--scope=openid email 00000000-0000-0000-0000-000000000000/user.read}"
     #
-    #value = "{--redirect-url=https://kubeapps.deng.Enterprise.com/oauth2/callback,--oidc-issuer-url=https://login.microsoftonline.com/00000000-0000-0000-0000-000000000000/v2.0,--scope=openid email 00000000-0000-0000-0000-000000000000/user.read,--set-authorization-header=true,--set-xauthrequest=true,--insecure-oidc-allow-unverified-email=true}"
+    #value = "{--redirect-url=https://kubeapps.deng.enterprise.com/oauth2/callback,--oidc-issuer-url=https://login.microsoftonline.com/00000000-0000-0000-0000-000000000000/v2.0,--scope=openid email 00000000-0000-0000-0000-000000000000/user.read,--set-authorization-header=true,--set-xauthrequest=true,--insecure-oidc-allow-unverified-email=true}"
     #value = "{--oidc-issuer-url=https://login.microsoftonline.com/00000000-0000-0000-0000-000000000000/v2.0,--azure-tenant=00000000-0000-0000-0000-000000000000}"
     #value = "{--oidc-issuer-url=https://login.microsoftonline.com/00000000-0000-0000-0000-000000000000/v2.0,--azure-tenant=00000000-0000-0000-0000-000000000000,oidc_groups_claim=roles,--insecure-oidc-allow-unverified-email=true}" # https://github.com/oauth2-proxy/oauth2-proxy/issues/1680
     #value = "{--oidc-issuer-url=https://login.microsoftonline.com/00000000-0000-0000-0000-000000000000/v2.0}"
@@ -229,12 +229,12 @@ resource "helm_release" "kubeapps" {
   }
   # set {
   #   name  = "ingress.annotations.nginx\\.ingress\\.kubernetes\\.io/auth-url"
-  #   value = "https://kubeapps.${local.environment}.Enterprise.com/oauth2/start"
+  #   value = "https://kubeapps.${local.environment}.enterprise.com/oauth2/start"
   #   type  = "string"
   # }
   # set {
   #   name  = "ingress.annotations.nginx\\.ingress\\.kubernetes\\.io/auth-signin"
-  #   value = "https://kubeapps.${local.environment}.Enterprise.com/oauth2/start?rd=$escaped_request_uri"
+  #   value = "https://kubeapps.${local.environment}.enterprise.com/oauth2/start?rd=$escaped_request_uri"
   #   type  = "string"
   # }
   # set {
@@ -340,15 +340,15 @@ resource "kubernetes_role_binding_v1" "kubeapps" {
 
 
 /*
-127.0.0.1:43142 - b5b360fc2b049d0c770ef29a5474add5 - - [2000/01/01 16:20:41] kubeapps.deng.Enterprise.com GET / "/" HTTP/1.1 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.1 Safari/537.36" 200 206 0.003
-127.0.0.1:43142 - 41a4f7eeb3832a6b2b52124a414b9907 - - [2000/01/01 16:20:41] kubeapps.deng.Enterprise.com GET / "/static/css/main.5c0cb017.css" HTTP/1.1 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.1 Safari/537.36" 200 242582 0.055
-127.0.0.1:43146 - 2ebe2b440733fd65ff9a41b48a011dec - - [2000/01/01 16:20:41] kubeapps.deng.Enterprise.com GET / "/custom_locale.json" HTTP/1.1 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.1 Safari/537.36" 200 2 0.004
-127.0.0.1:43146 - a68bc4c1d30c45ae5eb006ce8559dddc - - [2000/01/01 16:20:42] kubeapps.deng.Enterprise.com GET / "/config.json" HTTP/1.1 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.1 Safari/537.36" 200 679 0.001
-127.0.0.1:43150 - 10f8eae0b13b649b60ffcac7f81ad49c - - [2000/01/01 16:20:42] kubeapps.deng.Enterprise.com GET / "/clr-ui.min.css" HTTP/1.1 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.1 Safari/537.36" 200 162193 0.053
-127.0.0.1:43146 - 61b581718ad4e82835c1de2cc6528b09 - - [2000/01/01 16:20:43] kubeapps.deng.Enterprise.com GET / "/static/media/ClarityCity-SemiBold.508f08b507bb08382c2e.woff2" HTTP/1.1 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.1 Safari/537.36" 200 17252 0.002
+127.0.0.1:43142 - b5b360fc2b049d0c770ef29a5474add5 - - [2000/01/01 16:20:41] kubeapps.deng.enterprise.com GET / "/" HTTP/1.1 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.1 Safari/537.36" 200 206 0.003
+127.0.0.1:43142 - 41a4f7eeb3832a6b2b52124a414b9907 - - [2000/01/01 16:20:41] kubeapps.deng.enterprise.com GET / "/static/css/main.5c0cb017.css" HTTP/1.1 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.1 Safari/537.36" 200 242582 0.055
+127.0.0.1:43146 - 2ebe2b440733fd65ff9a41b48a011dec - - [2000/01/01 16:20:41] kubeapps.deng.enterprise.com GET / "/custom_locale.json" HTTP/1.1 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.1 Safari/537.36" 200 2 0.004
+127.0.0.1:43146 - a68bc4c1d30c45ae5eb006ce8559dddc - - [2000/01/01 16:20:42] kubeapps.deng.enterprise.com GET / "/config.json" HTTP/1.1 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.1 Safari/537.36" 200 679 0.001
+127.0.0.1:43150 - 10f8eae0b13b649b60ffcac7f81ad49c - - [2000/01/01 16:20:42] kubeapps.deng.enterprise.com GET / "/clr-ui.min.css" HTTP/1.1 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.1 Safari/537.36" 200 162193 0.053
+127.0.0.1:43146 - 61b581718ad4e82835c1de2cc6528b09 - - [2000/01/01 16:20:43] kubeapps.deng.enterprise.com GET / "/static/media/ClarityCity-SemiBold.508f08b507bb08382c2e.woff2" HTTP/1.1 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.1 Safari/537.36" 200 17252 0.002
 [2000/01/01 16:20:45] [oauthproxy.go:959] No valid authentication in request. Initiating login.
-127.0.0.1:43150 - a167b2c0e6bba0cb570c165ad128ee1d - - [2000/01/01 16:20:45] kubeapps.deng.Enterprise.com GET - "/clr-ui.min.css.map" HTTP/1.1 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.1 Safari/537.36" 403 8507 0.000
-127.0.0.1:43142 - 2b496c3c4b34ab8039a90f25f0a09586 - - [2000/01/01 16:20:41] kubeapps.deng.Enterprise.com GET / "/static/js/main.752354c9.js.map" HTTP/1.1 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.1 Safari/537.36" 200 23554580 3.897
+127.0.0.1:43150 - a167b2c0e6bba0cb570c165ad128ee1d - - [2000/01/01 16:20:45] kubeapps.deng.enterprise.com GET - "/clr-ui.min.css.map" HTTP/1.1 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.1 Safari/537.36" 403 8507 0.000
+127.0.0.1:43142 - 2b496c3c4b34ab8039a90f25f0a09586 - - [2000/01/01 16:20:41] kubeapps.deng.enterprise.com GET / "/static/js/main.752354c9.js.map" HTTP/1.1 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.1 Safari/537.36" 200 23554580 3.897
 [2000/01/01 16:20:49] [oauthproxy.go:830] Error creating session during OAuth2 callback: unable to get groups from Microsoft Graph: unable to unmarshal Microsoft Graph response: unexpected status "403": {"error":{"code":"Authorization_RequestDenied","message":"Insufficient privileges to complete the operation.","innerError":{"date":"2023-04-14T16:20:49","request-id":"00000000-0000-0000-0000-000000000000","client-request-id":"00000000-0000-0000-0000-000000000000"}}}
-127.0.0.1:43142 - 8ff6d1ea964a4840c5284ac7065c76b1 - - [2000/01/01 16:20:49] kubeapps.deng.Enterprise.com GET - "/oauth2/callback?code=0.ASAAz0gbrNr_v0qBdo1fAMGmQ499byV0-ddDgMSUuZJoFPAgAP0.AgABAAIAAAD--DLA3VO7QrddgJg7WevrAgDs_wUA9P9LpBtnwjf5PoV2QfBicmJFMB4TnMmcDnrO8J6xPAYb3FWY3Uv6FrrSV465pxhIetWRiJtvpBur55W2tJTlA-2rVgMGrb1Cp_VTqAKNCLPaUB46ZhWOiqdMIcoLTvQVBQrvc_PuLRp2nVHB_RND9zZDE7JFbai6wT6zJj9KMVo-YPtMYbVRNXOuhRBWOqHVhSgehTVzHiG86-jOM1wTQdy1KaoW-cPDCtkmhNnTJfuR9LylCr_1E-D8Wc-oIzCQ-3UpttDAY3wXgBUkgh66Tp83-lhURPWMXlbLPoVMrNa2x2MVoIMBq-pH66eQKA6kSoGJCR-db_msk94v4PzdTji3X-E1e-3yFgeJzohh05Q66LusNgYTrgNAopcR6ASBWQxgHVhPkGNrxRT28TbMVmDOl7nFpHuiEMyJtdUr_1l4mbrKydvj4zH3Igb3NAXrNKSNrPozPBoucPhzXtQZDqEdYFZ4DCzvoYKtCZ4uOqfYv0JHQuBh_DtrLKZ6x61zO2degi5C7BxWN0gWXycSDPm-lboFE6yGRmvlLyappcWFRYfVyeEG9DVswmAG-gJnrhT118LxeRrPCBLllJ1lpo1voc2FCUyR47y4Et1i19F4zzJwbFBELwV2hRL6iCGt7mfLL4ZMy-hsl1tL-re_W9e-kqwyb7FvQit98SBZz8Iex7tsZGj-bC_do3536e0rDWsLnlCB8RVRGFHo4aSPxXjCsBK8_lSmhNl_3ykz-63nCvm24Wq9eBfUBy2Vj4xTZ2gtOfHVXqTfM&state=BWsKQmdCeOFpK7XLUofx7HSLAgxL2hpA_VMV6xVRdyc%3a%2f&session_state=00000000-0000-0000-0000-000000000000" HTTP/1.1 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.1 Safari/537.36" 500 2837 0.719
+127.0.0.1:43142 - 8ff6d1ea964a4840c5284ac7065c76b1 - - [2000/01/01 16:20:49] kubeapps.deng.enterprise.com GET - "/oauth2/callback?code=0.ASAAz0gbrNr_v0qBdo1fAMGmQ499byV0-ddDgMSUuZJoFPAgAP0.AgABAAIAAAD--DLA3VO7QrddgJg7WevrAgDs_wUA9P9LpBtnwjf5PoV2QfBicmJFMB4TnMmcDnrO8J6xPAYb3FWY3Uv6FrrSV465pxhIetWRiJtvpBur55W2tJTlA-2rVgMGrb1Cp_VTqAKNCLPaUB46ZhWOiqdMIcoLTvQVBQrvc_PuLRp2nVHB_RND9zZDE7JFbai6wT6zJj9KMVo-YPtMYbVRNXOuhRBWOqHVhSgehTVzHiG86-jOM1wTQdy1KaoW-cPDCtkmhNnTJfuR9LylCr_1E-D8Wc-oIzCQ-3UpttDAY3wXgBUkgh66Tp83-lhURPWMXlbLPoVMrNa2x2MVoIMBq-pH66eQKA6kSoGJCR-db_msk94v4PzdTji3X-E1e-3yFgeJzohh05Q66LusNgYTrgNAopcR6ASBWQxgHVhPkGNrxRT28TbMVmDOl7nFpHuiEMyJtdUr_1l4mbrKydvj4zH3Igb3NAXrNKSNrPozPBoucPhzXtQZDqEdYFZ4DCzvoYKtCZ4uOqfYv0JHQuBh_DtrLKZ6x61zO2degi5C7BxWN0gWXycSDPm-lboFE6yGRmvlLyappcWFRYfVyeEG9DVswmAG-gJnrhT118LxeRrPCBLllJ1lpo1voc2FCUyR47y4Et1i19F4zzJwbFBELwV2hRL6iCGt7mfLL4ZMy-hsl1tL-re_W9e-kqwyb7FvQit98SBZz8Iex7tsZGj-bC_do3536e0rDWsLnlCB8RVRGFHo4aSPxXjCsBK8_lSmhNl_3ykz-63nCvm24Wq9eBfUBy2Vj4xTZ2gtOfHVXqTfM&state=BWsKQmdCeOFpK7XLUofx7HSLAgxL2hpA_VMV6xVRdyc%3a%2f&session_state=00000000-0000-0000-0000-000000000000" HTTP/1.1 "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.1 Safari/537.36" 500 2837 0.719
 */

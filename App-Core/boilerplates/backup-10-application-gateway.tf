@@ -169,7 +169,7 @@ resource "azurerm_application_gateway" "appcore_agw" {
 http_listener {
     frontend_ip_configuration_name = var.frontend_ip_configuration_name
     frontend_port_name             = "port_4200"
-    host_names                     = ["client-example.${var.environment}Enterprise.com", "core.${var.environment}Enterprise.com", "client-example.${var.environment}Enterprise.com", "client-example.${var.environment}Enterprise.com", "client-example.${var.environment}Enterprise.com"]
+    host_names                     = ["client-example.${var.environment}enterprise.com", "core.${var.environment}enterprise.com", "client-example.${var.environment}enterprise.com", "client-example.${var.environment}enterprise.com", "client-example.${var.environment}enterprise.com"]
     name                           = "lhs-analysis-viewer"
     protocol                       = "Https"
     require_sni                    = true
@@ -178,7 +178,7 @@ http_listener {
   http_listener {
     frontend_ip_configuration_name = var.frontend_ip_configuration_name
     frontend_port_name             = "port_4200"
-    host_names                     = ["client-example.${var.environment}Enterprise.com", "client-examplecore.${var.environment}Enterprise.com"]
+    host_names                     = ["client-example.${var.environment}enterprise.com", "client-examplecore.${var.environment}enterprise.com"]
     name                           = "lhs-analysis-viewer-002"
     protocol                       = "Https"
     require_sni                    = true
@@ -187,7 +187,7 @@ http_listener {
   http_listener {
     frontend_ip_configuration_name = var.frontend_ip_configuration_name
     frontend_port_name             = "port_443"
-    host_names                     = ["client-example.${var.environment}Enterprise.com", "core.${var.environment}Enterprise.com", "client-example.${var.environment}Enterprise.com", "client-example.${var.environment}Enterprise.com", "client-example.${var.environment}Enterprise.com"]
+    host_names                     = ["client-example.${var.environment}enterprise.com", "core.${var.environment}enterprise.com", "client-example.${var.environment}enterprise.com", "client-example.${var.environment}enterprise.com", "client-example.${var.environment}enterprise.com"]
     name                           = "lhs-core-portal"
     protocol                       = "Https"
     require_sni                    = true
@@ -196,7 +196,7 @@ http_listener {
   http_listener {
     frontend_ip_configuration_name = var.frontend_ip_configuration_name
     frontend_port_name             = "port_443"
-    host_names                     = ["client-example.${var.environment}Enterprise.com", "client-examplecore.${var.environment}Enterprise.com"]
+    host_names                     = ["client-example.${var.environment}enterprise.com", "client-examplecore.${var.environment}enterprise.com"]
     name                           = "lhs-core-portal-002"
     protocol                       = "Https"
     require_sni                    = true
@@ -205,14 +205,14 @@ http_listener {
   http_listener {
     frontend_ip_configuration_name = var.frontend_ip_configuration_name
     frontend_port_name             = "port_80"
-    host_names                     = ["client-example.${var.environment}Enterprise.com", "core.${var.environment}Enterprise.com", "client-example.${var.environment}Enterprise.com", "client-example.${var.environment}Enterprise.com", "client-example.${var.environment}Enterprise.com"]
+    host_names                     = ["client-example.${var.environment}enterprise.com", "core.${var.environment}enterprise.com", "client-example.${var.environment}enterprise.com", "client-example.${var.environment}enterprise.com", "client-example.${var.environment}enterprise.com"]
     name                           = "lh-core-portal"
     protocol                       = "Http"
   }
   http_listener {
     frontend_ip_configuration_name = var.frontend_ip_configuration_name
     frontend_port_name             = "port_80"
-    host_names                     = ["client-example.${var.environment}Enterprise.com", "client-examplecore.${var.environment}Enterprise.com"]
+    host_names                     = ["client-example.${var.environment}enterprise.com", "client-examplecore.${var.environment}enterprise.com"]
     name                           = "lh-core-portal-002"
     protocol                       = "Http"
   }

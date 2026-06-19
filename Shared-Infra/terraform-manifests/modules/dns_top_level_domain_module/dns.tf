@@ -21,7 +21,7 @@
 # https://shisho.dev/dojo/providers/azurerm/Network/azurerm-virtual-network-dns-servers/
 
 ##################################################################################################################################
-# DNS NS Record on Enterprise.com domain
+# DNS NS Record on enterprise.com domain
 # https://github.com/hashicorp/terraform-provider-azurerm/issues/2877
 # https://www.terraform.io/language/meta-arguments/resource-provider
 ##################################################################################################################################

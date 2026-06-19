@@ -365,9 +365,12 @@ variable "app_docker_image_tag_appclink_cloud_api" {
   type        = string
   default     = "1.2.0"
 }
+variable "app_docker_image_pdf_renderer" {
   description = "App-Core PDF Renderer Docker Image"
   type        = string
+  default     = "enterpriseappcorecr.azurecr.io/pdf_renderer"
 }
+variable "app_docker_image_tag_pdf_renderer" {
   description = "App-Core PDF Renderer Docker Image Tag"
   type        = string
   default     = "1.1.0"

@@ -14,7 +14,7 @@ parameters:
 variables:
   MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
   MAVEN_JVM_OPTS: "-Xmx3072m" # maven jvm params
-  MAVEN_OPTIONS: "-Dmaven.repo.local=$(MAVEN_CACHE_FOLDER) -Denvironment=app-env.apps" # endpoint: https://app-env.apps.Enterprise.com/applinkcloud/
+  MAVEN_OPTIONS: "-Dmaven.repo.local=$(MAVEN_CACHE_FOLDER) -Denvironment=app-env.apps" # endpoint: https://app-env.apps.enterprise.com/applinkcloud/
   POM_FILE: "pom.xml"
   # WinSW Version:
   winswRelease: '2.12.0'

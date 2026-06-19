@@ -130,7 +130,7 @@ metadata:
 spec:
   ingressClassName: webapprouting.kubernetes.azure.com
   rules:
-  - host: skooner.${local.dns_child_zone}.Enterprise.com
+  - host: skooner.${local.dns_child_zone}.enterprise.com
     http:
       paths:
       - path: /
@@ -143,7 +143,7 @@ spec:
         pathType: Prefix
   tls:
   - hosts:
-    - skooner.${local.dns_child_zone}.Enterprise.com
+    - skooner.${local.dns_child_zone}.enterprise.com
     secretName: keyvault-aks-skooner-${local.dns_child_zone} # secretName is the name of the secret that going to be generated to store the certificate. This is the certificate that's going to be presented in the browser.
 YAML
 depends_on = [
