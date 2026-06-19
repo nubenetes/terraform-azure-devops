@@ -31,7 +31,7 @@ resource "azurerm_subnet" "appcore_agw" {
 #   resource_group_name = azurerm_resource_group.appcore_rg.name
 #   route {
 #     name                   = local.user_defined_route_name
-#     address_prefix         = "127.0.0.1/0"
+#     address_prefix         = "0.0.0.0/0"
 #     next_hop_type          = "Internet"
 #   }
 # }

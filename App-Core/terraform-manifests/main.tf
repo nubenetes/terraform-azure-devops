@@ -49,7 +49,7 @@ module "europe" {
     kubernetes   = kubernetes.europe
   }
   # Defined in variables.tf :
-  # vpc_cidr                                                                      = "127.0.0.1/16" # example
+  # vpc_cidr                                                                       = "10.1.0.0/16" # example
   location                                                                        = var.location_europe # "northeurope"
   location_code                                                                   = var.location_code_europe # ne
   #azure_subscription                                                              = var.azure_subscription_europe
@@ -148,7 +148,7 @@ module "us" {
     kubernetes   = kubernetes.us
   }
   # Defined in variables.tf :
-  # vpc_cidr                                                                      = "127.0.0.1/16" # example
+  # vpc_cidr                                                                       = "10.1.0.0/16" # example
   location                                                                        = var.location_unitedstates # centralus
   location_code                                                                   = var.location_code_unitedstates # cus
   #azure_subscription                                                              = var.azure_subscription_unitedstates

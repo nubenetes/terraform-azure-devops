@@ -44,7 +44,7 @@ resource "azurerm_kubernetes_cluster" "aks_cluster" {
     # This will create a DNS zone in your subscription. HTTP application routing is designed for easily getting started with ingress controllers and as such is not recommended for production clusters.
     # https://learn.microsoft.com/en-us/azure/aks/http-application-routing
   public_network_access_enabled     = true # (Optional) Whether public network access is allowed for this Kubernetes Cluster. Defaults to true. Changing this forces a new resource to be created.
-    # When public_network_access_enabled is set to true, 127.0.0.1/32 must be added to authorized_ip_ranges in the api_server_access_profile block.
+    # When public_network_access_enabled is set to true, 0.0.0.0/32 must be added to authorized_ip_ranges in the api_server_access_profile block.
 
   #################################################################
   # nginx ingress controller + external-dns controller
@@ -139,8 +139,8 @@ azure_active_directory_role_based_access_control {
 # }
 
 api_server_access_profile {
-  #authorized_ip_ranges = ["127.0.0.1/24"]
-  #authorized_ip_ranges      = ["127.0.0.1/32"] # When public_network_access_enabled is set to true, 127.0.0.1/32 must be added to authorized_ip_ranges in the api_server_access_profile block.
+  #authorized_ip_ranges = ["198.51.100.0/24"]
+  #authorized_ip_ranges      = ["0.0.0.0/32"] # When public_network_access_enabled is set to true, 0.0.0.0/32 must be added to authorized_ip_ranges in the api_server_access_profile block.
   subnet_id                 = azurerm_subnet.aks_api_server.id # (Optional) The ID of the Subnet where the API server endpoint is delegated to.
     # apiServerAccessProfile.subnetId should be empty when using default vnet with apiserverVnetIntegration
   vnet_integration_enabled  = true # This requires that the Preview Feature Microsoft.ContainerService/EnableAPIServerVnetIntegrationPreview is enabled and the Resource Provider is re-registered, see the documentation for more information.
@@ -178,24 +178,24 @@ linux_profile {
 # correspond to the applied default values when these settings are not set up. In our scenario these default vault
 # values are applied to both AKS Clusters (dev & qa).
 # Default network settings with kubenet when they are not configured:
-# Azure AKS VNet     = "127.0.0.1/8"
-# Azure AKS Subnet   = "127.0.0.1/16"
-# service_cidr       = "127.0.0.1/16"
-# pod_cidr           = "127.0.0.1/16"
-# docker_bridge_cidr = "127.0.0.1/16" # Default. You can reuse this range across different AKS clusters.
-# dns_service_ip     = "127.0.0.1"
+# Azure AKS VNet     = "10.0.0.0/8"
+# Azure AKS Subnet   = "10.240.0.0/16"
+# service_cidr       = "10.0.0.0/16"
+# pod_cidr           = "10.244.0.0/16"
+# docker_bridge_cidr = "172.17.0.1/16" # Default. You can reuse this range across different AKS clusters.
+# dns_service_ip     = "10.0.0.10"
 
 network_profile {
   load_balancer_sku   = "standard"
   #network_plugin      = "kubenet"   # If network_profile is not defined, kubenet profile will be used by default.
   network_plugin      = "azure"
     # When network_plugin is set to azure - the vnet_subnet_id field in the default_node_pool block must be set and pod_cidr must not be set.
-  service_cidr        = "127.0.0.1/19"
-  #pod_cidr = "127.0.0.1/16"
+  service_cidr        = "10.0.0.0/19"
+  #pod_cidr = "10.244.0.0/16"
   #pod_cidr            = azurerm_subnet.aks_data_plane_pods.address_prefixes[0]
-  #docker_bridge_cidr  = "127.0.0.1/16" # Default. You can reuse this range across different AKS clusters.
+  #docker_bridge_cidr  = "172.17.0.1/16" # Default. You can reuse this range across different AKS clusters.
     # `docker_bridge_cidr` has been deprecated as the API no longer supports it and will be removed in version 4.0 of the provider.
-  dns_service_ip      = "127.0.0.1"
+  dns_service_ip      = "10.0.0.10"
 }
 
 # AKS Cluster Tags

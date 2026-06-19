@@ -62,15 +62,15 @@ variable "aad_tenant_id" {
 variable "vnet_cidr" {
   description = "VNet CIDR"
   type        = string
-  #default = "127.0.0.1/24"
-  default     = "127.0.0.1/24"
+  #default = "10.20.0.0/24"
+  default     = "10.10.0.0/24"
 }
 
 variable "subnet_cidr" {
   description = "Subnet CIDR"
   type        = string
-  #default = "127.0.0.1/27"
-  default     = "127.0.0.1/27"
+  #default = "10.20.0.0/27"
+  default     = "10.10.0.0/27"
 }
 
 #######################
@@ -335,12 +335,12 @@ variable "mongodb_atlas_database_name" {
 variable "mongodb_atlas_cidr_block" {
   description = "The cidr range that the cluster will be accessed from"
   type        = string
-  default     = "127.0.0.1/0"  # any address is allowed
+  default     = "0.0.0.0/0"  # any address is allowed
 }
 # variable "mongodb_atlas_ip_address" {
 #   description = "The IP address that the cluster will be accessed from, can also be a CIDR range or AWS security group"
 #   type        = string
-#   default     =             # "127.0.0.1" is not valid
+#   default     =             # "0.0.0.0" is not valid
 # }
 
 #################################
